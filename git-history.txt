@@ -1,0 +1,954 @@
+commit d6c5828a8c0c6661bde03b68bb509e5a26bf4ace
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Mon Jul 6 19:31:43 2026 +0530
+
+    feat: implement profile management system with state store and updated UI views
+
+documentation.pdf
+src/components/UserDropdown.tsx
+src/pages/account/EditProfile.tsx
+src/pages/account/UserProfile.tsx
+src/services/profile.service.ts
+src/store/profileStore.ts
+src/types/profile.types.ts
+
+commit 2a11523621de292b5b3ce2334fc390dd4387016b
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jul 3 20:16:15 2026 +0530
+
+    feat: Update dashboard cards with icons and improved layout for better visual consistency
+
+index.html
+src/pages/dashboard/crm/CrmDashboard.tsx
+src/pages/widgets/data/AreaStatsCard.tsx
+src/pages/widgets/data/NewCustomersCard.tsx
+src/pages/widgets/data/TotalSessionsCard.tsx
+src/pages/widgets/data/WebsiteVisitorsCard.tsx
+
+commit a5f02b5849545fa24e64a0664eb5b8d8e343d049
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jul 3 11:41:27 2026 +0530
+
+    feat: Implement property creation and management features
+    
+    - Added PropertyWizardHeader component for property publishing with form data handling.
+    - Enhanced CharacteristicsStep, GeneralStep, and PricingStep components with additional fields and labels indicating extra fields.
+    - Refactored property store to use new property service for fetching, creating, updating, and deleting properties.
+    - Introduced new property service for API interactions related to properties.
+    - Created property types and payload interfaces for better type safety and clarity.
+    - Updated store and service structure to improve maintainability and scalability.
+
+src/components/ui/button.tsx
+src/components/ui/input.tsx
+src/components/ui/radio-group.tsx
+src/components/ui/select.tsx
+src/components/ui/textarea.tsx
+src/hooks/useProperty.ts
+src/modules/emails/pages/Emailcompose.tsx
+src/modules/properties/PropertyListing.tsx
+src/modules/properties/create/PropertyWizardHeader.tsx
+src/modules/properties/create/steps/CharacteristicsStep.tsx
+src/modules/properties/create/steps/GeneralStep.tsx
+src/modules/properties/create/steps/PricingStep.tsx
+src/modules/properties/create/store/propertyCreationStore.ts
+src/services/property.service.ts
+src/store/index.ts
+src/store/property.store.ts
+src/store/propertyStore.ts
+src/types/property.types.ts
+
+commit 0764d422f22844d99e16a173f9041c9e5cf8737c
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Wed Jul 1 16:43:02 2026 +0530
+
+    feat: enhance event member handling with detailed member information and update payload structure
+
+src/modules/agenda/components/CalendarBoard.tsx
+src/modules/agenda/components/EventDialog.tsx
+src/store/agendaStore.ts
+src/types/agenda.types.ts
+
+commit 8e4919b0824718850ed7919affd951eec1b22e14
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Tue Jun 30 20:04:03 2026 +0530
+
+    feat: implement user search and selection in agenda event dialog with new store and service layer
+
+src/modules/agenda/components/CalendarBoard.tsx
+src/modules/agenda/components/CalendarEventCard.tsx
+src/modules/agenda/components/CalendarSidebar.tsx
+src/modules/agenda/components/CategoryProgress.tsx
+src/modules/agenda/components/EventDialog.tsx
+src/modules/agenda/components/MiniCalendar.tsx
+src/modules/agenda/components/UpcomingMeeting.tsx
+src/modules/agenda/pages/Agenda.tsx
+src/pages/widgets/data/WebsiteVisitorsCard.tsx
+src/services/agenda.service.ts
+src/store/agendaStore.ts
+src/types/agenda.types.ts
+
+commit 3bc3c789869bf96657920e4f91f801de4f6c3ddc
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Mon Jun 29 20:23:00 2026 +0530
+
+    refactor: update card titles for clarity and consistency across widgets
+
+src/pages/widgets/data/AreaStatsCard.tsx
+src/pages/widgets/data/NewCustomersCard.tsx
+src/pages/widgets/data/TotalSessionsCard.tsx
+src/pages/widgets/data/WebsiteVisitorsCard.tsx
+
+commit 832ed08d3271e9225fce484dfe138c3f245bc6ac
+Merge: b873ac2 f4068d5
+Author: rohannetworsys <rohan.kamat@networsys.com>
+Date:   Mon Jun 29 15:42:22 2026 +0530
+
+    Merge pull request #1 from sinoncode/rohan-new
+    
+    editProfile in userProfile
+
+commit f4068d51fd6fa132f837e3ae868621d7172a83ab
+Author: Rohan-Kamat <rohan.kamat@networsys.com>
+Date:   Mon Jun 29 15:39:21 2026 +0530
+
+    Email redirect issue & editProfile in userProfile
+
+src/modules/emails/pages/EmailListing.tsx
+src/pages/account/EditProfile.tsx
+src/pages/account/UserProfile.tsx
+
+commit 3dc90fa9d95cf2e7409049335f041f11d87ba126
+Merge: 7959ba7 b873ac2
+Author: Rohan-Kamat <rohan.kamat@networsys.com>
+Date:   Mon Jun 29 12:27:27 2026 +0530
+
+    Merge branch 'master' of https://github.com/sinoncode/2morrow-admin into rohan-changes
+
+commit b873ac200220c3c2e070cc79e3226a397f59b009
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 26 12:44:18 2026 +0530
+
+    chore: remove tsc build step from package.json build script
+
+package.json
+
+commit 27ad60f26c9bb2e73c0d0396aa5f3e0f3efe874e
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 26 12:39:41 2026 +0530
+
+    refactor: standardize listing UI components and data schemas across leads, requests, dossiers, and emails modules.
+
+src/modules/dossiers/pages/DossierList.tsx
+src/modules/emails/pages/EmailListing.tsx
+src/modules/leads/LeadsLists.tsx
+src/modules/requests/RequestLists.tsx
+
+commit cfc15fadf0d0437b4cd7959f6bd278d7a5d22d07
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 26 12:27:56 2026 +0530
+
+    implement email modules and add animated sidebar components with GSAP integration
+
+package-lock.json
+package.json
+src/components/app-sidebar.tsx
+src/components/sidebar/AppSidebar.tsx
+src/components/sidebar/LiquidLayer.tsx
+src/components/sidebar/LiquidMask.tsx
+src/components/sidebar/NoiseLayer.tsx
+src/components/sidebar/SidebarAnimation.ts
+src/components/sidebar/SidebarBackground.tsx
+src/components/sidebar/SidebarLayers.tsx
+src/components/sidebar/useSidebarTheme.ts
+src/components/sidebar/wavePaths.ts
+src/components/ui/sidebar.tsx
+src/layouts/AppLayout.tsx
+src/modules/emails/index.ts
+src/modules/emails/pages/EmailListing.tsx
+src/modules/emails/pages/Emailcompose.tsx
+src/modules/emails/routes.tsx
+src/routes/index.tsx
+
+commit 5f77260195213e4e383c191b51d61622dc7bda88
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Wed Jun 24 20:15:07 2026 +0530
+
+    Complete Dossier section with proprty details and client details
+
+src/components/app-sidebar.tsx
+src/components/client/AgentSidebar.tsx
+src/components/client/ClientHero.tsx
+src/components/client/ClientInformation.tsx
+src/components/client/DocumentCard.tsx
+src/components/client/DocumentsSection.tsx
+src/components/client/FinancialOverview.tsx
+src/components/client/LeadStatusCard.tsx
+src/components/client/Notes.tsx
+src/components/client/PropertyRequirements.tsx
+src/components/client/QuickActions.tsx
+src/components/client/SummaryCards.tsx
+src/components/client/Timeline.tsx
+src/components/client/data/mockData.ts
+src/components/client/data/types.ts
+src/modules/dossiers/create/LeadWizard.tsx
+src/modules/dossiers/create/LeadWizardHeader.tsx
+src/modules/dossiers/create/LeadWizardNavigation.tsx
+src/modules/dossiers/create/hooks/useLeadForm.ts
+src/modules/dossiers/create/hooks/useLeadValidation.ts
+src/modules/dossiers/create/steps/CharacteristicsStep.tsx
+src/modules/dossiers/create/steps/GeneralStep.tsx
+src/modules/dossiers/create/store/leadCreationStore.ts
+src/modules/dossiers/pages/DossierDetails.tsx
+src/modules/dossiers/pages/DossierList.tsx
+src/modules/leads/LeadsLists.tsx
+src/routes/index.tsx
+
+commit 3597d0492ec1bade0af4e30bf4c5d0342cfc3d8f
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Tue Jun 23 20:19:39 2026 +0530
+
+    Complete Request section and Leads section with detailed page completed
+
+src/modules/leads/EditLeads.tsx
+src/modules/leads/LeadsLists.tsx
+src/modules/leads/create/LeadWizard.tsx
+src/modules/leads/create/LeadWizardHeader.tsx
+src/modules/leads/create/LeadWizardNavigation.tsx
+src/modules/leads/create/hooks/useLeadForm.ts
+src/modules/leads/create/hooks/useLeadValidation.ts
+src/modules/leads/create/steps/CharacteristicsStep.tsx
+src/modules/leads/create/steps/GeneralStep.tsx
+src/modules/leads/create/store/leadCreationStore.ts
+src/modules/leads/index.ts
+src/modules/leads/routes.tsx
+src/modules/requests/EditRequests.tsx
+src/modules/requests/RequestLists.tsx
+src/modules/requests/create/RequestWizard.tsx
+src/modules/requests/create/RequestWizardHeader.tsx
+src/modules/requests/create/RequestWizardNavigation.tsx
+src/modules/requests/create/hooks/useRequestForm.ts
+src/modules/requests/create/hooks/useRequestValidation.ts
+src/modules/requests/create/steps/CharacteristicsStep.tsx
+src/modules/requests/create/steps/DescriptionStep.tsx
+src/modules/requests/create/steps/GeneralStep.tsx
+src/modules/requests/create/steps/MatchingStep.tsx
+src/modules/requests/create/steps/MediaStep.tsx
+src/modules/requests/create/steps/PricingStep.tsx
+src/modules/requests/create/steps/ProposedStep.tsx
+src/modules/requests/create/steps/PublicationStep.tsx
+src/modules/requests/create/store/requestCreationStore.ts
+src/routes/index.tsx
+tsconfig.tsbuildinfo
+
+commit 7959ba70844239afae8cc5c99243af6b869666e3
+Merge: 019fdb6 74d2f0e
+Author: Rohan-Kamat <rohan.kamat@networsys.com>
+Date:   Tue Jun 23 14:59:40 2026 +0530
+
+    Merge branch 'master' of https://github.com/sinoncode/2morrow-admin into rohan-changes
+
+commit 74d2f0e0c6534b01180c466fecbf55455bf65ee1
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Tue Jun 23 14:56:34 2026 +0530
+
+    Request section of 2morrow dashboard showing complete
+
+src/modules/requests/EditRequests.tsx
+src/modules/requests/RequestLists.tsx
+src/modules/requests/create/PropertyWizard.tsx
+src/modules/requests/create/PropertyWizardHeader.tsx
+src/modules/requests/create/PropertyWizardNavigation.tsx
+src/modules/requests/create/hooks/usePropertyForm.ts
+src/modules/requests/create/hooks/usePropertyValidation.ts
+src/modules/requests/create/steps/CharacteristicsStep.tsx
+src/modules/requests/create/steps/DescriptionStep.tsx
+src/modules/requests/create/steps/GeneralStep.tsx
+src/modules/requests/create/steps/MatchingStep.tsx
+src/modules/requests/create/steps/MediaStep.tsx
+src/modules/requests/create/steps/PricingStep.tsx
+src/modules/requests/create/steps/ProposedStep.tsx
+src/modules/requests/create/steps/PublicationStep.tsx
+src/modules/requests/create/store/propertyCreationStore.ts
+src/routes/index.tsx
+
+commit 019fdb60c30db722367b43ae1e4eb1f992bb4d72
+Merge: 36dc1dc 7ef1d92
+Author: Rohan-Kamat <rohan.kamat@networsys.com>
+Date:   Tue Jun 23 14:44:04 2026 +0530
+
+    Merge branch 'master' of https://github.com/sinoncode/2morrow-admin into rohan-changes
+
+commit 7ef1d9218bedf3c8ae7ed98cf89e1d036923e6da
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Mon Jun 22 19:57:51 2026 +0530
+
+    Complete Agenda design with funtionality
+
+add_dark_mode.cjs
+check_dark_mode.cjs
+check_dark_mode2.cjs
+fix_border_white.cjs
+fix_remaining.cjs
+src/components/app-sidebar.tsx
+src/modules/agenda/components/CalendarBoard.tsx
+src/modules/agenda/components/CalendarEventCard.tsx
+src/modules/agenda/components/CalendarHeader.tsx
+src/modules/agenda/components/CalendarSidebar.tsx
+src/modules/agenda/components/CategoryProgress.tsx
+src/modules/agenda/components/EventDialog.tsx
+src/modules/agenda/components/MiniCalendar.tsx
+src/modules/agenda/components/TeamAvatarGroup.tsx
+src/modules/agenda/components/UpcomingMeeting.tsx
+src/modules/agenda/components/event-dialog.tsx
+src/modules/agenda/components/types.ts
+src/modules/agenda/index.ts
+src/modules/agenda/pages/Agenda.tsx
+src/modules/agenda/routes.tsx
+src/routes/index.tsx
+tsconfig.tsbuildinfo
+update_agenda.cjs
+update_agenda.js
+update_agenda_view.cjs
+update_inputs.cjs
+
+commit 36dc1dc4eaea72d3d0ab859895564850ef582e7d
+Author: Rohan-Kamat <rohan.kamat@networsys.com>
+Date:   Fri Jun 19 19:57:24 2026 +0530
+
+    Icon display in propertyListing
+
+package-lock.json
+src/modules/properties/PropertyListing.tsx
+
+commit e9ec4b167eed46f18483507fc3f2ca5989c80f41
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 19 17:10:31 2026 +0530
+
+    ss
+
+src/modules/permission/components/rbac/RoleList.tsx
+src/store/auth.store.ts
+
+commit 374318d995eccc49201b901191b333c2c8302b74
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 19 12:56:20 2026 +0530
+
+    Permissisons Leads and other pages are completed
+
+package-lock.json
+package.json
+src/components/app-sidebar.tsx
+src/components/button.tsx
+src/lib/menuPermissions.ts
+src/lib/permissions.ts
+src/modules/permission/Permission.tsx
+src/modules/permission/components/rbac/CanAccess.tsx
+src/modules/permission/components/rbac/DeleteRoleDialog.tsx
+src/modules/permission/components/rbac/PermissionTable.tsx
+src/modules/permission/components/rbac/ProtectedPermissionRoute.tsx
+src/modules/permission/components/rbac/RoleList.tsx
+src/modules/permission/components/rbac/RoleModal.tsx
+src/modules/permission/components/rbac/ToggleSwitch.tsx
+src/modules/permission/components/ui/alert-dialog.tsx
+src/modules/permission/components/ui/dialog.tsx
+src/routes/index.tsx
+src/services/rbac.service.ts
+src/services/role.service.ts
+src/store/rbacStore.ts
+src/types/rbac.ts
+
+commit 361ba787900096eadff5f6e2ac8d659913974e40
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 18 20:25:53 2026 +0530
+
+    ss
+
+src/components/UserDropdown.tsx
+
+commit 932db50dfb99a5200454b56a2ebfa166f9193428
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 18 19:23:31 2026 +0530
+
+    Now logout login seemlesly and naviagtion in good condition also
+
+src/components/UserDropdown.tsx
+
+commit 66c8cf8f762c88282d2a29e2312891caf0620e82
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 18 19:16:01 2026 +0530
+
+    ss
+
+src/store/auth.store.ts
+vercel.json
+
+commit 90cfff024a014b2adad4f62889a64787c69b61ba
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 18 19:09:56 2026 +0530
+
+    Navigation issues
+
+src/store/auth.store.ts
+
+commit b5c6efe7ba9496c7e5189aa47c43da64179551cd
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 18 18:50:06 2026 +0530
+
+    Login, Logout setup complete files setup in the system
+
+.env
+LICENSE.md
+package-lock.json
+package.json
+src/api/axios.ts
+src/api/endpoints.ts
+src/api/services/auth.service.ts
+src/api/services/dashboard.service.ts
+src/api/services/property.service.ts
+src/api/services/user.service.ts
+src/assets/gifs/work-in-progress.gif
+src/components/UserDropdown.tsx
+src/components/app-sidebar.tsx
+src/hooks/useAuth.ts
+src/hooks/useProperty.ts
+src/index.css
+src/layouts/Footer.tsx
+src/lib/toast.ts
+src/main.tsx
+src/modules/auth/components/login-form.tsx
+src/modules/leads/LeadsLists.tsx
+src/modules/properties/PropertyListing.tsx
+src/modules/properties/create/steps/PricingStep.tsx
+src/modules/requests/RequestLists.tsx
+src/modules/requests/index.ts
+src/modules/requests/routes.tsx
+src/pages/Documentation.tsx
+src/pages/generated/AuthPage.tsx
+src/pages/generated/DashboardPage.tsx
+src/pages/generated/PropertyPage.tsx
+src/pages/generated/UserPage.tsx
+src/routes/index.tsx
+src/store/auth.store.ts
+src/store/dashboard.store.ts
+src/store/index.ts
+src/store/property.store.ts
+src/types/api.ts
+src/types/auth.ts
+src/types/property.ts
+src/utils/helpers.ts
+src/utils/token.ts
+src/vite-env.d.ts
+tsconfig.json
+tsconfig.tsbuildinfo
+
+commit 8e16b5af5214cfa19f9626f29fd878c678c6bbba
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Tue Jun 16 19:22:26 2026 +0530
+
+    Property Page design in Admin panel
+
+git-history.txt
+src/components/app-sidebar.tsx
+src/components/ui/button.tsx
+src/components/ui/input.tsx
+src/components/ui/radio-group.tsx
+src/components/ui/radio.tsx
+src/components/ui/select.tsx
+src/components/ui/textarea.tsx
+src/layouts/AppLayout.tsx
+src/modules/properties/AddProperty.tsx
+src/modules/properties/EditProperty.tsx
+src/modules/properties/PropertyListing.tsx
+src/modules/properties/create/PropertyWizard.tsx
+src/modules/properties/create/PropertyWizardHeader.tsx
+src/modules/properties/create/PropertyWizardNavigation.tsx
+src/modules/properties/create/hooks/usePropertyForm.ts
+src/modules/properties/create/hooks/usePropertyValidation.ts
+src/modules/properties/create/steps/CharacteristicsStep.tsx
+src/modules/properties/create/steps/DescriptionStep.tsx
+src/modules/properties/create/steps/GeneralStep.tsx
+src/modules/properties/create/steps/MatchingStep.tsx
+src/modules/properties/create/steps/MediaStep.tsx
+src/modules/properties/create/steps/PricingStep.tsx
+src/modules/properties/create/steps/ProposedStep.tsx
+src/modules/properties/create/steps/PublicationStep.tsx
+src/modules/properties/create/store/propertyCreationStore.ts
+src/modules/properties/index.ts
+src/modules/properties/routes.tsx
+src/routes/index.tsx
+tsconfig.tsbuildinfo
+
+commit d5ccf674333edce09267ba25e7bd930083725fc4
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 12 18:49:48 2026 +0530
+
+    correction of login form and fixiing the routes
+
+src/components/login-form.tsx
+src/modules/auth/ForgotPasswordPage.tsx
+src/modules/auth/LoginPage.tsx
+src/modules/auth/components/login-carousel.tsx
+src/modules/auth/components/login-form.tsx
+src/modules/auth/index.ts
+src/modules/auth/routes.tsx
+src/routes/index.tsx
+
+commit 57fc573015af77b78a0b2b305122b47df31e8037
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Thu Jun 11 20:52:18 2026 +0530
+
+    Login Page and and Forgot page design complete responsive design
+
+package-lock.json
+package.json
+src/assets/auth-images/apple_logo.svg
+src/assets/auth-images/auth-bg.png
+src/assets/auth-images/first-slider.png
+src/assets/auth-images/google_logo.webp
+src/assets/auth-images/reset-password.png
+src/assets/auth-images/second-slider.png
+src/assets/auth-images/third-slider.png
+src/assets/logo/2morrow-complete-logo-high-quality.png
+src/auth/basic/ForgotPasswordPage.tsx
+src/auth/basic/LoginPage.tsx
+src/components/login-carousel.tsx
+src/components/login-form.tsx
+src/index.css
+
+commit 137a58c6cf3a5242b7530206033ee6563e1b1cc9
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Tue Jun 9 20:26:27 2026 +0530
+
+    Complete files with struture
+
+project_details.txt
+src/app/router/index.tsx
+src/modules/activities/index.ts
+src/modules/activities/routes.tsx
+src/modules/agency/index.ts
+src/modules/agency/routes.tsx
+src/modules/agenda/index.ts
+src/modules/agenda/routes.tsx
+src/modules/agents/index.ts
+src/modules/agents/routes.tsx
+src/modules/auth/index.ts
+src/modules/auth/routes.tsx
+src/modules/billing/index.ts
+src/modules/billing/routes.tsx
+src/modules/contacts/index.ts
+src/modules/contacts/routes.tsx
+src/modules/dashboard/index.ts
+src/modules/dashboard/routes.tsx
+src/modules/emails/index.ts
+src/modules/emails/routes.tsx
+src/modules/leads/index.ts
+src/modules/leads/routes.tsx
+src/modules/projects/index.ts
+src/modules/projects/routes.tsx
+src/modules/properties/index.ts
+src/modules/properties/routes.tsx
+src/modules/reports/index.ts
+src/modules/reports/routes.tsx
+src/modules/requests/index.ts
+src/modules/requests/routes.tsx
+src/modules/settings/index.ts
+src/modules/settings/routes.tsx
+structure.txt
+
+commit 9cdbbdd1e3cc7dda0bbd49952d0b76abc6a7b3c1
+Author: sinoncode <sumit.pal@networsys.com>
+Date:   Fri Jun 5 20:38:10 2026 +0530
+
+    This is the initialization message for the project 2morrow which includes complete files for the starting of the project also I have editied the complete sidebar of the dashboard
+
+.gitignore
+LICENSE.md
+README.md
+components.json
+documentation.pdf
+eslint.config.js
+index.html
+package-lock.json
+package.json
+postcss.config.js
+public/cards/basic/01.jpeg
+public/cards/basic/02.jpeg
+public/cards/basic/03.jpeg
+public/cards/basic/04.jpeg
+public/cards/blog/01.jpeg
+public/cards/blog/02.jpeg
+public/cards/blog/03.jpeg
+public/cards/blog/04.jpeg
+public/cards/blog/05.jpeg
+public/cards/blog/06.jpeg
+public/cards/blog/07.jpeg
+public/cards/eComm/01.png
+public/cards/eComm/02.png
+public/cards/eComm/03.png
+public/cards/eComm/04.png
+public/cards/eComm/05.png
+public/cards/travel/01.jpeg
+public/cards/travel/02.jpeg
+public/cards/travel/03.jpeg
+public/illustrations/graphic-designer-workplace-1.png
+public/images/bg-themes/dark-blue.webp
+public/images/bg-themes/gausian-black.jpg
+public/images/cards/basic/01.jpeg
+public/images/cards/basic/02.jpeg
+public/images/cards/basic/03.jpeg
+public/images/cards/basic/04.jpeg
+public/images/cards/blog/01.jpeg
+public/images/cards/blog/02.jpeg
+public/images/cards/blog/03.jpeg
+public/images/cards/blog/04.jpeg
+public/images/cards/blog/05.jpeg
+public/images/cards/blog/06.jpeg
+public/images/cards/blog/07.jpeg
+public/images/cards/eComm/01.png
+public/images/cards/eComm/02.png
+public/images/cards/eComm/03.png
+public/images/cards/eComm/04.png
+public/images/cards/eComm/05.png
+public/images/cards/travel/01.jpeg
+public/images/cards/travel/02.jpeg
+public/images/cards/travel/03.jpeg
+public/images/carousels/01.png
+public/images/carousels/02.png
+public/images/carousels/03.png
+public/images/carousels/04.png
+public/images/carousels/05.png
+public/images/carousels/06.png
+public/images/carousels/07.png
+public/images/carousels/08.png
+public/images/carousels/09.png
+public/images/carousels/10.png
+public/images/carousels/11.png
+public/images/carousels/12.png
+public/images/carousels/13.png
+public/images/carousels/14.png
+public/images/carousels/15.png
+public/images/countries/01.png
+public/images/countries/02.png
+public/images/countries/03.png
+public/images/countries/04.png
+public/images/countries/05.png
+public/images/countries/06.png
+public/images/countries/07.png
+public/images/countries/08.png
+public/products/01.png
+public/products/02.png
+public/products/03.png
+public/products/04.png
+public/products/05.png
+public/products/06.png
+public/products/07.png
+public/products/08.png
+public/products/09.png
+public/products/10.png
+public/products/11.png
+public/products/12.png
+public/products/13.png
+public/products/15.png
+public/vite.svg
+src/assets/logo/2morrow-complete-logo.png
+src/assets/logo/2morrow-icon.png
+src/assets/logo/2morrow-text-logo.png
+src/assets/react.svg
+src/auth/basic/ForgotPasswordPage.tsx
+src/auth/basic/LoginPage.tsx
+src/auth/basic/PasswordResetSuccess.tsx
+src/auth/basic/RegisterPage.tsx
+src/auth/basic/ResetPasswordForm.tsx
+src/auth/basic/VerifyEmailForm.tsx
+src/auth/cover/CoverForgotPasswordPage.tsx
+src/auth/cover/CoverLoginPage.tsx
+src/auth/cover/CoverPasswordResetSuccessPage.tsx
+src/auth/cover/CoverRegisterPage.tsx
+src/auth/cover/CoverResetPasswordPage.tsx
+src/auth/cover/CoverVerifyEmailPage.tsx
+src/components/ThemeLogo.tsx
+src/components/UserDropdown.tsx
+src/components/app-sidebar.tsx
+src/components/appLauncher-dropdown.tsx
+src/components/calendar/event-dialog.tsx
+src/components/calendar/shadcn-full-calendar.tsx
+src/components/calendar/types.ts
+src/components/columns.tsx
+src/components/data-table.tsx
+src/components/file-manager/data.ts
+src/components/file-manager/file-card.tsx
+src/components/file-manager/folder-card.tsx
+src/components/file-manager/sidebar.tsx
+src/components/file-manager/toolbar.tsx
+src/components/global-search.tsx
+src/components/language-dropdown.tsx
+src/components/login-form.tsx
+src/components/nav-main.tsx
+src/components/nav-projects.tsx
+src/components/nav-user.tsx
+src/components/notification-dropdown.tsx
+src/components/signup-form.tsx
+src/components/team-switcher.tsx
+src/components/theme-customizer.tsx
+src/components/theme-toggle.tsx
+src/components/ui/accordion.tsx
+src/components/ui/alert.tsx
+src/components/ui/avatar.tsx
+src/components/ui/badge.tsx
+src/components/ui/breadcrumb.tsx
+src/components/ui/button.tsx
+src/components/ui/calendar.tsx
+src/components/ui/card.tsx
+src/components/ui/carousel.tsx
+src/components/ui/chart.tsx
+src/components/ui/checkbox.tsx
+src/components/ui/collapsible.tsx
+src/components/ui/colored-progress.tsx
+src/components/ui/command.tsx
+src/components/ui/dialog.tsx
+src/components/ui/dropdown-menu.tsx
+src/components/ui/field.tsx
+src/components/ui/form.tsx
+src/components/ui/input-group.tsx
+src/components/ui/input.tsx
+src/components/ui/label.tsx
+src/components/ui/pagination.tsx
+src/components/ui/popover.tsx
+src/components/ui/progress.tsx
+src/components/ui/radio-group.tsx
+src/components/ui/scroll-area.tsx
+src/components/ui/select.tsx
+src/components/ui/separator.tsx
+src/components/ui/sheet.tsx
+src/components/ui/sidebar.tsx
+src/components/ui/skeleton.tsx
+src/components/ui/slider.tsx
+src/components/ui/sonner.tsx
+src/components/ui/switch.tsx
+src/components/ui/table.tsx
+src/components/ui/tabs.tsx
+src/components/ui/textarea.tsx
+src/components/ui/toggle-group.tsx
+src/components/ui/toggle.tsx
+src/components/ui/tooltip.tsx
+src/hooks/use-mobile.tsx
+src/index.css
+src/layouts/AppLayout.tsx
+src/layouts/AuthLayout.tsx
+src/layouts/Footer.tsx
+src/lib/utils.ts
+src/main.tsx
+src/pages/Documentation.tsx
+src/pages/ErrorPage.tsx
+src/pages/FAQPage.tsx
+src/pages/NotFound.tsx
+src/pages/accordion/AccordionCard.tsx
+src/pages/accordion/AccordionPage.tsx
+src/pages/accordion/BasicAccordion.tsx
+src/pages/accordion/BorderAccordion.tsx
+src/pages/account/EditProfile.tsx
+src/pages/account/NotificationSettings.tsx
+src/pages/account/PasswordSettings.tsx
+src/pages/account/UserProfile.tsx
+src/pages/alerts/AlertsPage.tsx
+src/pages/alerts/BasicAlerts.tsx
+src/pages/alerts/IconCircleAlerts.tsx
+src/pages/alerts/LightBgColorAlerts.tsx
+src/pages/alerts/SolidBgColorAlerts.tsx
+src/pages/apps/CalendarPage.tsx
+src/pages/apps/Chatbox.tsx
+src/pages/apps/FileManager.tsx
+src/pages/badges/BadgeCustomColors.tsx
+src/pages/badges/BadgeVariants.tsx
+src/pages/badges/BadgeWithIconLeft.tsx
+src/pages/badges/BadgesPage.tsx
+src/pages/badges/IconBadgeButtons.tsx
+src/pages/badges/PositionedBadges.tsx
+src/pages/buttons/BasicButtons.tsx
+src/pages/buttons/ButtonsPage.tsx
+src/pages/buttons/IconButtons.tsx
+src/pages/buttons/LightButtons.tsx
+src/pages/buttons/OutlineButtons.tsx
+src/pages/buttons/SocialButtonsCard.tsx
+src/pages/buttons/VariationsButtons.tsx
+src/pages/cards/BasicCards.tsx
+src/pages/cards/BlogCards.tsx
+src/pages/cards/CardsPage.tsx
+src/pages/cards/FeaturedProducts.tsx
+src/pages/cards/GiftCards.tsx
+src/pages/cards/JobCards.tsx
+src/pages/cards/ToolCards.tsx
+src/pages/cards/TravelCards.tsx
+src/pages/carousels/CarouselPage.tsx
+src/pages/carousels/FullCarousel.tsx
+src/pages/carousels/ProductCarousel.tsx
+src/pages/charts/apexcharts/ApexAreaChart.tsx
+src/pages/charts/apexcharts/ApexBarChart.tsx
+src/pages/charts/apexcharts/ApexChartsPage.tsx
+src/pages/charts/apexcharts/ApexDonutChart.tsx
+src/pages/charts/apexcharts/ApexKpiCards.tsx
+src/pages/charts/apexcharts/ApexLineChart.tsx
+src/pages/charts/apexcharts/ApexMixedChart.tsx
+src/pages/charts/apexcharts/ApexPieChart.tsx
+src/pages/charts/apexcharts/ApexRadialChart.tsx
+src/pages/charts/apexcharts/ApexStackedBarChart.tsx
+src/pages/charts/recharts/AreaChartPage.tsx
+src/pages/charts/recharts/BarChartPage.tsx
+src/pages/charts/recharts/ChartPieDonutActive.tsx
+src/pages/charts/recharts/ChartRadialText.tsx
+src/pages/charts/recharts/DonutChartPage.tsx
+src/pages/charts/recharts/LineChartPage.tsx
+src/pages/charts/recharts/PieChartPage.tsx
+src/pages/charts/recharts/RadarChartPage.tsx
+src/pages/charts/recharts/RadialChartPage.tsx
+src/pages/charts/recharts/ReChartsPage.tsx
+src/pages/dashboard/analytics/AnalyticsDashboard.tsx
+src/pages/dashboard/analytics/BrowserStats.tsx
+src/pages/dashboard/analytics/CompletionRate.tsx
+src/pages/dashboard/analytics/LandingPage.tsx
+src/pages/dashboard/analytics/SocialStatsCard.tsx
+src/pages/dashboard/analytics/TrafficTable.tsx
+src/pages/dashboard/analytics/WebsiteAnalytics.tsx
+src/pages/dashboard/analytics/activity-insights.tsx
+src/pages/dashboard/analytics/earnings-breakdown.tsx
+src/pages/dashboard/analytics/revenue-chart-card.tsx
+src/pages/dashboard/analytics/transactions-card.tsx
+src/pages/dashboard/analytics/visitors-chart-card.tsx
+src/pages/dashboard/analytics/welcome-banner-card.tsx
+src/pages/dashboard/crm/CrmDashboard.tsx
+src/pages/dashboard/eCommerce/ConversionRateCard.tsx
+src/pages/dashboard/eCommerce/EcommerceDashboard.tsx
+src/pages/dashboard/eCommerce/OrderStatus.tsx
+src/pages/dashboard/eCommerce/PopularProductsCard.tsx
+src/pages/dashboard/eCommerce/RecentOrdersCard.tsx
+src/pages/dashboard/eCommerce/RecentOrdersTable.tsx
+src/pages/dashboard/eCommerce/SalesAnalysisCard.tsx
+src/pages/dashboard/eCommerce/SalesByCountriesCard.tsx
+src/pages/dashboard/eCommerce/TotalOrdersCard.tsx
+src/pages/dashboard/eCommerce/TotalRevenueCard.tsx
+src/pages/dashboard/eCommerce/VisitorsCard.tsx
+src/pages/eCommerce/AddProduct.tsx
+src/pages/eCommerce/CategoryList.tsx
+src/pages/eCommerce/CustomerDetails.tsx
+src/pages/eCommerce/CustomerList.tsx
+src/pages/eCommerce/Invoice.tsx
+src/pages/eCommerce/InvoiceCard.tsx
+src/pages/eCommerce/OrderDetails.tsx
+src/pages/eCommerce/OrderList.tsx
+src/pages/eCommerce/ProductGrid.tsx
+src/pages/eCommerce/ProductList.tsx
+src/pages/error/ComingSoon.tsx
+src/pages/error/Error404.tsx
+src/pages/error/Error500.tsx
+src/pages/forms/BasicInputs.tsx
+src/pages/forms/ChecksAndRadios.tsx
+src/pages/forms/FormInputGroup.tsx
+src/pages/forms/FormLayouts.tsx
+src/pages/forms/FormRepeater.tsx
+src/pages/forms/FormTextEditor.tsx
+src/pages/forms/checkboxexamples/CheckboxCardList.tsx
+src/pages/forms/checkboxexamples/ServiceSelectorCard.tsx
+src/pages/forms/checkboxexamples/TeamMemberList.tsx
+src/pages/forms/datepicker/ComponentPreview.tsx
+src/pages/forms/datepicker/DatePickerInput.tsx
+src/pages/forms/datepicker/DatePickerPage.tsx
+src/pages/forms/datepicker/DatePickerWithRange.tsx
+src/pages/forms/datepicker/SimpleDatePicker.tsx
+src/pages/forms/fileupload/FileUpload01.tsx
+src/pages/forms/fileupload/dropzone.tsx
+src/pages/forms/fileupload/file-item.tsx
+src/pages/forms/fileupload/file-list.tsx
+src/pages/forms/fileupload/form.tsx
+src/pages/forms/layouts/CheckoutBillingForm.tsx
+src/pages/forms/layouts/JobPostingForm.tsx
+src/pages/forms/layouts/LayoutSignup.tsx
+src/pages/forms/layouts/LayoutSignup2.tsx
+src/pages/forms/layouts/LayoutStudent.tsx
+src/pages/forms/layouts/LoginForm.tsx
+src/pages/forms/radioexamples/DeliveryCards.tsx
+src/pages/forms/radioexamples/DesignerType.tsx
+src/pages/forms/radioexamples/FilterCard.tsx
+src/pages/forms/select/ComponentPreview.tsx
+src/pages/forms/select/SelectBasic.tsx
+src/pages/forms/select/SelectExamplesPage.tsx
+src/pages/forms/select/SelectGrouped.tsx
+src/pages/forms/select/SelectTwoAvatars.tsx
+src/pages/forms/select/SelectWithAvatar.tsx
+src/pages/forms/select/SelectWithCheckmarks.tsx
+src/pages/forms/select/SelectWithDisabled.tsx
+src/pages/forms/wizard/FormWizard.tsx
+src/pages/forms/wizard/StepProgress.tsx
+src/pages/forms/wizard/WizardContext.tsx
+src/pages/forms/wizard/WizardPage.tsx
+src/pages/forms/wizard/steps/Step1.tsx
+src/pages/forms/wizard/steps/Step2.tsx
+src/pages/forms/wizard/steps/Step3.tsx
+src/pages/forms/wizard/steps/Step4.tsx
+src/pages/icons/Bootstrap.tsx
+src/pages/icons/Boxicons.tsx
+src/pages/icons/LucideIconsPage.tsx
+src/pages/listgroups/BasicListGroups.tsx
+src/pages/listgroups/CartList.tsx
+src/pages/listgroups/ListGroupPage.tsx
+src/pages/listgroups/PaymentHistory.tsx
+src/pages/listgroups/StatsQuickList.tsx
+src/pages/listgroups/TodoList.tsx
+src/pages/listgroups/UserFollowList.tsx
+src/pages/mediaobject/AvatarShowcase.tsx
+src/pages/navbars/Navbar1.tsx
+src/pages/navbars/Navbar2.tsx
+src/pages/navbars/Navbar3.tsx
+src/pages/navbars/Navbar4.tsx
+src/pages/navbars/Navbar5.tsx
+src/pages/navbars/Navbar6.tsx
+src/pages/navbars/NavbarsPage.tsx
+src/pages/pricing/PricingPage.tsx
+src/pages/progressbars/ActiveProjectsWidget.tsx
+src/pages/progressbars/ActiveProjectsWidget2.tsx
+src/pages/progressbars/ProgressCards.tsx
+src/pages/progressbars/ProgressPage.tsx
+src/pages/progressbars/ProgressWithLabels.tsx
+src/pages/progressbars/RatingReviewWidget.tsx
+src/pages/progressbars/SimpleProgressCard.tsx
+src/pages/sooner/SonnerPosition.tsx
+src/pages/sooner/SonnerTypes.tsx
+src/pages/sooner/SoonerPage.tsx
+src/pages/spinners/SpinnerExamples.tsx
+src/pages/tables/BasicTables.tsx
+src/pages/tables/DataTablePage.tsx
+src/pages/tables/advance-tables/AdvanceTable.tsx
+src/pages/tables/advance-tables/ProductTable.tsx
+src/pages/tables/advance-tables/ProjectTable.tsx
+src/pages/tables/advance-tables/TeamTable.tsx
+src/pages/tables/data.ts
+src/pages/widgets/data/AreaStatsCard.tsx
+src/pages/widgets/data/DataWidgetsPage.tsx
+src/pages/widgets/data/DeviceViewStatusCard.tsx
+src/pages/widgets/data/NewCustomersCard.tsx
+src/pages/widgets/data/NewVsOldVisitors.tsx
+src/pages/widgets/data/ProgressStatCard.tsx
+src/pages/widgets/data/RadialStatCard.tsx
+src/pages/widgets/data/TicketSupport.tsx
+src/pages/widgets/data/TopTrafficChannelsCard.tsx
+src/pages/widgets/data/TotalSessionsCard.tsx
+src/pages/widgets/data/VisitorsSalesCard.tsx
+src/pages/widgets/data/VisitorsSalesStackedCard.tsx
+src/pages/widgets/data/WebsiteVisitorsCard.tsx
+src/pages/widgets/statistics/ColorStatCard.tsx
+src/pages/widgets/statistics/IconColorWidget.tsx
+src/pages/widgets/statistics/ProjectProgressCard.tsx
+src/pages/widgets/statistics/StatCardWidgets.tsx
+src/pages/widgets/statistics/StatisticsWidgetsPage.tsx
+src/providers/ui-theme-provider.tsx
+src/routes/index.tsx
+src/store/ui-theme.store.ts
+src/types/images.d.ts
+tailwind.config.js
+tailwind.config.ts
+tsconfig.app.json
+tsconfig.app.tsbuildinfo
+tsconfig.json
+tsconfig.node.json
+tsconfig.tsbuildinfo
+vite-env.d.ts
+vite.config.ts

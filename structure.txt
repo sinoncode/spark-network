@@ -1,0 +1,372 @@
+.
+├── components.json
+├── documentation.pdf
+├── eslint.config.js
+├── index.html
+├── LICENSE.md
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── README.md
+├── src
+│   ├── assets
+│   │   ├── logo
+│   │   │   ├── 2morrow-complete-logo.png
+│   │   │   ├── 2morrow-icon.png
+│   │   │   └── 2morrow-text-logo.png
+│   │   └── react.svg
+│   ├── auth
+│   │   ├── basic
+│   │   │   ├── ForgotPasswordPage.tsx
+│   │   │   ├── LoginPage.tsx
+│   │   │   ├── PasswordResetSuccess.tsx
+│   │   │   ├── RegisterPage.tsx
+│   │   │   ├── ResetPasswordForm.tsx
+│   │   │   └── VerifyEmailForm.tsx
+│   │   └── cover
+│   │       ├── CoverForgotPasswordPage.tsx
+│   │       ├── CoverLoginPage.tsx
+│   │       ├── CoverPasswordResetSuccessPage.tsx
+│   │       ├── CoverRegisterPage.tsx
+│   │       ├── CoverResetPasswordPage.tsx
+│   │       └── CoverVerifyEmailPage.tsx
+│   ├── components
+│   │   ├── appLauncher-dropdown.tsx
+│   │   ├── app-sidebar.tsx
+│   │   ├── calendar
+│   │   │   ├── event-dialog.tsx
+│   │   │   ├── shadcn-full-calendar.tsx
+│   │   │   └── types.ts
+│   │   ├── columns.tsx
+│   │   ├── data-table.tsx
+│   │   ├── file-manager
+│   │   │   ├── data.ts
+│   │   │   ├── file-card.tsx
+│   │   │   ├── folder-card.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   └── toolbar.tsx
+│   │   ├── global-search.tsx
+│   │   ├── language-dropdown.tsx
+│   │   ├── login-form.tsx
+│   │   ├── nav-main.tsx
+│   │   ├── nav-projects.tsx
+│   │   ├── nav-user.tsx
+│   │   ├── notification-dropdown.tsx
+│   │   ├── signup-form.tsx
+│   │   ├── team-switcher.tsx
+│   │   ├── theme-customizer.tsx
+│   │   ├── ThemeLogo.tsx
+│   │   ├── theme-toggle.tsx
+│   │   ├── ui
+│   │   │   ├── accordion.tsx
+│   │   │   ├── alert.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── chart.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── collapsible.tsx
+│   │   │   ├── colored-progress.tsx
+│   │   │   ├── command.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── field.tsx
+│   │   │   ├── form.tsx
+│   │   │   ├── input-group.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── progress.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── slider.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   ├── toggle-group.tsx
+│   │   │   ├── toggle.tsx
+│   │   │   └── tooltip.tsx
+│   │   └── UserDropdown.tsx
+│   ├── hooks
+│   │   └── use-mobile.tsx
+│   ├── index.css
+│   ├── layouts
+│   │   ├── AppLayout.tsx
+│   │   ├── AuthLayout.tsx
+│   │   └── Footer.tsx
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── accordion
+│   │   │   ├── AccordionCard.tsx
+│   │   │   ├── AccordionPage.tsx
+│   │   │   ├── BasicAccordion.tsx
+│   │   │   └── BorderAccordion.tsx
+│   │   ├── account
+│   │   │   ├── EditProfile.tsx
+│   │   │   ├── NotificationSettings.tsx
+│   │   │   ├── PasswordSettings.tsx
+│   │   │   └── UserProfile.tsx
+│   │   ├── alerts
+│   │   │   ├── AlertsPage.tsx
+│   │   │   ├── BasicAlerts.tsx
+│   │   │   ├── IconCircleAlerts.tsx
+│   │   │   ├── LightBgColorAlerts.tsx
+│   │   │   └── SolidBgColorAlerts.tsx
+│   │   ├── apps
+│   │   │   ├── CalendarPage.tsx
+│   │   │   ├── Chatbox.tsx
+│   │   │   └── FileManager.tsx
+│   │   ├── badges
+│   │   │   ├── BadgeCustomColors.tsx
+│   │   │   ├── BadgesPage.tsx
+│   │   │   ├── BadgeVariants.tsx
+│   │   │   ├── BadgeWithIconLeft.tsx
+│   │   │   ├── IconBadgeButtons.tsx
+│   │   │   └── PositionedBadges.tsx
+│   │   ├── buttons
+│   │   │   ├── BasicButtons.tsx
+│   │   │   ├── ButtonsPage.tsx
+│   │   │   ├── IconButtons.tsx
+│   │   │   ├── LightButtons.tsx
+│   │   │   ├── OutlineButtons.tsx
+│   │   │   ├── SocialButtonsCard.tsx
+│   │   │   └── VariationsButtons.tsx
+│   │   ├── cards
+│   │   │   ├── BasicCards.tsx
+│   │   │   ├── BlogCards.tsx
+│   │   │   ├── CardsPage.tsx
+│   │   │   ├── FeaturedProducts.tsx
+│   │   │   ├── GiftCards.tsx
+│   │   │   ├── JobCards.tsx
+│   │   │   ├── ToolCards.tsx
+│   │   │   └── TravelCards.tsx
+│   │   ├── carousels
+│   │   │   ├── CarouselPage.tsx
+│   │   │   ├── FullCarousel.tsx
+│   │   │   └── ProductCarousel.tsx
+│   │   ├── charts
+│   │   │   ├── apexcharts
+│   │   │   │   ├── ApexAreaChart.tsx
+│   │   │   │   ├── ApexBarChart.tsx
+│   │   │   │   ├── ApexChartsPage.tsx
+│   │   │   │   ├── ApexDonutChart.tsx
+│   │   │   │   ├── ApexKpiCards.tsx
+│   │   │   │   ├── ApexLineChart.tsx
+│   │   │   │   ├── ApexMixedChart.tsx
+│   │   │   │   ├── ApexPieChart.tsx
+│   │   │   │   ├── ApexRadialChart.tsx
+│   │   │   │   └── ApexStackedBarChart.tsx
+│   │   │   └── recharts
+│   │   │       ├── AreaChartPage.tsx
+│   │   │       ├── BarChartPage.tsx
+│   │   │       ├── ChartPieDonutActive.tsx
+│   │   │       ├── ChartRadialText.tsx
+│   │   │       ├── DonutChartPage.tsx
+│   │   │       ├── LineChartPage.tsx
+│   │   │       ├── PieChartPage.tsx
+│   │   │       ├── RadarChartPage.tsx
+│   │   │       ├── RadialChartPage.tsx
+│   │   │       └── ReChartsPage.tsx
+│   │   ├── dashboard
+│   │   │   ├── analytics
+│   │   │   │   ├── activity-insights.tsx
+│   │   │   │   ├── AnalyticsDashboard.tsx
+│   │   │   │   ├── BrowserStats.tsx
+│   │   │   │   ├── CompletionRate.tsx
+│   │   │   │   ├── earnings-breakdown.tsx
+│   │   │   │   ├── LandingPage.tsx
+│   │   │   │   ├── revenue-chart-card.tsx
+│   │   │   │   ├── SocialStatsCard.tsx
+│   │   │   │   ├── TrafficTable.tsx
+│   │   │   │   ├── transactions-card.tsx
+│   │   │   │   ├── visitors-chart-card.tsx
+│   │   │   │   ├── WebsiteAnalytics.tsx
+│   │   │   │   └── welcome-banner-card.tsx
+│   │   │   ├── crm
+│   │   │   │   └── CrmDashboard.tsx
+│   │   │   └── eCommerce
+│   │   │       ├── ConversionRateCard.tsx
+│   │   │       ├── EcommerceDashboard.tsx
+│   │   │       ├── OrderStatus.tsx
+│   │   │       ├── PopularProductsCard.tsx
+│   │   │       ├── RecentOrdersCard.tsx
+│   │   │       ├── RecentOrdersTable.tsx
+│   │   │       ├── SalesAnalysisCard.tsx
+│   │   │       ├── SalesByCountriesCard.tsx
+│   │   │       ├── TotalOrdersCard.tsx
+│   │   │       ├── TotalRevenueCard.tsx
+│   │   │       └── VisitorsCard.tsx
+│   │   ├── Documentation.tsx
+│   │   ├── eCommerce
+│   │   │   ├── AddProduct.tsx
+│   │   │   ├── CategoryList.tsx
+│   │   │   ├── CustomerDetails.tsx
+│   │   │   ├── CustomerList.tsx
+│   │   │   ├── InvoiceCard.tsx
+│   │   │   ├── Invoice.tsx
+│   │   │   ├── OrderDetails.tsx
+│   │   │   ├── OrderList.tsx
+│   │   │   ├── ProductGrid.tsx
+│   │   │   └── ProductList.tsx
+│   │   ├── error
+│   │   │   ├── ComingSoon.tsx
+│   │   │   ├── Error404.tsx
+│   │   │   └── Error500.tsx
+│   │   ├── ErrorPage.tsx
+│   │   ├── FAQPage.tsx
+│   │   ├── forms
+│   │   │   ├── BasicInputs.tsx
+│   │   │   ├── checkboxexamples
+│   │   │   │   ├── CheckboxCardList.tsx
+│   │   │   │   ├── ServiceSelectorCard.tsx
+│   │   │   │   └── TeamMemberList.tsx
+│   │   │   ├── ChecksAndRadios.tsx
+│   │   │   ├── datepicker
+│   │   │   │   ├── ComponentPreview.tsx
+│   │   │   │   ├── DatePickerInput.tsx
+│   │   │   │   ├── DatePickerPage.tsx
+│   │   │   │   ├── DatePickerWithRange.tsx
+│   │   │   │   └── SimpleDatePicker.tsx
+│   │   │   ├── fileupload
+│   │   │   │   ├── dropzone.tsx
+│   │   │   │   ├── file-item.tsx
+│   │   │   │   ├── file-list.tsx
+│   │   │   │   ├── FileUpload01.tsx
+│   │   │   │   └── form.tsx
+│   │   │   ├── FormInputGroup.tsx
+│   │   │   ├── FormLayouts.tsx
+│   │   │   ├── FormRepeater.tsx
+│   │   │   ├── FormTextEditor.tsx
+│   │   │   ├── layouts
+│   │   │   │   ├── CheckoutBillingForm.tsx
+│   │   │   │   ├── JobPostingForm.tsx
+│   │   │   │   ├── LayoutSignup2.tsx
+│   │   │   │   ├── LayoutSignup.tsx
+│   │   │   │   ├── LayoutStudent.tsx
+│   │   │   │   └── LoginForm.tsx
+│   │   │   ├── radioexamples
+│   │   │   │   ├── DeliveryCards.tsx
+│   │   │   │   ├── DesignerType.tsx
+│   │   │   │   └── FilterCard.tsx
+│   │   │   ├── select
+│   │   │   │   ├── ComponentPreview.tsx
+│   │   │   │   ├── SelectBasic.tsx
+│   │   │   │   ├── SelectExamplesPage.tsx
+│   │   │   │   ├── SelectGrouped.tsx
+│   │   │   │   ├── SelectTwoAvatars.tsx
+│   │   │   │   ├── SelectWithAvatar.tsx
+│   │   │   │   ├── SelectWithCheckmarks.tsx
+│   │   │   │   └── SelectWithDisabled.tsx
+│   │   │   └── wizard
+│   │   │       ├── FormWizard.tsx
+│   │   │       ├── StepProgress.tsx
+│   │   │       ├── steps
+│   │   │       │   ├── Step1.tsx
+│   │   │       │   ├── Step2.tsx
+│   │   │       │   ├── Step3.tsx
+│   │   │       │   └── Step4.tsx
+│   │   │       ├── WizardContext.tsx
+│   │   │       └── WizardPage.tsx
+│   │   ├── icons
+│   │   │   ├── Bootstrap.tsx
+│   │   │   ├── Boxicons.tsx
+│   │   │   └── LucideIconsPage.tsx
+│   │   ├── listgroups
+│   │   │   ├── BasicListGroups.tsx
+│   │   │   ├── CartList.tsx
+│   │   │   ├── ListGroupPage.tsx
+│   │   │   ├── PaymentHistory.tsx
+│   │   │   ├── StatsQuickList.tsx
+│   │   │   ├── TodoList.tsx
+│   │   │   └── UserFollowList.tsx
+│   │   ├── mediaobject
+│   │   │   └── AvatarShowcase.tsx
+│   │   ├── navbars
+│   │   │   ├── Navbar1.tsx
+│   │   │   ├── Navbar2.tsx
+│   │   │   ├── Navbar3.tsx
+│   │   │   ├── Navbar4.tsx
+│   │   │   ├── Navbar5.tsx
+│   │   │   ├── Navbar6.tsx
+│   │   │   └── NavbarsPage.tsx
+│   │   ├── NotFound.tsx
+│   │   ├── pricing
+│   │   │   └── PricingPage.tsx
+│   │   ├── progressbars
+│   │   │   ├── ActiveProjectsWidget2.tsx
+│   │   │   ├── ActiveProjectsWidget.tsx
+│   │   │   ├── ProgressCards.tsx
+│   │   │   ├── ProgressPage.tsx
+│   │   │   ├── ProgressWithLabels.tsx
+│   │   │   ├── RatingReviewWidget.tsx
+│   │   │   └── SimpleProgressCard.tsx
+│   │   ├── sooner
+│   │   │   ├── SonnerPosition.tsx
+│   │   │   ├── SonnerTypes.tsx
+│   │   │   └── SoonerPage.tsx
+│   │   ├── spinners
+│   │   │   └── SpinnerExamples.tsx
+│   │   ├── tables
+│   │   │   ├── advance-tables
+│   │   │   │   ├── AdvanceTable.tsx
+│   │   │   │   ├── ProductTable.tsx
+│   │   │   │   ├── ProjectTable.tsx
+│   │   │   │   └── TeamTable.tsx
+│   │   │   ├── BasicTables.tsx
+│   │   │   ├── DataTablePage.tsx
+│   │   │   └── data.ts
+│   │   └── widgets
+│   │       ├── data
+│   │       │   ├── AreaStatsCard.tsx
+│   │       │   ├── DataWidgetsPage.tsx
+│   │       │   ├── DeviceViewStatusCard.tsx
+│   │       │   ├── NewCustomersCard.tsx
+│   │       │   ├── NewVsOldVisitors.tsx
+│   │       │   ├── ProgressStatCard.tsx
+│   │       │   ├── RadialStatCard.tsx
+│   │       │   ├── TicketSupport.tsx
+│   │       │   ├── TopTrafficChannelsCard.tsx
+│   │       │   ├── TotalSessionsCard.tsx
+│   │       │   ├── VisitorsSalesCard.tsx
+│   │       │   ├── VisitorsSalesStackedCard.tsx
+│   │       │   └── WebsiteVisitorsCard.tsx
+│   │       └── statistics
+│   │           ├── ColorStatCard.tsx
+│   │           ├── IconColorWidget.tsx
+│   │           ├── ProjectProgressCard.tsx
+│   │           ├── StatCardWidgets.tsx
+│   │           └── StatisticsWidgetsPage.tsx
+│   ├── providers
+│   │   └── ui-theme-provider.tsx
+│   ├── routes
+│   │   └── index.tsx
+│   ├── store
+│   │   └── ui-theme.store.ts
+│   └── types
+│       └── images.d.ts
+├── structure.txt
+├── tailwind.config.js
+├── tailwind.config.ts
+├── tsconfig.app.json
+├── tsconfig.app.tsbuildinfo
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.tsbuildinfo
+├── vite.config.ts
+└── vite-env.d.ts
+
+58 directories, 312 files

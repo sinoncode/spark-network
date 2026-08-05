@@ -1,0 +1,460 @@
+=============================================================================
+                          PROJECT DOCUMENTATION & DETAILS
+=============================================================================
+
+PROJECT NAME: 2morrow-admin (shadcn-ui-admin)
+DESCRIPTION: A comprehensive, feature-rich, and highly modular React-based admin dashboard application, leveraging modern web technologies and UI patterns.
+
+=============================================================================
+1. TECHNOLOGIES USED
+=============================================================================
+
+Core Frameworks & Build Tools:
+- React (v19.2.0) & React DOM: The core frontend library.
+- TypeScript (~5.9.3): For static typing and robust code architecture.
+- Vite (v7.2.4): Fast, modern build tool and development server.
+
+Styling & UI Ecosystem:
+- Tailwind CSS (v3.4.17): Utility-first CSS framework for rapid UI development.
+- shadcn/ui & Radix UI: Accessible, unstyled UI components (Accordion, Dialog, Popover, Select, Tooltip, etc.).
+- framer-motion: For fluid animations and transitions.
+- tailwindcss-animate, tailwind-merge, clsx: For dynamic class management.
+
+Routing & State Management:
+- React Router DOM (v7.11.0): Declarative routing for single-page applications.
+- Zustand (v5.0.12): A small, fast, and scalable bearbones state management solution.
+
+Forms & Validation:
+- React Hook Form (v7.71.2): Performant, flexible, and extensible forms with easy-to-use validation.
+- Zod (v4.3.6): TypeScript-first schema declaration and validation.
+- @hookform/resolvers: Connecting Zod to React Hook Form.
+
+Data Visualization & Charts:
+- ApexCharts & react-apexcharts: Interactive and responsive charts.
+- Recharts: Composable charting library built on React components.
+
+Additional Libraries:
+- @fullcalendar/react: Robust, full-sized drag & drop event calendar.
+- @tanstack/react-table: Headless UI for building powerful tables and datagrids.
+- date-fns: Modern JavaScript date utility library.
+- lucide-react & @tabler/icons-react: Extensive, customizable icon packs.
+- sonner: An opinionated toast component for React.
+- next-themes: Perfect dark mode implementation.
+- jspdf, xlsx, file-saver: Utilities for exporting and saving files.
+- tiptap: Headless rich text editor framework.
+
+=============================================================================
+2. ARCHITECTURE & MAIN COMPONENT PLAN (MCP)
+=============================================================================
+
+The project follows a standard scalable React architecture, neatly separating concerns into functional domains:
+
+- /assets: Static assets like logos and SVG icons.
+- /auth: Contains all authentication-related pages (Login, Register, Reset Password) available in both 'basic' and 'cover' layouts.
+- /components: Reusable presentation components.
+   - /ui: The core design system components based on shadcn/ui.
+   - Layout-specific components: `app-sidebar`, `navbars`, `dropdowns`, `global-search`.
+   - Feature-specific parts: `file-manager`, `calendar` dialogs, and `data-table` implementations.
+- /hooks: Custom React hooks (e.g., `use-mobile` for responsive detection).
+- /layouts: Structural wrappers like `AppLayout` (for authenticated areas) and `AuthLayout` (for unauthenticated areas).
+- /pages: Contains the main application views, categorized by feature:
+   - apps: Calendar, Chatbox, FileManager.
+   - dashboard: Dedicated views for Analytics, CRM, and eCommerce.
+   - eCommerce: Product lists, ordering, invoicing.
+   - forms: Wizards, rich text editors, datepickers, and file uploads.
+   - charts: Separate directories for ApexCharts and Recharts examples.
+   - UI Showcase pages: Badges, Buttons, Cards, Carousels, Alerts, Tables, etc.
+- /providers: Global context providers like `ui-theme-provider` to handle dark/light modes.
+- /routes: Centralized routing configuration (`index.tsx`).
+- /store: Zustand stores (e.g., `ui-theme.store.ts`).
+
+=============================================================================
+3. COMPLETE FOLDER STRUCTURE
+=============================================================================
+.
+├── components.json
+├── documentation.pdf
+├── eslint.config.js
+├── index.html
+├── LICENSE.md
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── README.md
+├── src
+│   ├── assets
+│   │   ├── logo
+│   │   │   ├── 2morrow-complete-logo.png
+│   │   │   ├── 2morrow-icon.png
+│   │   │   └── 2morrow-text-logo.png
+│   │   └── react.svg
+│   ├── auth
+│   │   ├── basic
+│   │   │   ├── ForgotPasswordPage.tsx
+│   │   │   ├── LoginPage.tsx
+│   │   │   ├── PasswordResetSuccess.tsx
+│   │   │   ├── RegisterPage.tsx
+│   │   │   ├── ResetPasswordForm.tsx
+│   │   │   └── VerifyEmailForm.tsx
+│   │   └── cover
+│   │       ├── CoverForgotPasswordPage.tsx
+│   │       ├── CoverLoginPage.tsx
+│   │       ├── CoverPasswordResetSuccessPage.tsx
+│   │       ├── CoverRegisterPage.tsx
+│   │       ├── CoverResetPasswordPage.tsx
+│   │       └── CoverVerifyEmailPage.tsx
+│   ├── components
+│   │   ├── appLauncher-dropdown.tsx
+│   │   ├── app-sidebar.tsx
+│   │   ├── calendar
+│   │   │   ├── event-dialog.tsx
+│   │   │   ├── shadcn-full-calendar.tsx
+│   │   │   └── types.ts
+│   │   ├── columns.tsx
+│   │   ├── data-table.tsx
+│   │   ├── file-manager
+│   │   │   ├── data.ts
+│   │   │   ├── file-card.tsx
+│   │   │   ├── folder-card.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   └── toolbar.tsx
+│   │   ├── global-search.tsx
+│   │   ├── language-dropdown.tsx
+│   │   ├── login-form.tsx
+│   │   ├── nav-main.tsx
+│   │   ├── nav-projects.tsx
+│   │   ├── nav-user.tsx
+│   │   ├── notification-dropdown.tsx
+│   │   ├── signup-form.tsx
+│   │   ├── team-switcher.tsx
+│   │   ├── theme-customizer.tsx
+│   │   ├── ThemeLogo.tsx
+│   │   ├── theme-toggle.tsx
+│   │   ├── ui
+│   │   │   ├── accordion.tsx
+│   │   │   ├── alert.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── chart.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── collapsible.tsx
+│   │   │   ├── colored-progress.tsx
+│   │   │   ├── command.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── field.tsx
+│   │   │   ├── form.tsx
+│   │   │   ├── input-group.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── progress.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── slider.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   ├── toggle-group.tsx
+│   │   │   ├── toggle.tsx
+│   │   │   └── tooltip.tsx
+│   │   └── UserDropdown.tsx
+│   ├── hooks
+│   │   └── use-mobile.tsx
+│   ├── index.css
+│   ├── layouts
+│   │   ├── AppLayout.tsx
+│   │   ├── AuthLayout.tsx
+│   │   └── Footer.tsx
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── accordion
+│   │   │   ├── AccordionCard.tsx
+│   │   │   ├── AccordionPage.tsx
+│   │   │   ├── BasicAccordion.tsx
+│   │   │   └── BorderAccordion.tsx
+│   │   ├── account
+│   │   │   ├── EditProfile.tsx
+│   │   │   ├── NotificationSettings.tsx
+│   │   │   ├── PasswordSettings.tsx
+│   │   │   └── UserProfile.tsx
+│   │   ├── alerts
+│   │   │   ├── AlertsPage.tsx
+│   │   │   ├── BasicAlerts.tsx
+│   │   │   ├── IconCircleAlerts.tsx
+│   │   │   ├── LightBgColorAlerts.tsx
+│   │   │   └── SolidBgColorAlerts.tsx
+│   │   ├── apps
+│   │   │   ├── CalendarPage.tsx
+│   │   │   ├── Chatbox.tsx
+│   │   │   └── FileManager.tsx
+│   │   ├── badges
+│   │   │   ├── BadgeCustomColors.tsx
+│   │   │   ├── BadgesPage.tsx
+│   │   │   ├── BadgeVariants.tsx
+│   │   │   ├── BadgeWithIconLeft.tsx
+│   │   │   ├── IconBadgeButtons.tsx
+│   │   │   └── PositionedBadges.tsx
+│   │   ├── buttons
+│   │   │   ├── BasicButtons.tsx
+│   │   │   ├── ButtonsPage.tsx
+│   │   │   ├── IconButtons.tsx
+│   │   │   ├── LightButtons.tsx
+│   │   │   ├── OutlineButtons.tsx
+│   │   │   ├── SocialButtonsCard.tsx
+│   │   │   └── VariationsButtons.tsx
+│   │   ├── cards
+│   │   │   ├── BasicCards.tsx
+│   │   │   ├── BlogCards.tsx
+│   │   │   ├── CardsPage.tsx
+│   │   │   ├── FeaturedProducts.tsx
+│   │   │   ├── GiftCards.tsx
+│   │   │   ├── JobCards.tsx
+│   │   │   ├── ToolCards.tsx
+│   │   │   └── TravelCards.tsx
+│   │   ├── carousels
+│   │   │   ├── CarouselPage.tsx
+│   │   │   ├── FullCarousel.tsx
+│   │   │   └── ProductCarousel.tsx
+│   │   ├── charts
+│   │   │   ├── apexcharts
+│   │   │   │   ├── ApexAreaChart.tsx
+│   │   │   │   ├── ApexBarChart.tsx
+│   │   │   │   ├── ApexChartsPage.tsx
+│   │   │   │   ├── ApexDonutChart.tsx
+│   │   │   │   ├── ApexKpiCards.tsx
+│   │   │   │   ├── ApexLineChart.tsx
+│   │   │   │   ├── ApexMixedChart.tsx
+│   │   │   │   ├── ApexPieChart.tsx
+│   │   │   │   ├── ApexRadialChart.tsx
+│   │   │   │   └── ApexStackedBarChart.tsx
+│   │   │   └── recharts
+│   │   │       ├── AreaChartPage.tsx
+│   │   │       ├── BarChartPage.tsx
+│   │   │       ├── ChartPieDonutActive.tsx
+│   │   │       ├── ChartRadialText.tsx
+│   │   │       ├── DonutChartPage.tsx
+│   │   │       ├── LineChartPage.tsx
+│   │   │       ├── PieChartPage.tsx
+│   │   │       ├── RadarChartPage.tsx
+│   │   │       ├── RadialChartPage.tsx
+│   │   │       └── ReChartsPage.tsx
+│   │   ├── dashboard
+│   │   │   ├── analytics
+│   │   │   │   ├── activity-insights.tsx
+│   │   │   │   ├── AnalyticsDashboard.tsx
+│   │   │   │   ├── BrowserStats.tsx
+│   │   │   │   ├── CompletionRate.tsx
+│   │   │   │   ├── earnings-breakdown.tsx
+│   │   │   │   ├── LandingPage.tsx
+│   │   │   │   ├── revenue-chart-card.tsx
+│   │   │   │   ├── SocialStatsCard.tsx
+│   │   │   │   ├── TrafficTable.tsx
+│   │   │   │   ├── transactions-card.tsx
+│   │   │   │   ├── visitors-chart-card.tsx
+│   │   │   │   ├── WebsiteAnalytics.tsx
+│   │   │   │   └── welcome-banner-card.tsx
+│   │   │   ├── crm
+│   │   │   │   └── CrmDashboard.tsx
+│   │   │   └── eCommerce
+│   │   │       ├── ConversionRateCard.tsx
+│   │   │       ├── EcommerceDashboard.tsx
+│   │   │       ├── OrderStatus.tsx
+│   │   │       ├── PopularProductsCard.tsx
+│   │   │       ├── RecentOrdersCard.tsx
+│   │   │       ├── RecentOrdersTable.tsx
+│   │   │       ├── SalesAnalysisCard.tsx
+│   │   │       ├── SalesByCountriesCard.tsx
+│   │   │       ├── TotalOrdersCard.tsx
+│   │   │       ├── TotalRevenueCard.tsx
+│   │   │       └── VisitorsCard.tsx
+│   │   ├── Documentation.tsx
+│   │   ├── eCommerce
+│   │   │   ├── AddProduct.tsx
+│   │   │   ├── CategoryList.tsx
+│   │   │   ├── CustomerDetails.tsx
+│   │   │   ├── CustomerList.tsx
+│   │   │   ├── InvoiceCard.tsx
+│   │   │   ├── Invoice.tsx
+│   │   │   ├── OrderDetails.tsx
+│   │   │   ├── OrderList.tsx
+│   │   │   ├── ProductGrid.tsx
+│   │   │   └── ProductList.tsx
+│   │   ├── error
+│   │   │   ├── ComingSoon.tsx
+│   │   │   ├── Error404.tsx
+│   │   │   └── Error500.tsx
+│   │   ├── ErrorPage.tsx
+│   │   ├── FAQPage.tsx
+│   │   ├── forms
+│   │   │   ├── BasicInputs.tsx
+│   │   │   ├── checkboxexamples
+│   │   │   │   ├── CheckboxCardList.tsx
+│   │   │   │   ├── ServiceSelectorCard.tsx
+│   │   │   │   └── TeamMemberList.tsx
+│   │   │   ├── ChecksAndRadios.tsx
+│   │   │   ├── datepicker
+│   │   │   │   ├── ComponentPreview.tsx
+│   │   │   │   ├── DatePickerInput.tsx
+│   │   │   │   ├── DatePickerPage.tsx
+│   │   │   │   ├── DatePickerWithRange.tsx
+│   │   │   │   └── SimpleDatePicker.tsx
+│   │   │   ├── fileupload
+│   │   │   │   ├── dropzone.tsx
+│   │   │   │   ├── file-item.tsx
+│   │   │   │   ├── file-list.tsx
+│   │   │   │   ├── FileUpload01.tsx
+│   │   │   │   └── form.tsx
+│   │   │   ├── FormInputGroup.tsx
+│   │   │   ├── FormLayouts.tsx
+│   │   │   ├── FormRepeater.tsx
+│   │   │   ├── FormTextEditor.tsx
+│   │   │   ├── layouts
+│   │   │   │   ├── CheckoutBillingForm.tsx
+│   │   │   │   ├── JobPostingForm.tsx
+│   │   │   │   ├── LayoutSignup2.tsx
+│   │   │   │   ├── LayoutSignup.tsx
+│   │   │   │   ├── LayoutStudent.tsx
+│   │   │   │   └── LoginForm.tsx
+│   │   │   ├── radioexamples
+│   │   │   │   ├── DeliveryCards.tsx
+│   │   │   │   ├── DesignerType.tsx
+│   │   │   │   └── FilterCard.tsx
+│   │   │   ├── select
+│   │   │   │   ├── ComponentPreview.tsx
+│   │   │   │   ├── SelectBasic.tsx
+│   │   │   │   ├── SelectExamplesPage.tsx
+│   │   │   │   ├── SelectGrouped.tsx
+│   │   │   │   ├── SelectTwoAvatars.tsx
+│   │   │   │   ├── SelectWithAvatar.tsx
+│   │   │   │   ├── SelectWithCheckmarks.tsx
+│   │   │   │   └── SelectWithDisabled.tsx
+│   │   │   └── wizard
+│   │   │       ├── FormWizard.tsx
+│   │   │       ├── StepProgress.tsx
+│   │   │       ├── steps
+│   │   │       │   ├── Step1.tsx
+│   │   │       │   ├── Step2.tsx
+│   │   │       │   ├── Step3.tsx
+│   │   │       │   └── Step4.tsx
+│   │   │       ├── WizardContext.tsx
+│   │   │       └── WizardPage.tsx
+│   │   ├── icons
+│   │   │   ├── Bootstrap.tsx
+│   │   │   ├── Boxicons.tsx
+│   │   │   └── LucideIconsPage.tsx
+│   │   ├── listgroups
+│   │   │   ├── BasicListGroups.tsx
+│   │   │   ├── CartList.tsx
+│   │   │   ├── ListGroupPage.tsx
+│   │   │   ├── PaymentHistory.tsx
+│   │   │   ├── StatsQuickList.tsx
+│   │   │   ├── TodoList.tsx
+│   │   │   └── UserFollowList.tsx
+│   │   ├── mediaobject
+│   │   │   └── AvatarShowcase.tsx
+│   │   ├── navbars
+│   │   │   ├── Navbar1.tsx
+│   │   │   ├── Navbar2.tsx
+│   │   │   ├── Navbar3.tsx
+│   │   │   ├── Navbar4.tsx
+│   │   │   ├── Navbar5.tsx
+│   │   │   ├── Navbar6.tsx
+│   │   │   └── NavbarsPage.tsx
+│   │   ├── NotFound.tsx
+│   │   ├── pricing
+│   │   │   └── PricingPage.tsx
+│   │   ├── progressbars
+│   │   │   ├── ActiveProjectsWidget2.tsx
+│   │   │   ├── ActiveProjectsWidget.tsx
+│   │   │   ├── ProgressCards.tsx
+│   │   │   ├── ProgressPage.tsx
+│   │   │   ├── ProgressWithLabels.tsx
+│   │   │   ├── RatingReviewWidget.tsx
+│   │   │   └── SimpleProgressCard.tsx
+│   │   ├── sooner
+│   │   │   ├── SonnerPosition.tsx
+│   │   │   ├── SonnerTypes.tsx
+│   │   │   └── SoonerPage.tsx
+│   │   ├── spinners
+│   │   │   └── SpinnerExamples.tsx
+│   │   ├── tables
+│   │   │   ├── advance-tables
+│   │   │   │   ├── AdvanceTable.tsx
+│   │   │   │   ├── ProductTable.tsx
+│   │   │   │   ├── ProjectTable.tsx
+│   │   │   │   └── TeamTable.tsx
+│   │   │   ├── BasicTables.tsx
+│   │   │   ├── DataTablePage.tsx
+│   │   │   └── data.ts
+│   │   └── widgets
+│   │       ├── data
+│   │       │   ├── AreaStatsCard.tsx
+│   │       │   ├── DataWidgetsPage.tsx
+│   │       │   ├── DeviceViewStatusCard.tsx
+│   │       │   ├── NewCustomersCard.tsx
+│   │       │   ├── NewVsOldVisitors.tsx
+│   │       │   ├── ProgressStatCard.tsx
+│   │       │   ├── RadialStatCard.tsx
+│   │       │   ├── TicketSupport.tsx
+│   │       │   ├── TopTrafficChannelsCard.tsx
+│   │       │   ├── TotalSessionsCard.tsx
+│   │       │   ├── VisitorsSalesCard.tsx
+│   │       │   ├── VisitorsSalesStackedCard.tsx
+│   │       │   └── WebsiteVisitorsCard.tsx
+│   │       └── statistics
+│   │           ├── ColorStatCard.tsx
+│   │           ├── IconColorWidget.tsx
+│   │           ├── ProjectProgressCard.tsx
+│   │           ├── StatCardWidgets.tsx
+│   │           └── StatisticsWidgetsPage.tsx
+│   ├── providers
+│   │   └── ui-theme-provider.tsx
+│   ├── routes
+│   │   └── index.tsx
+│   ├── store
+│   │   └── ui-theme.store.ts
+│   └── types
+│       └── images.d.ts
+├── tailwind.config.js
+├── tailwind.config.ts
+├── tsconfig.app.json
+├── tsconfig.app.tsbuildinfo
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.tsbuildinfo
+├── vite.config.ts
+└── vite-env.d.ts
+
+=============================================================================
+4. DEVELOPMENT WORKFLOW & SCRIPTS
+=============================================================================
+- `npm run dev` or `vite`: Starts the local development server with Vite.
+- `npm run build` or `tsc -b && vite build`: Compiles TypeScript and builds the app for production.
+- `npm run lint` or `eslint .`: Analyzes code to quickly find problems using ESLint.
+- `npm run preview` or `vite preview`: Previews the production build locally.
+
+Configuration details:
+- Environment: Uses Vite environment variables mechanism (`vite-env.d.ts`).
+- Styling Configuration: Managed via Tailwind (both `.js` and `.ts` config files exist).
+- Typescript Setup: Separated app and node configs (`tsconfig.app.json`, `tsconfig.node.json`).
+
+=============================================================================
+5. CONCLUSION
+=============================================================================
+2morrow-admin is structured to be completely scalable. It emphasizes atomic design through its rich /components/ui folder layout, state decoupling via Zustand, and robust typing with Zod and TypeScript. It uses shadcn components to provide a custom-tailored theme across the entire application interface.
