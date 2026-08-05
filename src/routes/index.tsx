@@ -14,7 +14,7 @@ import StatisticsWidgetsPage from "@/pages/widgets/statistics/StatisticsWidgetsP
 
 import LoginPage from "@/modules/auth/LoginPage"
 import RegisterPage from "@/auth/basic/RegisterPage"
-import ForgotPasswordPage from "@/modules/auth/ForgotPasswordPage"
+import ForgotPasswordPage from "@/modules/auth/ForgotPasswordForm"
 
 import NotFound from "@/pages/NotFound"
 import ErrorPage from "@/pages/ErrorPage"

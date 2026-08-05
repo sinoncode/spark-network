@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { AuthInput } from "@/components/ui/authinput"
 import { Button } from "@/components/ui/button"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import logo from "@/assets/logo/2morrow-complete-logo-high-quality.png"
 import bg from "@/assets/auth-images/auth-bg.png"
@@ -11,33 +11,33 @@ import { forgotPassword } from "@/api/services/auth.service"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
-const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  try {
-    setLoading(true)
+    try {
+      setLoading(true)
 
-    const response = await forgotPassword({
-      email,
-    })
+      const response = await forgotPassword({
+        email,
+      })
 
-    console.log(response)
+      console.log(response)
 
-    alert("Password reset link has been sent to your email.")
+      alert("Password reset link has been sent to your email.")
 
-    setEmail("")
-  } catch (error: any) {
-    console.error(error)
+      setEmail("")
+    } catch (error: any) {
+      console.error(error)
 
-    alert(
-      error?.response?.data?.message ||
-      "Unable to send reset password email."
-    )
-  } finally {
-    setLoading(false)
+      alert(
+        error?.response?.data?.message ||
+        "Unable to send reset password email."
+      )
+    } finally {
+      setLoading(false)
+    }
   }
-}
 
   return (
     <div
@@ -81,22 +81,22 @@ const [loading, setLoading] = useState(false)
                   />
 
                   <Button
-  className="h-12 w-full"
-  type="submit"
-  disabled={loading}
->
-  {loading ? "Sending..." : "Send Reset Link"}
-</Button>
+                    className="h-12 w-full"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Send Reset Link"}
+                  </Button>
                 </div>
               </form>
-      <div className="flex justify-end mt-4">
-              <Link
-              to="/auth/login"
-              className="text-sm font-medium text-black text-right hover:text-blue/80 underline underline-offset-4 transition-colors"
-            >
-              Remember your password? Log in
-            </Link>
-            </div>
+              <div className="flex justify-end mt-4">
+                <Link
+                  to="/auth/login"
+                  className="text-sm font-medium text-black text-right hover:text-blue/80 underline underline-offset-4 transition-colors"
+                >
+                  Remember your password? Log in
+                </Link>
+              </div>
             </div>
           </div>
 

@@ -10,10 +10,11 @@ import Apple from "@/assets/auth-images/apple_logo.svg"
 import Google from "@/assets/auth-images/google_logo.webp"
 import { useAuthStore } from "@/store/auth.store"
 
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+type Props = {
+  onForgotPassword: () => void
+}
+export function LoginForm({ onForgotPassword }: Props) {
+
   const navigate = useNavigate()
   const { login, loading, error } = useAuthStore()
   const [email, setEmail] = useState("")
@@ -32,14 +33,14 @@ export function LoginForm({
   }
 
   return (
-    <div className={cn("w-full max-w-full mx-auto", className)} {...props}>
+    <div className="w-full max-w-full mx-auto">
       <div className=" text-card-foreground">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
             Welcome back
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground text-white">
             Enter your credentials to access your account
           </p>
         </div>
@@ -47,27 +48,27 @@ export function LoginForm({
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-black">
+            <Label htmlFor="email" className="text-sm font-medium text-white">
               Email
             </Label>
-           <div className="relative group">
-  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none transition-colors group-focus-within:text-blue-500" />
-  <AuthInput
-    id="email"
-    type="email"
-    placeholder="name@company.com"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    autoComplete="email"
-    className="h-12 pl-11 pr-4 bg-white border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-sm hover:border-gray-300 transition-all duration-200"
-    required
-  />
-</div>
+            <div className="relative group">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none transition-colors group-focus-within:text-[#FC8D0E]" />
+              <AuthInput
+                id="email"
+                type="email"
+                placeholder="name@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                className="h-12 pl-11 pr-4 bg-white border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#FC8D0E]/20 focus:border-[#FC8D0E] shadow-sm hover:border-[#FC8D0E]/50 transition-all duration-200"
+                required
+              />
+            </div>
           </div>
 
           {/* Password */}
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-sm font-medium text-black">
+            <Label htmlFor="password" className="text-sm font-medium text-white">
               Password
             </Label>
             <div className="relative">
@@ -104,26 +105,32 @@ export function LoginForm({
                 id="remember"
                 checked={rememberMe}
                 onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                className="
+                  border-white/40
+                  data-[state=checked]:bg-[#FC8D0E]
+                  data-[state=checked]:border-[#FC8D0E]
+                  data-[state=checked]:text-white
+                "
               />
               <Label
                 htmlFor="remember"
-                className="text-sm text-muted-foreground cursor-pointer font-normal"
+                className="text-sm text-muted-foreground cursor-pointer font-normal text-white"
               >
                 Remember me
               </Label>
             </div>
-            <Link
-              to="/auth/forgot-password"
-              className="text-sm font-medium text-black hover:text-blue/80 underline underline-offset-4 transition-colors"
+            <Button
+              variant="link"
+              onClick={onForgotPassword}
             >
-              Forgot password?
-            </Link>
+              Forgot Password?
+            </Button>
           </div>
 
           {/* Submit */}
           <Button
             type="submit"
-            className="h-12 w-full"
+            className="h-12 w-full bg-gradient-to-b from-[#FC8D0E] to-[#E33210] text-white border-0 hover:from-[#FF9A1A] hover:to-[#F03A18] transition-all duration-300"
             disabled={loading}
           >
             {loading ? (
@@ -160,20 +167,20 @@ export function LoginForm({
         {/* Social Login */}
         <div className="grid grid-cols-2 gap-3">
           <Button
-          variant="ghost"
+            variant="ghost"
             className="h-11 shadow-xl"
-            onClick={() => {/* Google OAuth */}}
+            onClick={() => {/* Google OAuth */ }}
           >
             <img src={Google} alt="Google" className="mr-2 h-5 w-5" />
-            <span className="hidden sm:inline text-black">Google</span>
+            <span className="hidden sm:inline text-white">Google</span>
           </Button>
           <Button
             variant="ghost"
             className="h-11 shadow-xl"
-            onClick={() => {/* Apple OAuth */}}
+            onClick={() => {/* Apple OAuth */ }}
           >
             <img src={Apple} alt="Apple" className="mr-2 h-5 w-5" />
-            <span className="hidden sm:inline text-black">Apple</span>
+            <span className="hidden sm:inline text-white">Apple</span>
           </Button>
         </div>
 
@@ -190,4 +197,5 @@ export function LoginForm({
       </div>
     </div>
   )
+
 }

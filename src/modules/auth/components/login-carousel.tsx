@@ -125,7 +125,7 @@ export function LoginCarousel() {
                       initial={{ y: 20, opacity: 0 }}
                       animate={current === index ? { y: 0, opacity: 1 } : { y: 10, opacity: 0.3 }}
                       transition={{ duration: 0.5, delay: 0.1 }}
-                      className="mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold text-black tracking-tight"
+                      className="mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold text-white tracking-tight"
                     >
                       {slide.title}
                     </motion.h2>
@@ -135,7 +135,7 @@ export function LoginCarousel() {
                       initial={{ y: 20, opacity: 0 }}
                       animate={current === index ? { y: 0, opacity: 1 } : { y: 10, opacity: 0.3 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
-                      className="max-w-sm text-sm sm:text-base text-black leading-relaxed"
+                      className="max-w-sm text-sm sm:text-base text-white leading-relaxed"
                     >
                       {slide.description}
                     </motion.p>
@@ -178,7 +178,7 @@ export function LoginCarousel() {
 
               {/* Animated active dot */}
               <motion.div
-                className="absolute top-0 w-2.5 h-2.5 rounded-full bg-[#2780C3] shadow-[0_0_12px_rgba(var(--primary-rgb),0.5)]"
+                className="absolute top-0 w-2.5 h-2.5 rounded-full bg-[#FC8D0E] shadow-[0_0_12px_rgba(var(--primary-rgb),0.5)]"
                 animate={{
                   left: current * 22,
                   scale: [1, 1.3, 1],
