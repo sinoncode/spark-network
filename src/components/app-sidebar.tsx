@@ -47,8 +47,8 @@ import {
 } from "@/components/ui/sidebar"
 import { ScrollArea } from "./ui/scroll-area"
 
-import LogoIcon from "../assets/logo/2morrow-icon.png"
-import LogoText from "../assets/logo/2morrow-text-logo.png"
+import LogoIcon from "../assets/logo/spark-icon.png"
+import LogoText from "../assets/logo/spark-text.png"
 
 // This is sample data.
 const data = {
@@ -240,7 +240,10 @@ const data = {
     //   icon: LayoutGrid,
     //   items: [
     //     {
-    //       title: "Chatbox",
+    //       title: "Chatbox",versionRateCard = lazy(() => import("./ConversionRateCard"))
+// const SalesAnalysisCard = lazy(() => import("./SalesAnalysisCard"))
+// const RecentOrdersCard = lazy(() => import("./RecentOrdersCard"))
+// const SalesByCountriesCard = lazy(() => import("./SalesByCountr
     //       url: "app/chatbox",
     //     },
     //      {
@@ -552,7 +555,7 @@ export function AppSidebar({ onHoverChange, ...props }: AppSidebarProps) {
       onMouseEnter={() => onHoverChange?.(true)}
       onMouseLeave={() => onHoverChange?.(false)}
     >
-      <Sidebar collapsible="icon" {...props} className="h-screen z-50 bg-[linear-gradient(180deg,#1f6ea9_0%,#155789_40%,#0a2f4f_70%,#040404_100%)]">
+      <Sidebar collapsible="icon" {...props} className="h-screen z-50 bg-[linear-gradient(180deg,#FC8D0E_0%,#F87A0A_30%,#EF5510_65%,#E33210_100%)]">
         <SidebarHeader className="border-b h-16 ">
           <SidebarMenuButton size="lg" asChild className="px-2 py-3">
             <a href="/" className="flex justify-center hover:bg-transparent active:bg-transparent">
@@ -569,7 +572,7 @@ export function AppSidebar({ onHoverChange, ...props }: AppSidebarProps) {
         <SidebarContent className="overflow-hidden">
           <ScrollArea className="h-full">
             <div className="flex min-h-full flex-col">
-              <NavMain items={data.navMain} />
+              <NavMain items={data.navMain as any} />
               {/* <NavProjects projects={data.projects} /> */}
             </div>
           </ScrollArea>

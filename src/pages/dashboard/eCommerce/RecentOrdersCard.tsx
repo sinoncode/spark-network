@@ -66,7 +66,7 @@ export default function RecentOrdersCard() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between border-b py-3">
         <div>
-          <CardTitle className="text-lg mb-0">Recent Orders</CardTitle>
+          <CardTitle className="text-lg mb-0">Recent Posts</CardTitle>
           <CardDescription>
             Latest product purchases
           </CardDescription>

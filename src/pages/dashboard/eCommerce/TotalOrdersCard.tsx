@@ -29,7 +29,7 @@ export default function TottalOrdersCard() {
         <Card className="overflow-hidden">
             <CardContent className="p-6">
                 <div className="mb-3">
-                    <p className="text-md text-muted-foreground">Total Orders</p>
+                    <p className="text-md text-muted-foreground">Total Users</p>
                     <h2 className="text-3xl font-semibold">8,274</h2>
                  </div>
                   <p className="text-sm flex gap-2 mb-5">

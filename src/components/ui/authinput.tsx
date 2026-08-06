@@ -14,14 +14,14 @@ const AuthInput = React.forwardRef<HTMLInputElement, AuthInputProps>(
         className={cn(
           "group relative flex h-14 w-full items-center rounded-2xl",
           "border border-gray-200",
-          "bg-white",
+          "bg-transparent ",
           "shadow-sm",
           "transition-all duration-300",
-          "hover:border-primary/40",
-          "hover:shadow-md",
-          "focus-within:border-primary",
-          "focus-within:ring-4",
-          "focus-within:ring-primary/10"
+          "hover:border-[#FC8D0E]/40",
+    "hover:shadow-md",
+    "focus-within:border-[#FC8D0E]",
+    "focus-within:ring-4",
+    "focus-within:ring-[#FC8D0E]/10"
         )}
       >
         {icon && (

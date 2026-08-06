@@ -110,7 +110,7 @@ export default function OrderStatus() {
         <Card>
             <CardHeader className="flex flex-row items-center justify-between border-b py-3">
                 <div>
-                    <CardTitle className="text-lg mb-0">Order Status</CardTitle>
+                    <CardTitle className="text-lg mb-0">Post Status</CardTitle>
                     <CardDescription>
                         Order distribution in last 3 months
                     </CardDescription>

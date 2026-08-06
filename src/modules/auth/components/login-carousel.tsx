@@ -163,42 +163,95 @@ export function LoginCarousel() {
         </div>
 
         {/* Smooth Drop Indicators */}
-        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="relative flex items-center gap-3 bg-white backdrop-blur-md rounded-full px-4 py-2.5 shadow-lg">
-            <div className="relative flex items-center h-3">
-              {/* Background track dots */}
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollTo(index)}
-                  className="relative w-2.5 h-2.5 mx-[5px] rounded-full bg-muted-foreground/20 hover:bg-muted-foreground/40 transition-colors cursor-pointer"
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+        <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:bottom-8">
+  <div
+    className="
+      relative
+      flex
+      items-center
+      gap-3
 
-              {/* Animated active dot */}
-              <motion.div
-                className="absolute top-0 w-2.5 h-2.5 rounded-full bg-[#FC8D0E] shadow-[0_0_12px_rgba(var(--primary-rgb),0.5)]"
-                animate={{
-                  left: current * 22,
-                  scale: [1, 1.3, 1],
-                }}
-                transition={{
-                  left: {
-                    type: "spring",
-                    stiffness: 380,
-                    damping: 30,
-                    mass: 1,
-                  },
-                  scale: {
-                    duration: 0.4,
-                    ease: "easeInOut",
-                  },
-                }}
-              />
-            </div>
-          </div>
-        </div>
+      rounded-full
+
+      border
+      border-white/10
+
+      bg-white/[0.06]
+
+      px-5
+      py-3
+
+      backdrop-blur-2xl
+      backdrop-saturate-150
+
+      shadow-[0_10px_30px_rgba(0,0,0,0.25),0_0_20px_rgba(252,141,14,0.08)]
+
+      transition-all
+      duration-300
+    "
+  >
+    <div className="relative flex h-3 items-center">
+      {/* Background Dots */}
+      {slides.map((_, index) => (
+        <button
+          key={index}
+          onClick={() => scrollTo(index)}
+          className="
+            relative
+            mx-[5px]
+            h-2.5
+            w-2.5
+            rounded-full
+
+            bg-white/20
+
+            transition-all
+            duration-300
+
+            hover:bg-white/40
+            hover:scale-110
+          "
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+
+      {/* Active Dot */}
+      <motion.div
+        className="
+          absolute
+          top-0
+
+          h-2.5
+          w-2.5
+
+          rounded-full
+
+          bg-[#FC8D0E]
+
+          ring-4
+          ring-[#FC8D0E]/20
+
+          shadow-[0_0_18px_rgba(252,141,14,0.6)]
+        "
+        animate={{
+          left: current * 22,
+          scale: [1, 1.25, 1],
+        }}
+        transition={{
+          left: {
+            type: "spring",
+            stiffness: 380,
+            damping: 30,
+          },
+          scale: {
+            duration: 0.4,
+            ease: "easeInOut",
+          },
+        }}
+      />
+    </div>
+  </div>
+</div>
       </div>
     </div>
   )

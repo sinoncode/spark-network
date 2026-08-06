@@ -47,56 +47,176 @@ export function LoginForm({ onForgotPassword }: Props) {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-white">
-              Email
-            </Label>
-            <div className="relative group">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none transition-colors group-focus-within:text-[#FC8D0E]" />
-              <AuthInput
-                id="email"
-                type="email"
-                placeholder="name@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-                className="h-12 pl-11 pr-4 bg-white border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#FC8D0E]/20 focus:border-[#FC8D0E] shadow-sm hover:border-[#FC8D0E]/50 transition-all duration-200"
-                required
-              />
-            </div>
-          </div>
+<div className="space-y-2">
+  <Label
+    htmlFor="email"
+    className="text-sm font-medium text-white/90"
+  >
+    Email address
+  </Label>
+
+  <div className="group relative">
+
+    <Mail
+      className="
+      absolute
+      left-4
+      top-1/2
+      -translate-y-1/2
+
+      h-5
+      w-5
+
+      text-white/40
+
+      transition-all
+      duration-300
+
+      group-focus-within:text-[#FC8D0E]
+      "
+    />
+
+    <AuthInput
+      id="email"
+      type="email"
+      placeholder="name@company.com"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="
+      h-14
+
+      rounded-xl
+
+      border
+      border-white/10
+
+      bg-white/5
+
+      backdrop-blur-xl
+
+      shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_8px_30px_rgba(0,0,0,.12)]
+
+      pl-12
+      pr-4
+
+      text-white
+
+      placeholder:text-white/40
+
+      transition-all
+      duration-300
+
+      hover:bg-white/[0.06]
+      hover:border-white/20
+
+      focus:bg-white/[0.08]
+      focus:border-[#FC8D0E]/40
+      focus:ring-2
+      focus:ring-[#FC8D0E]/15
+      "
+    />
+
+  </div>
+</div>
 
           {/* Password */}
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-sm font-medium text-white">
-              Password
-            </Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-              <AuthInput
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-                className="h-12 pl-10 pr-12 white"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                aria-label={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-black" />
-                ) : (
-                  <Eye className="h-5 w-5 text-black" />
-                )}
-              </button>
-            </div>
-          </div>
+
+  <Label
+    htmlFor="password"
+    className="text-sm font-medium text-white/90"
+  >
+    Password
+  </Label>
+
+  <div className="group relative">
+
+    <Lock
+      className="
+      absolute
+      left-4
+      top-1/2
+      -translate-y-1/2
+
+      h-5
+      w-5
+
+      text-white/40
+
+      transition-all
+      duration-300
+
+      group-focus-within:text-[#FC8D0E]
+      "
+    />
+
+    <AuthInput
+      id="password"
+      type={showPassword ? "text" : "password"}
+      placeholder="••••••••"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="
+      h-14
+
+      rounded-xl
+
+      border
+      border-white/10
+
+      bg-white/5
+
+      backdrop-blur-xl
+
+      shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_8px_30px_rgba(0,0,0,.12)]
+
+      pl-12
+      pr-14
+
+      text-white
+
+      placeholder:text-white/40
+
+      transition-all
+      duration-300
+
+      hover:bg-white/[0.06]
+      hover:border-white/20
+
+      focus:bg-white/[0.08]
+      focus:border-[#FC8D0E]/40
+      focus:ring-2
+      focus:ring-[#FC8D0E]/15
+      "
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="
+      absolute
+      right-4
+      top-1/2
+      -translate-y-1/2
+
+      text-white/40
+
+      transition-colors
+      duration-300
+
+      hover:text-white
+      "
+    >
+      {showPassword ? (
+        <EyeOff className="h-5 w-5" />
+      ) : (
+        <Eye className="h-5 w-5" />
+      )}
+    </button>
+
+  </div>
+
+</div>
 
           {/* Remember & Forgot */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -121,7 +241,8 @@ export function LoginForm({ onForgotPassword }: Props) {
             </div>
             <Button
               variant="link"
-              onClick={onForgotPassword}
+              onClick={onForgotPassword} 
+              className="p-0 text-white transition-colors duration-300 hover:text-[#FC8D0E]"
             >
               Forgot Password?
             </Button>
@@ -168,19 +289,67 @@ export function LoginForm({ onForgotPassword }: Props) {
         <div className="grid grid-cols-2 gap-3">
           <Button
             variant="ghost"
-            className="h-11 shadow-xl"
+            className="
+      group
+      h-12
+      rounded-2xl
+
+      border
+      border-white/10
+
+      bg-white/[0.05]
+      backdrop-blur-xl
+      backdrop-saturate-150
+
+      shadow-[0_8px_30px_rgba(0,0,0,0.18),0_0_18px_rgba(252,141,14,0.08)]
+
+      transition-all
+      duration-300
+      ease-out
+
+      hover:bg-white/[0.08]
+      hover:border-[#FC8D0E]/40
+      hover:shadow-[0_10px_35px_rgba(0,0,0,0.25),0_0_30px_rgba(252,141,14,0.25)]
+      hover:-translate-y-1
+
+      active:scale-[0.98]
+    "
             onClick={() => {/* Google OAuth */ }}
           >
-            <img src={Google} alt="Google" className="mr-2 h-5 w-5" />
-            <span className="hidden sm:inline text-white">Google</span>
+            <img src={Google} alt="Google" className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+            <span className="hidden text-white sm:inline group-hover:text-[#FC8D0E] transition-colors duration-300">Google</span>
           </Button>
           <Button
             variant="ghost"
-            className="h-11 shadow-xl"
+            className="
+      group
+      h-12
+      rounded-2xl
+
+      border
+      border-white/10
+
+      bg-white/[0.05]
+      backdrop-blur-xl
+      backdrop-saturate-150
+
+      shadow-[0_8px_30px_rgba(0,0,0,0.18),0_0_18px_rgba(252,141,14,0.08)]
+
+      transition-all
+      duration-300
+      ease-out
+
+      hover:bg-white/[0.08]
+      hover:border-[#FC8D0E]/40
+      hover:shadow-[0_10px_35px_rgba(0,0,0,0.25),0_0_30px_rgba(252,141,14,0.25)]
+      hover:-translate-y-1
+
+      active:scale-[0.98]
+    "
             onClick={() => {/* Apple OAuth */ }}
           >
-            <img src={Apple} alt="Apple" className="mr-2 h-5 w-5" />
-            <span className="hidden sm:inline text-white">Apple</span>
+            <img src={Apple} alt="Apple" className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+            <span className="hidden text-white sm:inline group-hover:text-[#FC8D0E] transition-colors duration-300">Apple</span>
           </Button>
         </div>
 

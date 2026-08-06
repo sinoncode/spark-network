@@ -151,11 +151,11 @@ export const router = createBrowserRouter(
         return null
       },
       children: [
-        { index: true, element: <CrmDashboard /> },
-        { path: "dashboard/analytics", element: <AnalyticsDashboard /> },
-        { path: "dashboard", element: <CrmDashboard /> },
-        { path: "dashboard/eCommerce", element: <EcommerceDashboard /> },
-        { path: "dashboard/landing-page", element: <LandingPage /> },
+        { index: true, element: <EcommerceDashboard /> },
+        // { path: "dashboard/analytics", element: <AnalyticsDashboard /> },
+        // { path: "dashboard", element: <CrmDashboard /> },
+        { path: "dashboard", element: <EcommerceDashboard /> },
+        // { path: "dashboard/landing-page", element: <LandingPage /> },
 
         { path: "dashboard/charts", element: <ChartsPage /> },
         { path: "widgets/data", element: <DataWidgetsPage /> },

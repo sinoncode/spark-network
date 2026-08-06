@@ -72,14 +72,16 @@ export default function ForgotPasswordForm({
         {loading ? "Sending..." : "Send Reset Link"}
       </Button>
 
-      <Button
-        type="button"
-        variant="ghost"
-        className="w-full box-border rounded-base border border-default-medium bg-neutral-secondary-medium px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-xs transition-colors hover:bg-neutral-tertiary-medium hover:text-white focus:outline-none focus:ring-4 focus:ring-neutral-tertiary hover:bg-[#FC8D0E]"
-        onClick={onBack}
-      >
-        ← Back to Login
-      </Button>
+      <div className="flex justify-start">
+  <Button
+    type="button"
+    variant="link"
+    onClick={onBack}
+    className="p-0 text-white transition-colors duration-300 hover:text-[#FC8D0E]"
+  >
+    ← Back to Login
+  </Button>
+</div>
     </form>
   )
 }

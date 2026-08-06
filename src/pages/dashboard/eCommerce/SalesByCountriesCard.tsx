@@ -73,7 +73,7 @@ export default function SalesByCountriesCard() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between border-b py-3">
         <div>
-          <CardTitle className="text-lg mb-0">Sales by Countries</CardTitle>
+          <CardTitle className="text-lg mb-0">Posts by Countries</CardTitle>
           <CardDescription>
             Monthly sales overview
           </CardDescription>

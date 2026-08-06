@@ -111,7 +111,7 @@ const chartConfig = {
     label: "Page Views",
   },
   desktop: {
-    label: "Orders",
+    label: "Posts",
     color: "hsl(var(--chart-2))",
   },
   mobile: {
@@ -136,7 +136,7 @@ export default function SalesAnalysisCard() {
     <Card>
       <CardHeader className="flex flex-col items-stretch border-b !p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:!py-0">
-          <CardTitle className="text-xl">Sales Analysis</CardTitle>
+          <CardTitle className="text-xl">Posts Analysis</CardTitle>
           <CardDescription className="text-md">
             Showing total Analysis for the last 3 months
           </CardDescription>
@@ -180,14 +180,14 @@ export default function SalesAnalysisCard() {
             <CartesianGrid vertical={false} />
             <defs>
               <linearGradient id="SalesfillVisitors" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="10%" stopColor="#2af598" stopOpacity={0.8} />
-                <stop offset="90%" stopColor="#009efd" stopOpacity={0.05} />
+                <stop offset="10%" stopColor="#FC8D0E" stopOpacity={0.8} />
+                <stop offset="90%" stopColor="#E33210" stopOpacity={0.05} />
               </linearGradient>
             </defs>
 
             <Area
               dataKey={activeChart}   // 🔥 FIX HERE
-              stroke="#2af598"
+              stroke="#FC8D0E"
               fill="url(#SalesfillVisitors)"
               strokeWidth={2}
               dot={false}

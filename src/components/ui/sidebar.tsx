@@ -188,7 +188,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[--sidebar-width] flex-col bg-[linear-gradient(180deg,#1f6ea9_0%,#155789_40%,#0a2f4f_70%,#040404_100%)] text-sidebar-foreground",
+            "flex h-full w-[--sidebar-width] flex-col bg-[linear-gradient(180deg,#000000_0%,#121212_15%,#3A1A05_30%,#8A3A0B_50%,#D86A0C_75%,#FC8D0E_100%)] text-sidebar-foreground",
             className
           )}
           ref={ref}
@@ -205,7 +205,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-[linear-gradient(180deg,#1f6ea9_0%,#155789_40%,#0a2f4f_70%,#040404_100%)] p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-[--sidebar-width] bg-[linear-gradient(180deg,#000000_0%,#121212_15%,#3A1A05_30%,#8A3A0B_50%,#D86A0C_75%,#FC8D0E_100%)] p-0 text-sidebar-foreground [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -259,7 +259,7 @@ const Sidebar = React.forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-[linear-gradient(180deg,#1f6ea9_0%,#155789_40%,#0a2f4f_70%,#040404_100%)] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col bg-[linear-gradient(180deg,#000000_0%,#121212_15%,#3A1A05_30%,#8A3A0B_50%,#D86A0C_75%,#FC8D0E_100%)] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>
