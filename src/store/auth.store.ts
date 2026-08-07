@@ -38,10 +38,19 @@ export const useAuthStore = create<AuthStore>((set) => ({
       const response = await AuthService.login(data)
       const payload = response?.data ?? response
       const token =
+        payload?.data?.accessToken ??
+        payload?.accessToken ??
         payload?.data?.token ??
         payload?.token ??
         payload?.access_token ??
-        payload?.data?.access_token
+        payload?.data?.access_token ??
+        null
+      const refreshToken =
+        payload?.data?.refreshToken ??
+        payload?.refreshToken ??
+        payload?.data?.refresh_token ??
+        payload?.refresh_token ??
+        null
       const user = payload?.data?.user ?? payload?.user ?? null
 
       if (!token) {
@@ -49,6 +58,11 @@ export const useAuthStore = create<AuthStore>((set) => ({
       }
 
       localStorage.setItem("access_token", token)
+
+      if (refreshToken) {
+        localStorage.setItem("refresh_token", refreshToken)
+      }
+
       set({ user })
 
       toast.success("Login successful")
