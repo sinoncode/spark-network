@@ -293,12 +293,21 @@ const TeamsPermissions = () => {
               </Button>
 
               <Button
-                onClick={handleAddRole}
-                disabled={!canCreateRoles || isSaving}
-                className="flex-1 sm:flex-none bg-[#1f6ea9] hover:bg-black text-white"
-              >
-                + Add New Role
-              </Button>
+  onClick={handleAddRole}
+  disabled={!canCreateRoles || isSaving}
+  className="
+    flex-1
+    sm:flex-none
+    bg-[#FC8D0E]
+    text-white
+    transition-all
+    duration-300
+    hover:bg-[#E8780A]
+    hover:shadow-[0_0_20px_rgba(252,141,14,0.30)]
+  "
+>
+  + Add New Role
+</Button>
             </div>
           </div>
 
@@ -479,7 +488,7 @@ const TeamsPermissions = () => {
                         canUpdateRoles && !isProtectedRole
                       }
                       onPermissionChange={handlePermissionChange}
-                    />
+                    />  
 
                     {canUpdateRoles && (
                       <Button
