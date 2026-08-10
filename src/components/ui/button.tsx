@@ -21,7 +21,7 @@ const buttonVariants = cva(
 
   focus-visible:outline-none
   focus-visible:ring-4
-  focus-visible:ring-[#2780C3]/20
+  focus-visible:ring-[#FC8D0E]/20
 
   disabled:pointer-events-none
   disabled:cursor-not-allowed
@@ -37,27 +37,28 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: `
-          bg-[#2780C3]
-          text-white
-          shadow-[0_8px_20px_rgba(39,128,195,0.24)]
+  bg-[#FC8D0E]
+  text-white
+  shadow-[0_8px_20px_rgba(227,50,16,0.24)]
 
-          hover:-translate-y-0.5
-          hover:bg-[#1E6FAE]
-          hover:shadow-[0_12px_28px_rgba(39,128,195,0.34)]
+  hover:-translate-y-0.5
+  hover:bg-[#E33210]
+  hover:shadow-[0_12px_28px_rgba(252,141,14,0.34)]
 
-          focus-visible:bg-[#1E6FAE]
-          focus-visible:ring-[#2780C3]/25
+  focus-visible:bg-[#E33210]
+  focus-visible:ring-[#FC8D0E]/25
 
-          dark:bg-[#2780C3]
-          dark:text-white
-          dark:shadow-[0_8px_22px_rgba(39,128,195,0.30)]
+  dark:bg-[#FC8D0E]
+  dark:text-white
+  dark:shadow-[0_8px_22px_rgba(227,50,16,0.30)]
 
-          dark:hover:bg-[#3591D7]
-          dark:hover:shadow-[0_12px_30px_rgba(39,128,195,0.42)]
+  dark:hover:bg-[#E33210]
+  dark:hover:shadow-[0_12px_30px_rgba(252,141,14,0.42)]
 
-          dark:focus-visible:bg-[#3591D7]
-          dark:focus-visible:ring-[#2780C3]/30
-        `,
+  dark:focus-visible:bg-[#E33210]
+  dark:focus-visible:ring-[#FC8D0E]/30
+`,
+
 
         destructive: `
           bg-red-600
@@ -84,65 +85,65 @@ const buttonVariants = cva(
           shadow-sm
 
           hover:-translate-y-0.5
-          hover:border-[#2780C3]/30
-          hover:bg-[#2780C3]/5
-          hover:text-[#2780C3]
+          hover:border-[#FC8D0E]/30
+          hover:bg-[#FC8D0E]/5
+          hover:text-[#FC8D0E]
           hover:shadow-md
 
-          focus-visible:border-[#2780C3]/40
-          focus-visible:ring-[#2780C3]/15
+          focus-visible:border-[#FC8D0E]/40
+          focus-visible:ring-[#FC8D0E]/15
 
           dark:border-slate-700
-          dark:bg-[#1B2638]
+          dark:bg-[#E33210]
           dark:text-slate-200
           dark:shadow-black/10
 
-          dark:hover:border-[#2780C3]/50
-          dark:hover:bg-[#2780C3]/10
-          dark:hover:text-[#70B8ED]
+          dark:hover:border-[#FC8D0E]/50
+          dark:hover:bg-[#FC8D0E]/10
+          dark:hover:text-[#ffffff]
           dark:hover:shadow-black/20
 
-          dark:focus-visible:border-[#2780C3]/60
-          dark:focus-visible:ring-[#2780C3]/20
+          dark:focus-visible:border-[#FC8D0E]/60
+          dark:focus-visible:ring-[#FC8D0E]/20
         `,
 
         secondary: `
-          bg-[#2780C3]/10
-          text-[#1E6FAE]
+          bg-[#FC8D0E]/10
+          text-[#E33210]
           shadow-sm
 
           hover:-translate-y-0.5
-          hover:bg-[#2780C3]/15
+          hover:bg-[#FC8D0E]/15
           hover:shadow-md
 
-          focus-visible:ring-[#2780C3]/15
+          focus-visible:ring-[#FC8D0E]/15
 
-          dark:bg-[#2780C3]/15
-          dark:text-[#70B8ED]
+          dark:bg-[#FC8D0E]/15
+          dark:text-[#E33210]
 
-          dark:hover:bg-[#2780C3]/25
-          dark:hover:text-[#A9D8FA]
+          dark:hover:bg-[#FC8D0E]/25
+          dark:hover:text-[#E33210]
 
-          dark:focus-visible:ring-[#2780C3]/20
+          dark:focus-visible:ring-[#FC8D0E]/20
         `,
 
         ghost: `
           bg-transparent
           text-slate-600
 
-          hover:bg-[#2780C3]/8
+          hover:bg-[#FC8D0E]/8
           hover:text-[#1E6FAE]
 
-          focus-visible:bg-[#2780C3]/8
+          focus-visible:bg-[#FC8D0E]/8
           focus-visible:text-[#1E6FAE]
 
           dark:text-slate-300
 
-          dark:hover:bg-[#2780C3]/15
-          dark:hover:text-[#70B8ED]
+          dark:hover:bg-[#FC8D0E]/15
+          dark:hover:text-[#E33210]
 
-          dark:focus-visible:bg-[#2780C3]/15
-          dark:focus-visible:text-[#70B8ED]
+          dark:focus-visible:bg-[#FC8D0E]/15
+          dark:focus-visible:text-[#E33210]
         `,
 
         link: `
@@ -150,14 +151,14 @@ const buttonVariants = cva(
           bg-transparent
           px-0
           py-0
-          text-[#2780C3]
+          text-[#FC8D0E]
           underline-offset-4
 
           hover:text-[#1E6FAE]
           hover:underline
 
-          dark:text-[#70B8ED]
-          dark:hover:text-[#A9D8FA]
+          dark:text-[#FC8D0E]
+          dark:hover:text-[#E33210]
         `,
       },
 
