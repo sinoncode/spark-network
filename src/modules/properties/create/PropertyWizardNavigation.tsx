@@ -40,15 +40,14 @@ export default function PropertyWizardNavigation({
   return (
     <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
       <div
-        className="
-          flex min-w-max justify-between items-center gap-1
-          rounded-full
-          bg-[linear-gradient(90deg,_#1f6ea9_0%,_#155789_40%,_#0a2f4f_70%,_#040404_100%)]
-          shadow-[rgba(18, 26, 133, 0.36)_0px_7px_29px_0px]
-          p-1.5
-          shadow-md
-        "
-      >
+  className="
+    flex min-w-max items-center justify-between gap-1
+    rounded-full
+    bg-[linear-gradient(90deg,#FC8D0E_0%,#E33210_40%,#8A3A0B_70%,#040404_100%)]
+    shadow-[0_7px_29px_rgba(252,141,14,0.30)]
+    p-1.5
+  "
+>
         {steps.map((step, index) => {
           const isActive = currentStep === index;
           

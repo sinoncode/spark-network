@@ -58,8 +58,9 @@ const Input = React.forwardRef<
         hover:file:bg-[#E33210]
 
         [&::-webkit-calendar-picker-indicator]:cursor-pointer
-        [&::-webkit-calendar-picker-indicator]:opacity-60
-        hover:[&::-webkit-calendar-picker-indicator]:opacity-100
+[&::-webkit-calendar-picker-indicator]:opacity-100
+[&::-webkit-calendar-picker-indicator]:brightness-0
+[&::-webkit-calendar-picker-indicator]:invert
 
        
 
