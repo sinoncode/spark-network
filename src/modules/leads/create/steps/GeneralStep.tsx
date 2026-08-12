@@ -34,7 +34,7 @@ export default function GeneralStep() {
       {/* GENERAL INFORMATION */}
       <Card className="border-0 shadow-sm rounded-2xl">
         <CardContent className="p-6">
-          <h3 className="mb-5 text-sm font-semibold text-blue-600">
+          <h3 className="mb-5 text-sm font-semibold text-orange-400">
             Localisation
           </h3>
 
@@ -183,7 +183,7 @@ export default function GeneralStep() {
       {/* LOCALIZATION */}
       <Card className="border-0 shadow-sm rounded-2xl">
         <CardContent className="p-6">
-          <h3 className="mb-5 text-sm font-semibold text-blue-600">
+          <h3 className="mb-5 text-sm font-semibold text-orange-400">
             Localisation
           </h3>
 
@@ -243,7 +243,7 @@ export default function GeneralStep() {
           </div>
 
           <div className="mt-6 flex gap-3">
-            <Button className="rounded-lg py-5 px-8 border border-blue-600">Save</Button>
+            <Button className="rounded-lg py-5 px-8 border border-orange-400">Save</Button>
 
             <button className="rounded-lg border border-red-500 px-8 py-2 text-red-500">
               Cancel

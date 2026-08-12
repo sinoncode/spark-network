@@ -110,10 +110,18 @@ import EmailCompose from "@/modules/emails/pages/Emailcompose"
 import ContactListing from "@/modules/contacts/pages/ContactList"
 import ContactCreate from "@/modules/contacts/pages/ContactCreate"
 
+//Leaderboard
+import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
+
+// rewards
+import Rewards from "@/modules/rewards/Rewards"
+
+// Category
+import Category from "@/modules/category/Category"
 
 export const router = createBrowserRouter(
   [
-    { path: "/", element: <Navigate to="/auth/login" replace /> },
+    { path: "/", element: <Navigate to="/dashboard" replace /> },
     // 🔐 AUTH ROUTES
     {
       element: <AuthLayout />,
@@ -145,9 +153,10 @@ export const router = createBrowserRouter(
       element: <AppLayout />,
       errorElement: <ErrorPage />,
       loader: () => {
-        if (!localStorage.getItem("access_token")) {
-          return redirect("/auth/login")
-        }
+        // API access disabled for local dashboard access.
+        // if (!localStorage.getItem("access_token")) {
+        //   return redirect("/auth/login")
+        // }
         return null
       },
       children: [
@@ -182,6 +191,15 @@ export const router = createBrowserRouter(
 
         // Agenda
         { path: "agenda", element: <Agenda /> },
+
+        // Leaderboard
+        { path: "leaderboard/list", element: <LeaderboardList /> },
+
+        // Rewards
+        { path: "rewards", element: <Rewards /> },
+
+        // Category
+        { path: "category", element: <Category /> },
 
         // Dossiers
         { path: "dossiers/list", element: <DossiersList /> },

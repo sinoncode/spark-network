@@ -53,21 +53,21 @@ export default function LeadWizardNavigation({
               onClick={() => onStepChange(index)}
               className={cn(
                 `
-    group
-    relative
-    flex
-    items-center
-    gap-2
-    rounded-full
-    px-5
-    py-2.5
-    font-medium
-    transition-all
-    duration-500
-    ease-out
-    text-base
-    whitespace-nowrap
-    `,
+                group
+                relative
+                flex
+                items-center
+                gap-2
+                rounded-full
+                px-5
+                py-2.5
+                font-medium
+                transition-all
+                duration-500
+                ease-out
+                text-base
+                whitespace-nowrap
+                `,
                 index !== 0 &&
                 index !== steps.length - 1 &&
                 "mx-2", // Apply horizontal margin only to middle buttons

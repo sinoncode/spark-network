@@ -22,7 +22,7 @@ export default function CharacteristicsStep() {
       {/* LOCALIZATION */}
       <Card className="border-0 shadow-sm rounded-2xl">
         <CardContent className="p-6">
-          <h3 className="mb-5 text-lg font-semibold text-blue-600">
+          <h3 className="mb-5 text-lg font-semibold text-orange-400">
             Criteria
           </h3>
 
@@ -76,7 +76,7 @@ export default function CharacteristicsStep() {
       {/* ADDITIONAL CRITERIA */}
       <Card className="rounded-2xl border-0 shadow-sm">
         <CardContent className="p-8">
-          <h3 className="mb-8 text-lg font-semibold text-blue-600">
+          <h3 className="mb-8 text-lg font-semibold text-orange-400">
             Additional Criteria
           </h3>
 

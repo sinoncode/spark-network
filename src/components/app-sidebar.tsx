@@ -33,6 +33,8 @@ import { GrCloudSoftware } from "react-icons/gr";
 
 import CloudKeyOutlineIcon from "@/components/icons/mdi-cloud-key-outline";
 import AccountSettingsVariantIcon from "@/components/icons/mdi-account-settings-variant";
+import LeaderboardOutlineIcon from "@/components/icons/leaderboard";
+import RewardsOutlineIcon from "@/components/icons/rewards";
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
@@ -59,7 +61,7 @@ const data = {
   },
   teams: [
     {
-      name: "2 Morrow",
+      name: "Spark Network",
       logo: GalleryVerticalEnd,
       plan: "React Admin",
     },
@@ -88,88 +90,103 @@ const data = {
       icon: AccountSettingsVariantIcon,
     },
     {
-      title: "Properties",
-      url: "properties/list",
-      icon: Building2,
+      title: "Leaderboard",
+      url: "leaderboard/list",
+      icon: LeaderboardOutlineIcon,
     },
     {
-      title: "New Projects",
-      url: "properties/add-property",
-      icon: BrickWallShield,
+      title: "Rewards",
+      url: "rewards",
+      icon: RewardsOutlineIcon,
     },
+    // {
+    //   title: "Properties",
+    //   url: "properties/list",
+    //   icon: Building2,
+    // },
+    // {
+    //   title: "New Projects",
+    //   url: "properties/add-property",
+    //   icon: BrickWallShield,
+    // },
+    // {
+    //   title: "Requests",
+    //   url: "requests/list",
+    //   icon: MessageCircleQuestionMark,
+    // },
     {
-      title: "Requests",
-      url: "requests/list",
-      icon: MessageCircleQuestionMark,
-    },
-    {
-      title: "Leads",
+      title: "Users",
       url: "leads/list",
       icon: Users,
     },
     {
-      title: "Contact",
-      url: "contacts/list",
-      icon: Phone,
-    },
-    {
-      title: "Emails",
-      url: "emails/list",
-      icon: Mail,
-    },
-    {
-      title: "Dossiers",
-      url: "dossiers/list",
-      icon: Book,
-    },
-    {
-      title: "Agenda",
-      url: "agenda",
-      icon: NotebookPen,
-    },
-    {
-      title: "Activites",
-      url: "docs",
+      title: "Category",
+      url: "category",
       icon: LucidePuzzle,
     },
-    {
-      title: "Reports",
-      url: "docs",
-      icon: ChartNoAxesCombined,
-    },
+    // {
+    //   title: "Contact",
+    //   url: "contacts/list",
+    //   icon: Phone,
+    // },
+    // {
+    //   title: "Emails",
+    //   url: "emails/list",
+    //   icon: Mail,
+    // },
+    // {
+    //   title: "Dossiers",
+    //   url: "dossiers/list",
+    //   icon: Book,
+    // },
+    // {
+    //   title: "Agenda",
+    //   url: "agenda",
+    //   icon: NotebookPen,
+    // },
+    // {
+    //   title: "Activites",
+    //   url: "docs",
+    //   icon: LucidePuzzle,
+    // },
+    // {
+    //   title: "Reports",
+    //   url: "docs",
+    //   icon: ChartNoAxesCombined,
+    // },
 
-    {
-      title: "Angel",
-      url: "docs",
-      icon: GiAngelOutfit,
-    },
-    {
-      title: "Agent",
-      url: "docs",
-      icon: MdOutlineRealEstateAgent,
-    },
-    {
-      title: "Partners",
-      url: "docs",
-      icon: Gavel,
-    },
-    {
-      title: "Agency",
-      url: "docs",
-      icon: Store,
-    },
+    // {
+    //   title: "Angel",
+    //   url: "docs",
+    //   icon: GiAngelOutfit,
+    // },
+    // {
+    //   title: "Agent",
+    //   url: "docs",
+    //   icon: MdOutlineRealEstateAgent,
+    // },
+    // {
+    //   title: "Partners",
+    //   url: "docs",
+    //   icon: Gavel,
+    // },
+    // {
+    //   title: "Agency",
+    //   url: "docs",
+    //   icon: Store,
+    // },
 
-      {
-      title: "Cloud",
-      url: "docs",
-      icon: CloudKeyOutlineIcon,
-    },
+    //   {
+    //   title: "Cloud",
+    //   url: "docs",
+    //   icon: CloudKeyOutlineIcon,
+    // },
 
-    {
-      title: "Billing",
-      url: "docs",
-      icon: ScrollText,
-    },
+    // {
+    //   title: "Billing",
+    //   url: "docs",
+    //   icon: ScrollText,
+    // },
     {
       title: "Settings",
       url: "docs",
