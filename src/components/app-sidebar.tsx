@@ -99,6 +99,11 @@ const data = {
       url: "rewards",
       icon: RewardsOutlineIcon,
     },
+    {
+      title: "Post",
+      url: "post/list",
+      icon: NotebookPen,
+    },
     // {
     //   title: "Properties",
     //   url: "properties/list",
@@ -121,7 +126,7 @@ const data = {
     },
     {
       title: "Category",
-      url: "category",
+      url: "category/list",
       icon: LucidePuzzle,
     },
     // {

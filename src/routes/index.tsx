@@ -117,7 +117,11 @@ import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
 import Rewards from "@/modules/rewards/Rewards"
 
 // Category
-import Category from "@/modules/category/Category"
+import Category from "@/modules/category/CategoryCreate"
+import CategoryLists from "@/modules/category/CategoryLists"
+
+//Post
+import Post from "@/modules/post/post"
 
 export const router = createBrowserRouter(
   [
@@ -198,8 +202,12 @@ export const router = createBrowserRouter(
         // Rewards
         { path: "rewards", element: <Rewards /> },
 
+// Post
+        { path: "post/list", element: <Post /> },
+
         // Category
-        { path: "category", element: <Category /> },
+        { path: "category/create", element: <Category /> },
+        { path: "category/list", element: <CategoryLists /> },
 
         // Dossiers
         { path: "dossiers/list", element: <DossiersList /> },
