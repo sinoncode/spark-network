@@ -121,7 +121,9 @@ import Category from "@/modules/category/CategoryCreate"
 import CategoryLists from "@/modules/category/CategoryLists"
 
 //Post
-import Post from "@/modules/post/post"
+import Post from "@/modules/post/Post"
+import PostList from "@/modules/post/PostList"
+
 
 export const router = createBrowserRouter(
   [
@@ -203,7 +205,8 @@ export const router = createBrowserRouter(
         { path: "rewards", element: <Rewards /> },
 
 // Post
-        { path: "post/list", element: <Post /> },
+{ path: "post", element: <Post /> },
+        { path: "post/list", element: <PostList /> },
 
         // Category
         { path: "category/create", element: <Category /> },
