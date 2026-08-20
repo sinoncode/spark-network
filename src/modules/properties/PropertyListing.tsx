@@ -241,11 +241,34 @@ export default function PropertyListing() {
           <p className="mt-1 text-muted-foreground">Manage and monitor all property listings.</p>
         </div>
         <Link to="/properties/add-property">
-          <Button className="gap-2 rounded-2xl px-5" size="sm">
-            <Plus className="h-4 w-4" />
-            Add Property
-          </Button>
-        </Link>
+  <Button
+  asChild
+  size="sm"
+  className="
+    gap-2
+    rounded-2xl
+    px-5
+
+    !bg-[#FC8D0E]
+    !text-white
+
+    transition-all
+    duration-300
+
+    hover:!bg-[#E8780A]
+    hover:!text-white
+
+    hover:shadow-[0_0_20px_rgba(252,141,14,0.30)]
+
+    focus-visible:!ring-[#FC8D0E]/30
+  "
+>
+  <Link to="/properties/add-property">
+    <Plus className="h-4 w-4" />
+    Add Property
+  </Link>
+</Button>
+</Link>
       </div>
 
       {/* KPI Cards */}

@@ -77,7 +77,7 @@ export default function LeadsListing() {
           <h1 className="text-2xl font-semibold tracking-tight">Users</h1>
           <p className="text-sm text-muted-foreground mt-0.5">Track and manage all your property activities in one place.</p>
         </div>
-        <Link to="/leads/create">
+        <Link to="/category/create">
           <Button size="sm" className="gap-1.5 rounded-lg px-4 h-9"><Plus className="h-4 w-4" />Add User</Button>
         </Link>
       </div>
@@ -123,7 +123,7 @@ export default function LeadsListing() {
                   {/* {["Lead ID", "Contact", "Type", "City", "Budget", "Source", "Assigned Agent", "Date Added", "Status", "Action"].map((h, i) => (
                     <TableHead key={h} className={`text-xs font-semibold uppercase tracking-wide ${i === 0 ? "pl-4" : ""} ${i === 9 ? "text-right pr-4" : ""}`}>{h}</TableHead>
                   ))} */}
-                  {["User ID", "Contact", "Type", "Address", "Source", "Status", "Action"].map((h, i) => (
+                  {["User ID", "Icon", "Title",  "Label", "Category Icon", "Category Name"].map((h, i) => (
                     <TableHead key={h} className={`text-xs font-semibold uppercase tracking-wide ${i === 0 ? "pl-4" : ""} ${i === 9 ? "text-right pr-4" : ""}`}>{h}</TableHead>
                   ))}
                 </TableRow>

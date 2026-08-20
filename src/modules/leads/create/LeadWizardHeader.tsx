@@ -5,11 +5,11 @@ export default function LeadWizardHeader() {
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div>
         <h1 className="text-3xl font-bold">
-          Create Lead
+          Create User
         </h1>
 
         <p className="text-muted-foreground">
-          Add a new lead listing to the CRM
+          Add a new user to the system
         </p>
       </div>
 
@@ -19,7 +19,7 @@ export default function LeadWizardHeader() {
         </Button> */}
 
         <Button>
-          Update Lead
+          Update User
         </Button>
       </div>
     </div>

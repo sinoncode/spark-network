@@ -110,10 +110,22 @@ import EmailCompose from "@/modules/emails/pages/Emailcompose"
 import ContactListing from "@/modules/contacts/pages/ContactList"
 import ContactCreate from "@/modules/contacts/pages/ContactCreate"
 
+//Leaderboard
+import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
+
+// rewards
+import Rewards from "@/modules/rewards/Rewards"
+
+// Category
+import Category from "@/modules/category/CategoryCreate"
+import CategoryLists from "@/modules/category/CategoryLists"
+
+//Post
+import Post from "@/modules/post/post"
 
 export const router = createBrowserRouter(
   [
-    { path: "/", element: <Navigate to="/auth/login" replace /> },
+    { path: "/", element: <Navigate to="/dashboard" replace /> },
     // 🔐 AUTH ROUTES
     {
       element: <AuthLayout />,
@@ -145,9 +157,10 @@ export const router = createBrowserRouter(
       element: <AppLayout />,
       errorElement: <ErrorPage />,
       loader: () => {
-        if (!localStorage.getItem("access_token")) {
-          return redirect("/auth/login")
-        }
+        // API access disabled for local dashboard access.
+        // if (!localStorage.getItem("access_token")) {
+        //   return redirect("/auth/login")
+        // }
         return null
       },
       children: [
@@ -182,6 +195,19 @@ export const router = createBrowserRouter(
 
         // Agenda
         { path: "agenda", element: <Agenda /> },
+
+        // Leaderboard
+        { path: "leaderboard/list", element: <LeaderboardList /> },
+
+        // Rewards
+        { path: "rewards", element: <Rewards /> },
+
+// Post
+        { path: "post/list", element: <Post /> },
+
+        // Category
+        { path: "category/create", element: <Category /> },
+        { path: "category/list", element: <CategoryLists /> },
 
         // Dossiers
         { path: "dossiers/list", element: <DossiersList /> },

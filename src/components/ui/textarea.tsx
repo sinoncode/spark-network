@@ -8,67 +8,72 @@ const Textarea = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <textarea
-      ref={ref}
-      className={cn(
-        `
-        flex
-        min-h-[140px]
-        w-full
-        rounded-xl
-        border
-        border-transparent
-        bg-[#EFF4FF]
-        px-4
-        py-3
-        text-sm
-        font-medium
-        text-slate-800
-        shadow-sm
-        outline-none
-        transition-all
-        duration-300
-        ease-out
+  ref={ref}
+  className={cn(
+    `
+    flex
+    min-h-[140px]
+    w-full
+    rounded-xl
+    border
+    border-transparent
 
-        placeholder:font-normal
-        placeholder:text-slate-400
+    bg-[#FFF7ED]
 
-        hover:bg-[#E8F0FF]
-        hover:shadow-md
+    px-4
+    py-3
 
-        focus:border-[#2780C3]/30
-        focus:bg-white
-        focus:ring-4
-        focus:ring-[#2780C3]/10
+    text-sm
+    font-medium
+    text-slate-800
 
-        disabled:cursor-not-allowed
-        disabled:resize-none
-        disabled:bg-slate-100
-        disabled:text-slate-400
-        disabled:opacity-70
+    shadow-sm
+    outline-none
 
-        resize-y
+    transition-all
+    duration-300
+    ease-out
 
-        dark:border-slate-800
-        dark:bg-[#1B2638]
-        dark:text-slate-100
-        dark:shadow-black/10
+    placeholder:font-normal
+    placeholder:text-slate-400
 
-        dark:placeholder:text-slate-500
+    hover:bg-[#FFF3E3]
+    hover:shadow-md
 
-        dark:hover:bg-[#223149]
-        dark:hover:shadow-black/20
+    focus:border-[#FC8D0E]/40
+    focus:bg-white
+    focus:ring-4
+    focus:ring-[#FC8D0E]/10
 
-        dark:focus:border-[#2780C3]/50
-        dark:focus:bg-[#202D42]
-        dark:focus:ring-[#2780C3]/20
+    disabled:cursor-not-allowed
+    disabled:resize-none
+    disabled:bg-slate-100
+    disabled:text-slate-400
+    disabled:opacity-70
 
-        dark:disabled:bg-slate-800
-        dark:disabled:text-slate-600
-        `,
-        className
-      )}
-      {...props}
-    />
+    resize-y
+
+    dark:border-white/10
+    dark:bg-white/[0.05]
+    dark:text-white
+    dark:shadow-black/10
+
+    dark:placeholder:text-white/40
+
+    dark:hover:bg-white/[0.08]
+    dark:hover:shadow-black/20
+
+    dark:focus:border-[#FC8D0E]/50
+    dark:focus:bg-white/[0.08]
+    dark:focus:ring-[#FC8D0E]/15
+
+    dark:disabled:bg-slate-800
+    dark:disabled:text-slate-600
+    `,
+    className
+  )}
+  {...props}
+/>
   )
 })
 

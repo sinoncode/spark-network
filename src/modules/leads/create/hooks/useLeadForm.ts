@@ -45,8 +45,8 @@ export function useLeadForm(initialData?: LeadFormData) {
   const validate = (): Record<string, string> => {
     const newErrors: Record<string, string> = {}
 
-    if (!formData.name) newErrors.name = "Lead name is required"
-    if (!formData.type) newErrors.type = "Lead type is required"
+    if (!formData.name) newErrors.name = "User name is required"
+    if (!formData.type) newErrors.type = "User type is required"
     if (!formData.listingType)
       newErrors.listingType = "Listing type is required"
     if (!formData.address) newErrors.address = "Address is required"

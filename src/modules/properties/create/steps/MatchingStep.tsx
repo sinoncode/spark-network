@@ -795,7 +795,7 @@ export default function PropertyForm() {
 
   const SectionHeader = ({ icon: Icon, title }: { icon: any; title: string }) => (
     <CardHeader className="pb-3">
-      <CardTitle className="flex items-center gap-2 text-base text-blue-600">
+      <CardTitle className="flex items-center gap-2 text-base text-orange-400">
         <Icon className="h-5 w-5" />
         {title}
       </CardTitle>

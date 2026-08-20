@@ -295,7 +295,7 @@ const TeamsPermissions = () => {
               <Button
                 onClick={handleAddRole}
                 disabled={!canCreateRoles || isSaving}
-                className="flex-1 sm:flex-none bg-[#1f6ea9] hover:bg-black text-white"
+                className="flex-1 sm:flex-none bg-[#FC8D0E] hover:bg-black text-white"
               >
                 + Add New Role
               </Button>
