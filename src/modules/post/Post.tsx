@@ -355,98 +355,87 @@ function CommentItem({
 
           <div className="min-w-0 flex-1">
 
-            <div
-              className="
-                flex
-                flex-wrap
-                items-center
-                gap-x-2
-                gap-y-1
-              "
-            >
+  {/* User Name */}
+  <div
+    className="
+      flex
+      flex-wrap
+      items-center
+      gap-x-2
+      gap-y-1
+    "
+  >
+    <span
+      className="
+        text-sm
+        font-semibold
+        text-gray-900
+        dark:text-white
+      "
+    >
+      {comment.user.name}
+    </span>
 
-              <span
-                className="
-                  text-sm
-                  font-semibold
-                  text-gray-900
+    <span
+      className="
+        text-xs
+        text-gray-500
+        dark:text-gray-400
+      "
+    >
+      @{comment.user.username}
+    </span>
+  </div>
 
-                  dark:text-white
-                "
-              >
-                {comment.user.name}
-              </span>
+  {/* Comment + Likes */}
+  <div
+    className="
+      mt-2
+      flex
+      flex-wrap
+      items-center
+      justify-between
+      gap-3
+    "
+  >
 
-              <span
-                className="
-                  text-xs
-                  text-gray-500
+    {/* Comment Text */}
+    <p
+      className="
+        text-sm
+        leading-6
+        text-gray-600
+        dark:text-gray-300
+      "
+    >
+      {comment.text}
+    </p>
 
-                  dark:text-gray-400
-                "
-              >
-                @{comment.user.username}
-              </span>
+    {/* Likes */}
+    <button
+      type="button"
+      className="
+        flex
+        shrink-0
+        items-center
+        gap-1
+        text-xs
+        text-gray-500
+        transition-colors
+        hover:text-[#FC8D0E]
 
-            </div>
+        dark:text-gray-400
+        dark:hover:text-[#FC8D0E]
+      "
+    >
+      <ThumbsUp size={14} />
 
-            <p
-              className="
-                mt-2
-                text-sm
-                leading-6
-                text-gray-600
+      <span>{comment.likes} Likes</span>
+    </button>
 
-                dark:text-gray-300
-              "
-            >
-              {comment.text}
-            </p>
+  </div>
 
-            <div
-              className="
-                mt-3
-                flex
-                items-center
-                gap-4
-                text-xs
-                text-gray-500
-
-                dark:text-gray-400
-              "
-            >
-
-              <button
-                className="
-                  flex
-                  items-center
-                  gap-1
-                  transition
-                  hover:text-[#FC8D0E]
-                "
-              >
-                <ThumbsUp size={14} />
-
-                {comment.likes} Likes
-              </button>
-
-              <button
-                className="
-                  flex
-                  items-center
-                  gap-1
-                  transition
-                  hover:text-[#FC8D0E]
-                "
-              >
-                <Reply size={14} />
-
-                Reply
-              </button>
-
-            </div>
-
-          </div>
+</div>
 
         </div>
 
@@ -536,7 +525,7 @@ export default function PostPage() {
           relative
           mx-auto
           w-full
-          max-w-6xl
+          max-w-12xl
         "
       >
 
