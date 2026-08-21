@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import {Mail } from "lucide-react"
 import { Button } from "@/components/button"
 import { AuthInput } from "@/components/ui/authinput"
 import { forgotPassword } from "@/api/services/auth.service"

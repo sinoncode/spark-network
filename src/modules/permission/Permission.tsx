@@ -311,7 +311,7 @@ const TeamsPermissions = () => {
           )}
 
           {isDirty && !isSaving && (
-            <div className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-xl text-sm text-blue-800">
+            <div className="flex items-center justify-between p-3 glass-card border border-blue-200 rounded-xl text-sm ">
               <div className="flex items-center gap-2">
                 <Save className="h-4 w-4" />
                 <span>You have unsaved permission changes</span>
@@ -366,7 +366,7 @@ const TeamsPermissions = () => {
       {/* MAIN CONTENT SKELETON */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* SIDEBAR - ROLE LIST SKELETON */}
-        <div className="lg:col-span-1 space-y-3">
+        <div className="lg:col-span-1 space-y-3 glass-card">
           <Card>
             <CardHeader className="pb-3">
               <Skeleton className="h-5 w-24" />
@@ -420,7 +420,7 @@ const TeamsPermissions = () => {
       </div>
 
       {/* STATS SKELETON */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 glass-card">
         {[1, 2, 3].map((i) => (
           <Card key={i}>
             <CardHeader className="pb-3">
@@ -434,10 +434,10 @@ const TeamsPermissions = () => {
       </div>
     </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 glass-card">
 
               {/* SIDEBAR - ROLE LIST */}
-              <div className="lg:col-span-1 min-h-0">
+              <div className="lg:col-span-1 min-h-0 glass-card">
                 {canViewRoles ? (
                   <RoleList
                     roles={roles}
@@ -462,7 +462,7 @@ const TeamsPermissions = () => {
               </div>
 
               {/* MAIN - PERMISSIONS */}
-              <div className="lg:col-span-3 space-y-4">
+              <div className="lg:col-span-3 space-y-4 d-flex flex-col justify-center">
                 {canViewRoles && selectedRole ? (
                   <>
                     {isProtectedRole && (
@@ -489,7 +489,7 @@ const TeamsPermissions = () => {
                           !isDirty ||
                           isProtectedRole
                         }
-                        className="w-full"
+                        className="w-[95%] ml-8"
                       >
                         {isSaving ? (
                           <>
@@ -523,8 +523,8 @@ const TeamsPermissions = () => {
 
           {/* STATS */}
           {!isLoading && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <Card>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 ">
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Total Roles</CardDescription>
                 </CardHeader>
@@ -533,7 +533,7 @@ const TeamsPermissions = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Total Permissions</CardDescription>
                 </CardHeader>
@@ -542,7 +542,7 @@ const TeamsPermissions = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Selected Role</CardDescription>
                 </CardHeader>

@@ -1,216 +1,79 @@
 import { AuthFlipCard } from "./components/AuthFlipCard"
-import { LoginForm } from "./components/login-form"
-import { LoginCarousel } from "./components/login-carousel"
 import logo from "@/assets/logo/logo.png"
-// import bg from "@/assets/auth-images/auth-bg.png"
+import bg from "@/assets/auth-images/auth-bg.png"
 
 export default function LoginPage() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#080808] px-4 py-6 sm:px-6 md:px-8 lg:px-10">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-8 sm:px-6 lg:px-8">
 
-      {/* ================= BACKGROUND EFFECTS ================= */}
+      {/* ================= BACKGROUND ================= */}
 
-      {/* Top Left Orange Glow */}
       <div
-        className="
-          pointer-events-none
-          absolute
-          -left-32
-          -top-32
-          h-[350px]
-          w-[350px]
-          rounded-full
-          bg-[#FC8D0E]/25
-          blur-[100px]
-          sm:h-[450px]
-          sm:w-[450px]
-          md:h-[600px]
-          md:w-[600px]
-          md:blur-[160px]
-        "
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bg})` }}
       />
 
-      {/* Bottom Right Orange Glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-32
-          -right-32
-          h-[350px]
-          w-[350px]
-          rounded-full
-          bg-[#FC8D0E]/20
-          blur-[100px]
-          sm:h-[450px]
-          sm:w-[450px]
-          md:h-[600px]
-          md:w-[600px]
-          md:blur-[160px]
-        "
-      />
+      <div className="pointer-events-none absolute inset-0 bg-black/40" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
 
-      {/* Center subtle glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[400px]
-          w-[400px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-white/[0.025]
-          blur-[120px]
-        "
-      />
-
-      {/* ================= GLASS CARD ================= */}
+      {/* ================= GLASS CARD (only this blurs) ================= */}
 
       <section
         className="
           relative
           z-10
           w-full
-          max-w-6xl
+          max-w-[440px]
           overflow-hidden
-          rounded-[24px]
-
+          rounded-3xl
           border
-          border-white/[0.15]
-
-          bg-white/[0.07]
-
-          shadow-[0_25px_80px_rgba(0,0,0,0.45)]
-
-          backdrop-blur-[28px]
-          backdrop-saturate-[160%]
-
-          ring-1
-          ring-inset
-          ring-white/[0.08]
-
+          border-t-white/[0.22]
+          border-x-white/[0.10]
+          border-b-white/[0.04]
+          bg-gradient-to-br
+          from-white/[0.12]
+          via-white/[0.05]
+          to-white/[0.02]
+          shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)]
+          backdrop-blur-[40px]
+          backdrop-saturate-[180%]
+          backdrop-brightness-110
           transition-all
           duration-500
           ease-out
+          sm:max-w-xl
+          md:max-w-xl
         "
       >
 
-        {/* Top glass highlight */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-x-0
-            top-0
-            z-20
-            h-px
-            bg-gradient-to-r
-            from-transparent
-            via-white/40
-            to-transparent
-          "
-        />
+        {/* Glass top edge highlight */}
+        <div className="pointer-events-none absolute inset-x-6 top-0 z-20 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 
-        <div className="grid min-h-[650px] lg:grid-cols-2">
+        {/* Glass inner top sheen */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white/[0.07] to-transparent" />
 
-          {/* ================= LEFT SIDE ================= */}
+        {/* Glass inner bottom reflection */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-12 bg-gradient-to-t from-white/[0.03] to-transparent" />
 
-          <div
-            className="
-              relative
-              flex
-              min-w-0
-              flex-col
-              justify-center
+        {/* ================= CONTENT (no blur here) ================= */}
 
-              bg-white/[0.025]
+        <div className="relative z-10 flex flex-col justify-center px-7 py-10 sm:px-10 sm:py-12 md:px-12">
+          
+          {/* Logo — crisp, no blur */}
+          <img
+            src={logo}
+            alt="2Morrow"
+            className="mx-auto mb-8 w-[170px] object-contain sm:w-[190px] md:w-[250px]"
+          />
 
-              px-5
-              py-8
-
-              sm:px-8
-              sm:py-10
-
-              md:px-10
-              md:py-12
-
-              lg:px-12
-              lg:py-10
-            "
-          >
-            {/* Left panel subtle glow */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                left-0
-                top-0
-                h-52
-                w-52
-                rounded-full
-                bg-[#FC8D0E]/[0.06]
-                blur-[80px]
-              "
-            />
-
-            {/* Logo */}
-            <img
-              src={logo}
-              alt="2Morrow"
-              className="
-                relative
-                z-10
-                mb-8
-                w-[150px]
-                object-contain
-                sm:w-[170px]
-                md:w-[190px]
-                lg:w-[200px]
-              "
-            />
-
-            {/* Login / Forgot Password Flip */}
-            <div className="relative z-10 w-full">
-              <AuthFlipCard />
-            </div>
+          {/* Form container — subtle inner mat so inputs don't look blurred */}
+          <div className="w-full rounded-2xl bg-black/[0.15] p-6 sm:p-8">
+            <AuthFlipCard />
           </div>
 
-          {/* ================= RIGHT SIDE ================= */}
-
-          <div
-            className="
-              relative
-              hidden
-              overflow-hidden
-              border-l
-              border-white/[0.12]
-              bg-white/[0.035]
-              lg:block
-            "
-          >
-            {/* Right glass highlight */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                inset-0
-                z-0
-                bg-gradient-to-br
-                from-white/[0.08]
-                via-transparent
-                to-[#FC8D0E]/[0.04]
-              "
-            />
-
-            <div className="relative z-10 h-full">
-              <LoginCarousel />
-            </div>
-          </div>
         </div>
       </section>
+
     </main>
   )
 }

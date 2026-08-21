@@ -43,68 +43,52 @@ export const RoleModal = ({
     formState: { errors },
   } = useForm<RoleFormData>({
     resolver: zodResolver(roleSchema),
-    defaultValues: {
-      name: "",
-    },
+    defaultValues: { name: "" },
   });
 
   useEffect(() => {
-    if (open) {
-      reset({
-        name: "",
-      });
-    }
+    if (open) reset({ name: "" });
   }, [open, reset]);
 
   const onSubmit = (data: RoleFormData) => {
-    onSave({
-      name: data.name.trim(),
-    });
-
+    onSave({ name: data.name.trim() });
     reset();
   };
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md rounded-3xl border-0 shadow-2xl p-0 overflow-hidden">
-        {/* Header */}
-        <div className="bg-[linear-gradient(90deg,#1f6ea9_0%,#155789_40%,#0a2f4f_70%,#040404_100%)] px-6 py-5 text-white">
+        {/* ── Animated Glow Header ── */}
+        <div className="modal-header-glow px-6 py-5">
+          {/* Floating orbs */}
+          <div className="modal-orb modal-orb--3" aria-hidden="true" />
+
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">
               Create New Role
             </DialogTitle>
-
-            <DialogDescription className="text-white mt-1">
+            <DialogDescription className=" mt-1">
               Add a new role to manage permissions and access.
             </DialogDescription>
           </DialogHeader>
         </div>
 
         {/* Body */}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="p-6 space-y-6"
-        >
-          {/* Input */}
+        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-gray-700">
+            <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
               Role Name
             </label>
-
             <Input
               {...register("name")}
               placeholder="Enter role name"
-              className="h-12 rounded-xl border-gray-300 focus-visible:ring-2 focus-visible:ring-[#1f6ea9] text-base"
+              className="h-12 rounded-xl border-gray-300 dark:border-gray-600 focus-visible:ring-2 focus-visible:ring-primary text-base"
             />
-
             {errors.name && (
-              <p className="text-sm text-red-500">
-                {errors.name.message}
-              </p>
+              <p className="text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
 
-          {/* Footer Buttons */}
           <div className="flex items-center justify-end gap-3 pt-2">
             <Button
               type="button"
@@ -115,11 +99,10 @@ export const RoleModal = ({
             >
               Cancel
             </Button>
-
             <Button
               type="submit"
               disabled={isLoading}
-              className="h-11 px-6 rounded-xl bg-[#1f6ea9] hover:bg-black text-white transition-all duration-300"
+              className="h-11 px-6 rounded-xl bg-primary hover:bg-black text-white transition-all duration-300"
             >
               {isLoading ? "Creating..." : "Create Role"}
             </Button>

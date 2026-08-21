@@ -265,12 +265,12 @@ export function LoginForm({ onForgotPassword }: Props) {
           </Button>
 
           {/* Error */}
-          {error && (
+          {/* {error && (
             <div className="flex items-center gap-2 rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive">
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
-          )}
+          )} */}
         </form>
 
         {/* Divider */}
@@ -279,7 +279,7 @@ export function LoginForm({ onForgotPassword }: Props) {
             <div className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-black bg-white">
+            <span className="bg-card px-2 text-white bg-transparent">
               Or continue with
             </span>
           </div>

@@ -3,12 +3,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "react-hot-toast";
 
 import {
-  getRoles,
-  getPermissions,
+  getRolesAndPermissions,
   createRole as apiCreateRole,
   updateRole as apiUpdateRole,
   deleteRole as apiDeleteRole,
 } from "@/services/rbac.service";
+
 
 import type { Role, Permission } from "@/types/rbac";
 
@@ -173,9 +173,59 @@ export const useRBACStore = create<RBACState>()(
        * Fetch both roles and permissions in parallel
        */
       fetchAllData: async () => {
-        await Promise.all([get().fetchRoles(), get().fetchPermissions()]);
-      },
+  try {
+    set({
+      isLoadingRoles: true,
+      isLoadingPermissions: true,
+      rolesError: null,
+      permissionsError: null,
+    });
 
+    const {
+      roles,
+      permissions,
+    } = await getRolesAndPermissions();
+
+    set({
+      roles,
+      permissions,
+      isLoadingRoles: false,
+      isLoadingPermissions: false,
+    });
+
+    // Auto-select first role
+    const { selectedRole } = get();
+
+    if (
+      !selectedRole &&
+      roles.length > 0
+    ) {
+      set({
+        selectedRole: roles[0],
+      });
+    }
+
+  } catch (error: any) {
+    console.error(
+      "❌ [RBAC Store] Failed to load RBAC data:",
+      error
+    );
+
+    const message =
+      error?.response?.data?.message ||
+      error?.message ||
+      "Failed to fetch RBAC data";
+
+    set({
+      roles: [],
+      permissions: [],
+      isLoadingRoles: false,
+      isLoadingPermissions: false,
+      rolesError: message,
+      permissionsError: message,
+    });
+  }
+},
       // ============================================
       // ROLE SELECTION
       // ============================================

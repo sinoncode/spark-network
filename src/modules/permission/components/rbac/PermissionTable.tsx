@@ -118,7 +118,7 @@ export const PermissionTable = ({
 
   return (
     <Card className="border shadow-sm">
-      <CardHeader className="border-b">
+      <CardHeader className="border-b glass-card">
         <CardTitle className="text-lg">
           {role.name} - Permissions
         </CardTitle>
@@ -131,7 +131,7 @@ export const PermissionTable = ({
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-6">
+      <CardContent className="pt-6 glass-card">
        <div className="space-y-4">
   {moduleEntries.map(([module, permissions]) => {
     const selectedCount =
@@ -168,7 +168,7 @@ export const PermissionTable = ({
                 disabled={!canEdit}
                 onCheckedChange={() =>
                   handleSelectAll(permissions)
-                } className="border border-[#1f6ea9]"
+                } className="border border-primary"
               />
 
               <span className="text-sm">
@@ -201,7 +201,7 @@ export const PermissionTable = ({
                       permission,
                       checked === true
                     )
-                  } className="border border-[#1f6ea9]"
+                  } className="border border-primary"
                 />
 
                 <span className="text-sm">
