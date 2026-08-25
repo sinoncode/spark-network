@@ -5,14 +5,14 @@ export default function Footer() {
         <a href="https://2morrow-re.ch/" rel="noopener noreferrer" className="hover:underline">
          <span>
             © {new Date().getFullYear()}{" "}
-            <span className="font-medium text-foreground">2morrow</span>. All
+            <span className="font-medium text-foreground">Spark Network</span>. All
             rights reserved.
           </span>
         </a>
-        {/* <span>
-          Built with ❤️ by{" "}
-          <span className="font-medium text-foreground"><a href="https://codervent.com/" rel="noopener noreferrer" className="hover:underline">Codervent</a></span>
-        </span> */}
+        <span>
+          Built  by{" "}
+          <span className="font-medium text-foreground"><a href="https://www.networsys.com/" rel="noopener noreferrer" className="hover:underline">Networsys Technologies</a></span>
+        </span>
       </div>
     </footer>
   )
