@@ -121,7 +121,7 @@ const data = {
     // },
     {
       title: "Users",
-      url: "leads/list",
+      url: "users/list",
       icon: Users,
     },
     {

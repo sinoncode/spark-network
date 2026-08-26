@@ -141,18 +141,7 @@ export default function PostsListing() {
             Manage and moderate community posts and reports.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-9 gap-1.5"
-            onClick={handleRefresh}
-            disabled={isFetching}
-          >
-            <RefreshCw className={`h-4 w-4 ${isFetching ? "animate-spin" : ""}`} />
-            Refresh
-          </Button>
-        </div>
+     
       </div>
 
       {/* Filters Card */}

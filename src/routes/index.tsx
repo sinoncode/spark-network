@@ -93,8 +93,8 @@ import CreateRequests from "@/modules/requests/create/RequestWizard"
 
 import Permissions from "@/modules/permission/Permission"
 
-import Leads from "@/modules/leads/LeadsLists"
-import EditLeads from "@/modules/leads/EditLeads"
+import UsersList from "@/modules/users/listing/UsersList"
+import UpdateUser from "@/modules/users/update/UsersUpdate"
 
 import Agenda from "@/modules/agenda/pages/Agenda"
 
@@ -193,8 +193,8 @@ export const router = createBrowserRouter(
 
         // Leads 
 
-        { path: "leads/list", element: <Leads /> },
-        { path: "leads/edit-leads", element: <EditLeads /> },
+        { path: "users/list", element: <UsersList /> },
+        { path: "users/edit-user/:id", element: <UpdateUser /> },
 
         // Agenda
         { path: "agenda", element: <Agenda /> },
