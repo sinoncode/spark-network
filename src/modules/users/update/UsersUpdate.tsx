@@ -63,9 +63,11 @@ const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
 }
 
 const ROLE_GRADIENTS: Record<string, string> = {
-  DRIVER: "from-indigo-500 via-purple-500 to-pink-500",
-  ADMIN: "from-amber-500 via-orange-500 to-red-500",
-  MODERATOR: "from-sky-500 via-blue-500 to-indigo-500",
+DRIVER: "gradient-orange",
+  ADMIN: "gradient-red",
+  MODERATOR: "gradient-deep-orange",
+  USER: "gradient-warm",
+  FLEET_MANAGER: "gradient-fire",
 }
 
 const POST_STATUS: Record<string, { bg: string; text: string }> = {
@@ -126,7 +128,7 @@ const safeFormatDistance = (dateStr: string | null | undefined, fallback = "rece
 // ═══════════════════════════════════════════════════════════════
 function ProfileSkeleton() {
   return (
-    <div className="min-h-screen bg-background animate-pulse w-full">
+    <div className="min-h-screen animate-pulse w-full">
       <div className="h-48 md:h-64 rounded-b-3xl bg-gradient-to-br from-slate-700 to-slate-800" />
       <div className="mx-4 md:mx-8 -mt-20 md:-mt-24 relative z-10">
         <div className="glass-card rounded-2xl md:rounded-3xl p-5 md:p-7">
@@ -224,10 +226,21 @@ function ProfileHeader({ user }: { user: UserDetailsType }) {
             {/* Avatar */}
             <div className="relative flex-shrink-0">
               <div
-                className={`w-[140px] h-[140px] md:w-[140px] md:h-[140px] rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white text-2xl md:text-3xl font-black shadow-lg ring-4 ring-background`}
-              >
-                {initials}
-              </div>
+  className={`w-[140px] h-[140px] md:w-[140px] md:h-[140px] rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white text-2xl md:text-3xl font-black shadow-lg ring-4 ring-background overflow-hidden`}
+>
+  {user.profilePictureUrl ? (
+    <img
+      src={user.profilePictureUrl}
+      alt={user.displayName || "User profile"}
+      className="w-full h-full object-cover"
+      onError={(e) => {
+        e.currentTarget.style.display = "none"
+      }}
+    />
+  ) : (
+    initials
+  )}
+</div>
               <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-lg bg-background flex items-center justify-center border-2 border-background">
                 <Shield className="h-3.5 w-3.5 text-indigo-400" />
               </div>
@@ -914,10 +927,10 @@ export default function UserProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-12">
+    <div className="min-h-screen pb-12">
       <ProfileHeader user={user} />
 
-      <div className="max-w-full mx-auto px-4 md:px-8">
+      <div className="max-w-full mx-auto px-4 md:px-8 bg-transparent">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
           {/* Left Column */}
           <div className="space-y-5 md:space-y-6">

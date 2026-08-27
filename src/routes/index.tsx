@@ -117,8 +117,8 @@ import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
 import Rewards from "@/modules/rewards/Rewards"
 
 // Category
-import Category from "@/modules/category/CategoryCreate"
-import CategoryLists from "@/modules/category/CategoryLists"
+import Category from "@/modules/category/add/CategoryCreate"
+import CategoryLists from "@/modules/category/listing/CategoryLists"
 
 //Post
 import Post from "@/modules/post/Post"

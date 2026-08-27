@@ -22,7 +22,7 @@ export interface ProfileResponse {
 
 export const ProfileService = {
     getProfile: () => {
-        return api.get<ProfileResponse>("/auth/profile")
+        return api.get<ProfileResponse>("/admin/profile")
     },
 
     updateProfile: (data: UpdateProfilePayload) => {
@@ -38,7 +38,7 @@ export const ProfileService = {
             formData.append("avatar", data.avatar)
         }
 
-        return api.put<ProfileResponse>("/auth/profile", formData, {
+        return api.patch<ProfileResponse>("/admin/profile", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
