@@ -25,7 +25,7 @@ import {
   Store,
 } from "lucide-react"
 
-
+import UsersGroupIcon from "@/components/ui/users-group-icon";
 
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 import { GiAngelOutfit } from "react-icons/gi";
@@ -122,7 +122,7 @@ const data = {
     {
       title: "Users",
       url: "users/list",
-      icon: Users,
+      icon: UsersGroupIcon,
     },
     {
       title: "Category",
