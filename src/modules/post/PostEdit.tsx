@@ -131,6 +131,7 @@ export default function PostEditPage() {
           <div className="lg:col-span-4">
             <EditFormSidebar
               form={editForm}
+              user={post.user}
               hasChanges={hasChanges}
               isSaving={isSaving}
               isDeleting={isDeleting}

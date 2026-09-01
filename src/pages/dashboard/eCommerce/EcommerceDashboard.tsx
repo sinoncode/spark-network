@@ -63,7 +63,7 @@ export function GlassCard({ children, className }: GlassCardProps) {
 function CardSkeleton({ height = 160 }: { height?: number }) {
   return (
     <div
-      className="rounded-xl border bg-card text-card-foreground shadow animate-pulse"
+      className="rounded-xl border bg-card text-card-foreground shadow  animate-pulse"
       style={{ height }}
     >
       <div className="p-6 space-y-4">
@@ -214,7 +214,7 @@ export default function EcommerceDashboard() {
   }, [fetchStats]);
 
   return (
-    <div className="min-h-screen bg-background p-6 lg:p-8">
+    <div className="min-h-screen bg-background p-6 lg:p-8 glass-card">
       <DashboardHeader />
       <TopStatsGrid />
       <MainContentGrid />

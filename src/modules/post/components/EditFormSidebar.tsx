@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Save, RotateCcw, AlertTriangle, Trash2, ShieldCheck, XCircle, CheckCircle2 } from "lucide-react"
+import { Save, RotateCcw, AlertTriangle, Trash2, ShieldCheck, XCircle, CheckCircle2, Mail, UserRound, Zap, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import { Separator } from "@/components/ui/separator"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import type { PostStatus, PostCategory, PostVisibility } from "@/types/Post/post"
+import type { PostStatus, PostCategory, PostVisibility, PostUser } from "@/types/Post/post"
 
 interface EditFormProps {
   form: {
@@ -23,6 +23,7 @@ interface EditFormProps {
     severityScore: number
     additionalDetails: string
   }
+  user: PostUser
   hasChanges: boolean
   isSaving: boolean
   isDeleting: boolean
@@ -37,6 +38,7 @@ interface EditFormProps {
 
 export function EditFormSidebar({
   form,
+  user,
   hasChanges,
   isSaving,
   isDeleting,
@@ -52,6 +54,7 @@ export function EditFormSidebar({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [deleteReason, setDeleteReason] = useState("")
   const [severityValue, setSeverityValue] = useState([form.severityScore * 100])
+  const [hasAvatarError, setHasAvatarError] = useState(false)
 
   const handleSeverityChange = (value: number[]) => {
     setSeverityValue(value)
@@ -67,10 +70,22 @@ export function EditFormSidebar({
     navigate("/admin/posts")
   }
 
+  const userInitials = (user.displayName || user.username || "U")
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase()
+
+  const avatarUrl = useMemo(
+    () => user.profilePictureUrl || user.avatar || user.avatarUrl || user.profileImage || user.profilePhoto,
+    [user.profilePictureUrl, user.avatar, user.avatarUrl, user.profileImage, user.profilePhoto]
+  )
+
   return (
     <div className="space-y-5 lg:sticky lg:top-6">
       {/* Edit Form Card */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+      {/* <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
         <div className="flex items-center gap-2.5 mb-6">
           <div className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center">
             <Save className="h-4 w-4 text-white" />
@@ -94,7 +109,6 @@ export function EditFormSidebar({
         )}
 
         <div className="space-y-5">
-          {/* Title */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Title</Label>
             <Input
@@ -105,7 +119,6 @@ export function EditFormSidebar({
             />
           </div>
 
-          {/* Body */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Description</Label>
             <Textarea
@@ -116,7 +129,6 @@ export function EditFormSidebar({
             />
           </div>
 
-          {/* Status */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</Label>
             <Select value={form.status} onValueChange={(v) => onUpdate("status", v)}>
@@ -158,7 +170,6 @@ export function EditFormSidebar({
             </Select>
           </div>
 
-          {/* Category */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</Label>
             <Select value={form.category} onValueChange={(v) => onUpdate("category", v)}>
@@ -175,7 +186,6 @@ export function EditFormSidebar({
             </Select>
           </div>
 
-          {/* Visibility */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Visibility</Label>
             <Select value={form.visibility} onValueChange={(v) => onUpdate("visibility", v)}>
@@ -190,7 +200,6 @@ export function EditFormSidebar({
             </Select>
           </div>
 
-          {/* Severity Score */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Severity Score</Label>
@@ -211,7 +220,6 @@ export function EditFormSidebar({
             </div>
           </div>
 
-          {/* Additional Details */}
           <div className="space-y-2">
             <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Additional Details</Label>
             <Textarea
@@ -223,7 +231,6 @@ export function EditFormSidebar({
           </div>
         </div>
 
-        {/* Actions */}
         <div className="flex gap-3 mt-6">
           <Button
             className="flex-1 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold gap-2"
@@ -243,11 +250,70 @@ export function EditFormSidebar({
             Reset
           </Button>
         </div>
+      </div> */}
+
+      {/* Post Author */}
+      <div className="glass-card rounded-2xl p-6 shadow-sm border border-slate-100">
+        <div className="flex justify-center items-center gap-3 mb-5">
+          <div className="flex flex-col items-center justify-center text-center">          
+            <div className="h-32 w-32 overflow-hidden rounded-full gradient-sunset flex items-center justify-center text-2xl font-bold text-white shadow-md border border-white mb-3">
+              {avatarUrl && !hasAvatarError ? (
+                <img
+                  src={avatarUrl}
+                  alt={`${user.displayName || user.username || "User"} profile`}
+                  className="h-full w-full object-cover"
+                  onError={() => setHasAvatarError(true)}
+                />
+              ) : (
+                userInitials
+              )}
+            </div>
+          <div className="min-w-0">
+            <h3 className="text-lg font-bold text-white truncate">
+              {user.displayName || "Unknown user"}
+            </h3>
+            <p className="text-sm text-white truncate">
+              @{user.username || "unknown"}
+            </p>
+          </div>
+          </div>
+
+        </div>
+
+        <div className="space-y-3 text-xs text-slate-600">
+          <div className="flex items-center gap-2.5">
+            <Mail className="h-6 w-6 shrink-0 text-primary" />
+            <span className="truncate text-white text-sm" title={user.email}>{user.email || "Email unavailable"}</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <UserRound className="h-6 w-6 shrink-0 text-primary" />
+            <span className="text-white text-sm">Role: <strong className="text-white">{user.role || "User"}</strong></span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <Zap className="h-6 w-6 shrink-0 text-amber-500" />
+            <span className="text-white text-sm">Level: <strong className="text-white">{user.level ?? 1}</strong>{user.xpTotal !== undefined ? ` · ${user.xpTotal.toLocaleString()} XP` : ""}</span>
+          </div>
+          {user.status && (
+            <div className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 ml-1" />
+              <span className="text-white">Status: <strong className="capitalize text-white">{user.status}</strong></span>
+            </div>
+          )}
+        </div>
+
+        <Button
+          variant="outline"
+          className="w-full h-10 bg-primary rounded-xl border-primary text-white hover:bg-primary gap-2 mt-5"
+          onClick={() => navigate(`/users/edit-user/${user.id}`)}
+        >
+          <ExternalLink className="h-4 w-4" />
+          View Profile
+        </Button>
       </div>
 
       {/* Quick Actions */}
       <div className="glass-card rounded-2xl p-6 shadow-sm border border-slate-100">
-        <h3 className="text-sm font-semibold mb-4">Quick Actions</h3>
+        <h3 className="text-sm font-semibold mb-4 text-primary">Quick Actions</h3>
         <div className="space-y-2.5">
           {form.status !== "APPROVED" && (
             <Button
@@ -320,6 +386,8 @@ export function EditFormSidebar({
           </Button>
         )}
       </div>
+
+      
     </div>
   )
 }

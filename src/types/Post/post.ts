@@ -9,7 +9,15 @@ export interface PostUser {
   displayName: string
   email: string
   role: "DRIVER" | "ADMIN" | "MODERATOR"
+  avatar?: string | null
+  avatarUrl?: string | null
+  profileImage?: string | null
+  profilePhoto?: string | null
+  profilePictureUrl?: string | null
   level?: number
+  xpTotal?: number
+  status?: string
+  createdAt?: string
 }
 
 export interface PostMedia {
