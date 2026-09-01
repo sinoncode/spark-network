@@ -79,7 +79,7 @@ const Input = React.forwardRef<
         dark:focus:bg-white/[0.08]
         dark:focus:ring-[#FC8D0E]/15
 
-        dark:disabled:bg-slate-800
+        dark:disabled:bg-primary/5
         dark:disabled:text-slate-600
 
         dark:[&::-webkit-calendar-picker-indicator]:invert

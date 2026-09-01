@@ -265,93 +265,19 @@ export function LoginForm({ onForgotPassword }: Props) {
           </Button>
 
           {/* Error */}
-          {error && (
+          {/* {error && (
             <div className="flex items-center gap-2 rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive">
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
-          )}
+          )} */}
         </form>
 
         {/* Divider */}
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-black bg-white">
-              Or continue with
-            </span>
-          </div>
-        </div>
+       
 
         {/* Social Login */}
-        <div className="grid grid-cols-2 gap-3">
-          <Button
-            variant="ghost"
-            className="
-      group
-      h-12
-      rounded-2xl
-
-      border
-      border-white/10
-
-      bg-white/[0.05]
-      backdrop-blur-xl
-      backdrop-saturate-150
-
-      shadow-[0_8px_30px_rgba(0,0,0,0.18),0_0_18px_rgba(252,141,14,0.08)]
-
-      transition-all
-      duration-300
-      ease-out
-
-      hover:bg-white/[0.08]
-      hover:border-[#FC8D0E]/40
-      hover:shadow-[0_10px_35px_rgba(0,0,0,0.25),0_0_30px_rgba(252,141,14,0.25)]
-      hover:-translate-y-1
-
-      active:scale-[0.98]
-    "
-            onClick={() => {/* Google OAuth */ }}
-          >
-            <img src={Google} alt="Google" className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
-            <span className="hidden text-white sm:inline group-hover:text-[#FC8D0E] transition-colors duration-300">Google</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="
-      group
-      h-12
-      rounded-2xl
-
-      border
-      border-white/10
-
-      bg-white/[0.05]
-      backdrop-blur-xl
-      backdrop-saturate-150
-
-      shadow-[0_8px_30px_rgba(0,0,0,0.18),0_0_18px_rgba(252,141,14,0.08)]
-
-      transition-all
-      duration-300
-      ease-out
-
-      hover:bg-white/[0.08]
-      hover:border-[#FC8D0E]/40
-      hover:shadow-[0_10px_35px_rgba(0,0,0,0.25),0_0_30px_rgba(252,141,14,0.25)]
-      hover:-translate-y-1
-
-      active:scale-[0.98]
-    "
-            onClick={() => {/* Apple OAuth */ }}
-          >
-            <img src={Apple} alt="Apple" className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
-            <span className="hidden text-white sm:inline group-hover:text-[#FC8D0E] transition-colors duration-300">Apple</span>
-          </Button>
-        </div>
+        
 
         {/* Sign Up Link */}
         {/* <p className="mt-8 text-center text-sm text-muted-foreground">

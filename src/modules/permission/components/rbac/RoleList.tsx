@@ -63,7 +63,7 @@ export const RoleList = ({
 
   return (
     <Card className="border shadow-sm overflow-hidden">
-      <CardHeader className="border-b pb-4">
+      <CardHeader className="border-b pb-4 glass-card">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <CardTitle className="text-lg">
@@ -103,7 +103,7 @@ export const RoleList = ({
         </div>
       </CardHeader>
 
-      <CardContent className="p-0 flex flex-col">
+      <CardContent className="p-0 flex flex-col glass-card">
         {/* SEARCH */}
         <div className="p-4 pb-0">
           <div className="relative">

@@ -146,7 +146,7 @@ export default function EditProfile() {
 
   if (loading && !profile) {
     return (
-      <Card className="rounded-[24px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 dark:bg-[#15191F]">
+      <Card className="rounded-[24px] border border-slate-200/80 glass-card shadow-sm dark:border-white/10">
         <CardContent className="flex min-h-[420px] items-center justify-center p-6">
           <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
             <Loader2 className="h-5 w-5 animate-spin text-[#2780C3]" />
@@ -158,11 +158,11 @@ export default function EditProfile() {
   }
 
   return (
-    <Card className="overflow-hidden rounded-[24px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 dark:bg-[#15191F]">
+    <Card className="overflow-hidden rounded-[24px] border border-slate-200/80 glass-card shadow-sm dark:border-white/10 ">
       <CardContent className="p-0">
         <div className="border-b border-slate-100 px-5 py-6 sm:px-7 dark:border-white/10">
           <div className="flex items-start gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2780C3]/10 text-[#2780C3] dark:bg-[#2780C3]/20 dark:text-[#8BC9F4]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">
               <UserRound className="h-5 w-5" />
             </div>
 
@@ -183,7 +183,7 @@ export default function EditProfile() {
             <TabsList className="grid h-auto w-full grid-cols-2 rounded-xl bg-slate-100 p-1 dark:bg-white/[0.06]">
               <TabsTrigger
                 value="profile"
-                className="rounded-lg py-2.5 text-sm font-semibold text-slate-500 transition-all data-[state=active]:bg-white data-[state=active]:text-[#2780C3] data-[state=active]:shadow-sm dark:text-slate-400 dark:data-[state=active]:bg-[#222B35] dark:data-[state=active]:text-[#8BC9F4]"
+                className="rounded-lg py-2.5 text-sm font-semibold text-slate-500 transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm dark:text-slate-400 dark:data-[state=active]:bg-primary dark:data-[state=active]:text-white"
               >
                 <UserRound className="mr-2 h-4 w-4" />
                 Profile
@@ -191,7 +191,7 @@ export default function EditProfile() {
 
               <TabsTrigger
                 value="security"
-                className="rounded-lg py-2.5 text-sm font-semibold text-slate-500 transition-all data-[state=active]:bg-white data-[state=active]:text-[#2780C3] data-[state=active]:shadow-sm dark:text-slate-400 dark:data-[state=active]:bg-[#222B35] dark:data-[state=active]:text-[#8BC9F4]"
+                className="rounded-lg py-2.5 text-sm font-semibold text-slate-500 transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm dark:text-slate-400 dark:data-[state=active]:bg-primary dark:data-[state=active]:text-white"
               >
                 <ShieldCheck className="mr-2 h-4 w-4" />
                 Security
@@ -215,7 +215,7 @@ export default function EditProfile() {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#2780C3] to-[#164C75] text-xl font-bold text-white">
+                    <div className="flex h-full w-full items-center justify-center gradient-sunset text-xl font-bold text-white">
                       {getInitials(form.name)}
                     </div>
                   )}
@@ -236,7 +236,7 @@ export default function EditProfile() {
                       variant="outline"
                       onClick={() => fileInputRef.current?.click()}
                       disabled={saving}
-                      className="h-10 rounded-xl border-slate-200 bg-white px-4 text-slate-700 hover:border-[#2780C3]/40 hover:bg-[#2780C3]/5 hover:text-[#2780C3] dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-[#2780C3]/15 dark:hover:text-[#8BC9F4]"
+                      className="h-10 rounded-xl border-slate-200 bg-white px-4 text-black hover:border-[#2780C3]/40 hover:bg-primary/5 hover:text-black dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-primary/15 dark:hover:text-white"
                     >
                       <Camera className="h-4 w-4" />
                       Upload image
@@ -295,40 +295,13 @@ export default function EditProfile() {
                       id="profile-email"
                       value={form.email}
                       disabled
-                      className="cursor-not-allowed pl-11 opacity-70"
+                      className="cursor-not-allowed pl-11 primary opacity-70"
                     />
                   </div>
 
                   <p className="text-xs text-slate-400 dark:text-slate-500">
                     Email changes require administrator approval.
                   </p>
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="profile-phone"
-                    className="font-medium text-slate-700 dark:text-slate-200"
-                  >
-                    Phone number
-                  </Label>
-
-                  <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-
-                    <Input
-                      id="profile-phone"
-                      value={form.phone}
-                      disabled={saving}
-                      onChange={(event) =>
-                        setForm((previous) => ({
-                          ...previous,
-                          phone: event.target.value,
-                        }))
-                      }
-                      placeholder="+41 00 000 00 00"
-                      className="pl-11"
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -343,7 +316,7 @@ export default function EditProfile() {
                   type="button"
                   onClick={handleProfileSave}
                   disabled={saving}
-                  className="h-11 rounded-xl bg-[#2780C3] px-5 font-semibold text-white shadow-lg shadow-[#2780C3]/20 transition-all hover:-translate-y-0.5 hover:bg-[#1D6EA9] hover:shadow-xl disabled:translate-y-0"
+                  className="h-11 rounded-xl bg-primary px-5 font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl disabled:translate-y-0"
                 >
                   {saving ? (
                     <>
@@ -452,7 +425,7 @@ export default function EditProfile() {
 
               <div className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-5 dark:border-white/10 dark:bg-white/[0.03]">
                 <div className="flex gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2780C3]/10 text-[#2780C3] dark:bg-[#2780C3]/20 dark:text-[#8BC9F4]">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-black dark:bg-primary/20 dark:text-white">
                     <ShieldCheck className="h-5 w-5" />
                   </div>
 
@@ -477,7 +450,7 @@ export default function EditProfile() {
               <Button
                 type="button"
                 disabled
-                className="h-11 rounded-xl bg-[#2780C3] px-5 text-white opacity-60"
+                className="h-11 rounded-xl bg-primary px-5 text-white opacity-60"
               >
                 Update security
               </Button>

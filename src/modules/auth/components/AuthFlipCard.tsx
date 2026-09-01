@@ -9,49 +9,40 @@ export function AuthFlipCard() {
 
   return (
     <div
-      className="relative w-full min-h-[520px]"
-      style={{ perspective: "1500px" }}
+      className="relative w-full"
+      style={{ perspective: "1200px" }}
     >
       <motion.div
+        className="relative w-full"
+        style={{ transformStyle: "preserve-3d" }}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        style={{
-          transformStyle: "preserve-3d",
-          width: "100%",
-          height: "100%",
-          position: "relative",
+          duration: 0.65,
+          ease: [0.22, 1, 0.36, 1], // Smooth, elegant deceleration
         }}
       >
-        {/* Login */}
-
+        {/* ===== FRONT: Login ===== */}
         <div
+          className="relative w-full"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
+            transform: "translateZ(0)", // Forces GPU layer, prevents bleed
           }}
-          className="absolute inset-0"
         >
-          <LoginForm
-            onForgotPassword={() => setIsFlipped(true)}
-          />
+          <LoginForm onForgotPassword={() => setIsFlipped(true)} />
         </div>
 
-        {/* Forgot Password */}
-
+        {/* ===== BACK: Forgot Password ===== */}
         <div
+          className="absolute inset-0 w-full"
           style={{
-            transform: "rotateY(180deg)",
+            transform: "rotateY(180deg) translateZ(0)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
-          className="absolute inset-0"
         >
-          <ForgotPasswordForm
-            onBack={() => setIsFlipped(false)}
-          />
+          <ForgotPasswordForm onBack={() => setIsFlipped(false)} />
         </div>
       </motion.div>
     </div>

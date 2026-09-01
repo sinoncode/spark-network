@@ -93,8 +93,8 @@ import CreateRequests from "@/modules/requests/create/RequestWizard"
 
 import Permissions from "@/modules/permission/Permission"
 
-import Leads from "@/modules/leads/LeadsLists"
-import EditLeads from "@/modules/leads/EditLeads"
+import UsersList from "@/modules/users/listing/UsersList"
+import UpdateUser from "@/modules/users/update/UsersUpdate"
 
 import Agenda from "@/modules/agenda/pages/Agenda"
 
@@ -117,12 +117,14 @@ import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
 import Rewards from "@/modules/rewards/Rewards"
 
 // Category
-import Category from "@/modules/category/CategoryCreate"
-import CategoryLists from "@/modules/category/CategoryLists"
+import Category from "@/modules/category/add/CategoryCreate"
+import CategoryLists from "@/modules/category/listing/CategoryLists"
+import CategoryEdit from "@/modules/category/edit/CategoryUpdate"
 
 //Post
 import Post from "@/modules/post/Post"
 import PostList from "@/modules/post/PostList"
+import PostEdit from "@/modules/post/PostEdit"
 
 
 export const router = createBrowserRouter(
@@ -192,8 +194,8 @@ export const router = createBrowserRouter(
 
         // Leads 
 
-        { path: "leads/list", element: <Leads /> },
-        { path: "leads/edit-leads", element: <EditLeads /> },
+        { path: "users/list", element: <UsersList /> },
+        { path: "users/edit-user/:id", element: <UpdateUser /> },
 
         // Agenda
         { path: "agenda", element: <Agenda /> },
@@ -207,10 +209,13 @@ export const router = createBrowserRouter(
 // Post
 { path: "post", element: <Post /> },
         { path: "post/list", element: <PostList /> },
+  { path: "post/:id", element: <Post /> },
+  { path: "post/:id/edit", element: <PostEdit /> },
 
         // Category
         { path: "category/create", element: <Category /> },
         { path: "category/list", element: <CategoryLists /> },
+        { path: "category/edit/:id", element: <CategoryEdit /> },
 
         // Dossiers
         { path: "dossiers/list", element: <DossiersList /> },

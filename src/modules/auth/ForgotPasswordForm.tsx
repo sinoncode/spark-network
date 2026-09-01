@@ -3,7 +3,8 @@ import { useState } from "react"
 import { AuthInput } from "@/components/ui/authinput"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
-
+import { Mail } from "lucide-react"
+import { Label } from "@/components/ui/label"
 import logo from "@/assets/logo/2morrow-complete-logo-high-quality.png"
 import bg from "@/assets/auth-images/auth-bg.png"
 import ForgotPassword from "@/assets/auth-images/reset-password.png"
@@ -70,15 +71,78 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit}>
                 <div className="space-y-5">
-                  <AuthInput
-                    id="email"
-                    type="email"
-                    placeholder="name@company.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    autoComplete="email"
-                    required
-                  />
+                  <div className="space-y-2">
+  <Label
+    htmlFor="email"
+    className="text-sm font-medium text-white/90"
+  >
+    Email address
+  </Label>
+
+  <div className="group relative">
+
+    <Mail
+      className="
+      absolute
+      left-4
+      top-1/2
+      -translate-y-1/2
+
+      h-5
+      w-5
+
+      text-white/40
+
+      transition-all
+      duration-300
+
+      group-focus-within:text-[#FC8D0E]
+      "
+    />
+
+    <AuthInput
+      id="email"
+      type="email"
+      placeholder="name@company.com"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="
+      h-14
+
+      rounded-xl
+
+      border
+      border-white/10
+
+      bg-white/5
+
+      backdrop-blur-xl
+
+      shadow-[inset_0_1px_0_rgba(255,255,255,.08),0_8px_30px_rgba(0,0,0,.12)]
+
+      pl-12
+      pr-4
+
+      text-white
+
+      placeholder:text-white/40
+
+      transition-all
+      duration-300
+
+      hover:bg-white/[0.06]
+      hover:border-white/20
+
+      focus:bg-white/[0.08]
+      focus:border-[#FC8D0E]/40
+      focus:ring-2
+      focus:ring-[#FC8D0E]/15
+      "
+    />
+
+  </div>
+</div>
+
 
                   <Button
                     className="h-12 w-full"

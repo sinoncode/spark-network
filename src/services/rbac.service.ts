@@ -2,41 +2,92 @@
 
 import api from "@/api/axios";
 
-// ============================================
-// TYPES
-// ============================================
-
-type RoleResponse = {
-  permissions?: any[];
-  [key: string]: any;
-};
+import type {
+  Permission,
+  Role,
+} from "@/types/rbac";
 
 // ============================================
 // NORMALIZERS
 // ============================================
 
-/**
- * Normalize role permissions
- * Converts permission objects into string[]
- */
-const normalizeRole = (role: RoleResponse) => ({
-  ...role,
+const normalizePermission = (permission: any): Permission => {
+  if (typeof permission === "string") {
+    return {
+      name: permission,
+    };
+  }
 
-  permissions: Array.isArray(role?.permissions)
-    ? role.permissions
-        .map((p: any) =>
-          typeof p === "string"
-            ? p
-            : p?.name
-        )
-        .filter(Boolean)
-    : [],
-});
+  return {
+    id: permission?.id,
+    name: permission?.name || "",
+    guard_name: permission?.guard_name,
+    created_at: permission?.created_at,
+    updated_at: permission?.updated_at,
+  };
+};
+
+const normalizePermissions = (
+  permissions: any[]
+): Permission[] => {
+  if (!Array.isArray(permissions)) {
+    return [];
+  }
+
+  return permissions
+    .map(normalizePermission)
+    .filter((permission) => Boolean(permission.name));
+};
 
 /**
- * Normalize array of roles
+ * Convert backend role format:
+ *
+ * {
+ *   role: "DRIVER",
+ *   permissions: []
+ * }
+ *
+ * into frontend format:
+ *
+ * {
+ *   id: "DRIVER",
+ *   name: "DRIVER",
+ *   permissions: []
+ * }
  */
-const normalizeRoles = (roles: any[]) => {
+const normalizeRole = (role: any): Role => {
+  const roleName =
+    role?.name ||
+    role?.role ||
+    "";
+
+  return {
+    id: String(
+      role?.id ||
+      role?.role_id ||
+      roleName
+    ),
+
+    name: roleName,
+
+    permissions: Array.isArray(role?.permissions)
+      ? role.permissions
+          .map((permission: any) =>
+            typeof permission === "string"
+              ? permission
+              : permission?.name
+          )
+          .filter(Boolean)
+      : [],
+
+    created_at: role?.created_at,
+    updated_at: role?.updated_at,
+  };
+};
+
+const normalizeRoles = (
+  roles: any[]
+): Role[] => {
   if (!Array.isArray(roles)) {
     return [];
   }
@@ -45,65 +96,93 @@ const normalizeRoles = (roles: any[]) => {
 };
 
 // ============================================
-// PERMISSIONS
+// GET ROLES + PERMISSIONS
 // ============================================
 
-/**
- * Fetch all available permissions
- */
-export const getPermissions = async () => {
-  console.log("🌐 [RBAC Service] Fetching permissions from /permissions");
-
+export const getRolesAndPermissions = async () => {
   try {
-    const response = await api.get("/admin/permissions");
+    console.log(
+      "🌐 [RBAC Service] Fetching roles and permissions..."
+    );
 
-    console.log("📨 [RBAC Service] Permissions response:", response);
-    console.log("📨 [RBAC Service] Status:", response.status);
-    console.log("📨 [RBAC Service] Data:", response.data);
+    const response = await api.get(
+      "/admin/roles-permissions"
+    );
 
-    // Handle different API response formats (same as getRoles)
-    // CASE 1: API response => { success: true, message: "...", data: [...] }
-    if (response?.data?.success === true && Array.isArray(response?.data?.data)) {
-      response.data = response.data.data;
-    }
+    console.log(
+      "📨 [RBAC Service] Response:",
+      response.data
+    );
 
-    // CASE 2: API response => { success: true, message: "...", data: { data: [...] } } (paginated)
-    else if (response?.data?.success === true && Array.isArray(response?.data?.data?.data)) {
-      response.data = response.data.data.data;
-    }
+    const data = response?.data?.data;
 
-    // CASE 3: API response => { success: true, message: "...", data: { permissions: [...] } }
-    else if (response?.data?.success === true && Array.isArray(response?.data?.data?.permissions)) {
-      response.data = response.data.data.permissions;
-    }
+    const roles = normalizeRoles(
+      data?.roles
+    );
 
-    // CASE 4: API response => { data: [...] }
-    else if (Array.isArray(response?.data?.data)) {
-      response.data = response.data.data;
-    }
+    const permissions = normalizePermissions(
+      data?.availablePermissions
+    );
 
-    // CASE 5: API response => [...]
-    else if (!Array.isArray(response?.data)) {
-      // If it's not an array and not a recognized format, ensure we return an empty array
-      response.data = [];
-    }
-
-    return response;
+    return {
+      roles,
+      permissions,
+      success: response?.data?.success ?? true,
+      message: response?.data?.message,
+    };
   } catch (error: any) {
-    console.error("❌ [RBAC Service] Error fetching permissions:", error);
-    console.error("❌ [RBAC Service] Error status:", error?.response?.status);
-    console.error("❌ [RBAC Service] Error data:", error?.response?.data);
+    console.error(
+      "❌ [RBAC Service] Failed to fetch roles/permissions:",
+      error
+    );
+
+    console.error(
+      "❌ Status:",
+      error?.response?.status
+    );
+
+    console.error(
+      "❌ Data:",
+      error?.response?.data
+    );
+
     throw error;
   }
 };
 
 // ============================================
-// ROLES - GET
+// PERMISSIONS
 // ============================================
 
-/**
- * Fetch all roles with optional filters
- */
+export const getPermissions = async () => {
+  try {
+    const response = await api.get(
+      "/admin/roles-permissions"
+    );
+
+    const permissions =
+      response?.data?.data?.availablePermissions;
+
+    return {
+      ...response,
+      data: normalizePermissions(
+        permissions
+      ),
+    };
+  } catch (error: any) {
+    console.error(
+      "❌ [RBAC Service] Error fetching permissions:",
+      error
+    );
+
+    throw error;
+  }
+};
+
+// ============================================
+// ROLES
+// ============================================
+
 export const getRoles = async (options?: {
   createdBy?: string;
   limit?: number;
@@ -112,18 +191,28 @@ export const getRoles = async (options?: {
   const params = new URLSearchParams();
 
   if (options?.createdBy) {
-    params.append("created_by", options.createdBy);
+    params.append(
+      "created_by",
+      options.createdBy
+    );
   }
 
-  if (options?.limit) {
-    params.append("limit", options.limit.toString());
+  if (options?.limit !== undefined) {
+    params.append(
+      "limit",
+      options.limit.toString()
+    );
   }
 
-  if (options?.offset) {
-    params.append("offset", options.offset.toString());
+  if (options?.offset !== undefined) {
+    params.append(
+      "offset",
+      options.offset.toString()
+    );
   }
 
   const queryString = params.toString();
+
   const url = queryString
     ? `/admin/roles?${queryString}`
     : "/admin/roles";
@@ -131,44 +220,62 @@ export const getRoles = async (options?: {
   try {
     const response = await api.get(url);
 
-    // Handle different API response formats
-    // CASE 1: API response => { success: true, message: "...", data: [...] }
-    if (response?.data?.success === true && Array.isArray(response?.data?.data)) {
-      response.data = normalizeRoles(response.data.data);
+    let roles: any[] = [];
+
+    // Standard response:
+    // { success: true, data: [...] }
+    if (
+      Array.isArray(response?.data?.data)
+    ) {
+      roles = response.data.data;
     }
 
-    // CASE 2: API response => { success: true, message: "...", data: { data: [...] } } (paginated)
-    else if (response?.data?.success === true && Array.isArray(response?.data?.data?.data)) {
-      response.data = normalizeRoles(response.data.data.data);
+    // Paginated:
+    // { success: true, data: { data: [...] } }
+    else if (
+      Array.isArray(
+        response?.data?.data?.data
+      )
+    ) {
+      roles =
+        response.data.data.data;
     }
 
-    // CASE 3: API response => { success: true, message: "...", data: { roles: [...] } }
-    else if (response?.data?.success === true && Array.isArray(response?.data?.data?.roles)) {
-      response.data = normalizeRoles(response.data.data.roles);
+    // { success: true, data: { roles: [...] } }
+    else if (
+      Array.isArray(
+        response?.data?.data?.roles
+      )
+    ) {
+      roles =
+        response.data.data.roles;
     }
 
-    // CASE 4: API response => { data: [...] }
-    else if (Array.isArray(response?.data?.data)) {
-      response.data = normalizeRoles(response.data.data);
+    // Direct array
+    else if (
+      Array.isArray(response?.data)
+    ) {
+      roles = response.data;
     }
 
-    // CASE 5: API response => [...]
-    else if (Array.isArray(response?.data)) {
-      response.data = normalizeRoles(response.data);
-    }
-
-    return response;
+    return {
+      ...response,
+      data: normalizeRoles(roles),
+    };
   } catch (error: any) {
-    console.error("❌ [RBAC Service] Error fetching roles:", error);
-    console.error("❌ [RBAC Service] Error status:", error?.response?.status);
-    console.error("❌ [RBAC Service] Error data:", error?.response?.data);
+    console.error(
+      "❌ [RBAC Service] Error fetching roles:",
+      error
+    );
+
     throw error;
   }
 };
 
-/**
- * Fetch single role by ID
- */
+// ============================================
+// SINGLE ROLE
+// ============================================
+
 export const getRoleById = async (
   roleId: string
 ) => {
@@ -176,39 +283,23 @@ export const getRoleById = async (
     `/admin/roles/${roleId}`
   );
 
-  // CASE 1:
-  // API response => { data: {...} }
   if (
     response?.data?.data &&
     typeof response.data.data === "object"
   ) {
-    response.data.data = normalizeRole(
-      response.data.data
-    );
-  }
-
-  // CASE 2:
-  // API response => {...}
-  else if (
-    response?.data &&
-    typeof response.data === "object" &&
-    "permissions" in response.data
-  ) {
-    response.data = normalizeRole(
-      response.data
-    );
+    response.data.data =
+      normalizeRole(
+        response.data.data
+      );
   }
 
   return response;
 };
 
 // ============================================
-// ROLES - CREATE
+// CREATE ROLE
 // ============================================
 
-/**
- * Create a new role
- */
 export const createRole = async (data: {
   name: string;
   permissions: string[];
@@ -222,31 +313,19 @@ export const createRole = async (data: {
     response?.data?.data &&
     typeof response.data.data === "object"
   ) {
-    response.data.data = normalizeRole(
-      response.data.data
-    );
-  }
-
-  else if (
-    response?.data &&
-    typeof response.data === "object" &&
-    "permissions" in response.data
-  ) {
-    response.data = normalizeRole(
-      response.data
-    );
+    response.data.data =
+      normalizeRole(
+        response.data.data
+      );
   }
 
   return response;
 };
 
 // ============================================
-// ROLES - UPDATE
+// UPDATE ROLE
 // ============================================
 
-/**
- * Update role
- */
 export const updateRole = async (
   roleId: string,
   data: {
@@ -263,33 +342,23 @@ export const updateRole = async (
     response?.data?.data &&
     typeof response.data.data === "object"
   ) {
-    response.data.data = normalizeRole(
-      response.data.data
-    );
-  }
-
-  else if (
-    response?.data &&
-    typeof response.data === "object" &&
-    "permissions" in response.data
-  ) {
-    response.data = normalizeRole(
-      response.data
-    );
+    response.data.data =
+      normalizeRole(
+        response.data.data
+      );
   }
 
   return response;
 };
 
 // ============================================
-// ROLES - DELETE
+// DELETE ROLE
 // ============================================
 
-/**
- * Delete role
- */
 export const deleteRole = async (
   roleId: string
 ) => {
-  return api.delete(`/admin/roles/${roleId}`);
+  return api.delete(
+    `/admin/roles/${roleId}`
+  );
 };

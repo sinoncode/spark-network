@@ -13,6 +13,7 @@ import { useRBACStore } from "@/store/rbacStore";
 import { RoleList } from "@/modules/permission/components/rbac/RoleList";
 import { PermissionTable } from "@/modules/permission/components/rbac/PermissionTable";
 import { RoleModal } from "@/modules/permission/components/rbac/RoleModal";
+import { CompanyOnboardingModal } from "@/modules/permission/components/rbac/CompanyModal";
 import { DeleteRoleDialog } from "@/modules/permission/components/rbac/DeleteRoleDialog";
 
 import { ShieldCheck, Save, Loader2, RefreshCw, TriangleAlert } from "lucide-react";
@@ -25,6 +26,7 @@ const TeamsPermissions = () => {
   // ============================================
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [roleToDelete, setRoleToDelete] = useState<Role | null>(null);
   const [pendingPermissions, setPendingPermissions] = useState<string[] | null>(null);
@@ -110,6 +112,10 @@ const TeamsPermissions = () => {
       return;
     }
     setIsModalOpen(true);
+  };
+
+  const handleAddCompany = () => {
+    setIsCompanyModalOpen(true);
   };
 
   const handleSaveRole = async (data: { name: string }) => {
@@ -295,9 +301,17 @@ const TeamsPermissions = () => {
               <Button
                 onClick={handleAddRole}
                 disabled={!canCreateRoles || isSaving}
-                className="flex-1 sm:flex-none bg-[#FC8D0E] hover:bg-black text-white"
+                className="flex-1 sm:flex-none bg-primary text-black hover:bg-primary/20 hover:text-white"
               >
                 + Add New Role
+              </Button>
+
+              <Button
+                onClick={handleAddCompany}
+                disabled={isSaving}
+                className="flex-1 sm:flex-none border-solid text-white border-primary bg-primary/20 shadow-sm hover:bg-primary hover:text-black "
+              >
+                + Add Company
               </Button>
             </div>
           </div>
@@ -311,7 +325,7 @@ const TeamsPermissions = () => {
           )}
 
           {isDirty && !isSaving && (
-            <div className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-xl text-sm text-blue-800">
+            <div className="flex items-center justify-between p-3 glass-card border border-blue-200 rounded-xl text-sm ">
               <div className="flex items-center gap-2">
                 <Save className="h-4 w-4" />
                 <span>You have unsaved permission changes</span>
@@ -366,7 +380,7 @@ const TeamsPermissions = () => {
       {/* MAIN CONTENT SKELETON */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* SIDEBAR - ROLE LIST SKELETON */}
-        <div className="lg:col-span-1 space-y-3">
+        <div className="lg:col-span-1 space-y-3 glass-card">
           <Card>
             <CardHeader className="pb-3">
               <Skeleton className="h-5 w-24" />
@@ -420,7 +434,7 @@ const TeamsPermissions = () => {
       </div>
 
       {/* STATS SKELETON */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 glass-card">
         {[1, 2, 3].map((i) => (
           <Card key={i}>
             <CardHeader className="pb-3">
@@ -434,10 +448,10 @@ const TeamsPermissions = () => {
       </div>
     </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 glass-card">
 
               {/* SIDEBAR - ROLE LIST */}
-              <div className="lg:col-span-1 min-h-0">
+              <div className="lg:col-span-1 min-h-0 glass-card">
                 {canViewRoles ? (
                   <RoleList
                     roles={roles}
@@ -462,7 +476,7 @@ const TeamsPermissions = () => {
               </div>
 
               {/* MAIN - PERMISSIONS */}
-              <div className="lg:col-span-3 space-y-4">
+              <div className="lg:col-span-3 space-y-4 d-flex flex-col justify-center">
                 {canViewRoles && selectedRole ? (
                   <>
                     {isProtectedRole && (
@@ -489,7 +503,7 @@ const TeamsPermissions = () => {
                           !isDirty ||
                           isProtectedRole
                         }
-                        className="w-full"
+                        className="w-[95%] ml-8"
                       >
                         {isSaving ? (
                           <>
@@ -523,8 +537,8 @@ const TeamsPermissions = () => {
 
           {/* STATS */}
           {!isLoading && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <Card>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 ">
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Total Roles</CardDescription>
                 </CardHeader>
@@ -533,7 +547,7 @@ const TeamsPermissions = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Total Permissions</CardDescription>
                 </CardHeader>
@@ -542,7 +556,7 @@ const TeamsPermissions = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card">
                 <CardHeader className="pb-3">
                   <CardDescription>Selected Role</CardDescription>
                 </CardHeader>
@@ -561,6 +575,17 @@ const TeamsPermissions = () => {
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveRole}
+        isLoading={isSaving}
+      />
+
+       <CompanyOnboardingModal
+        open={isCompanyModalOpen}
+        onClose={() => setIsCompanyModalOpen(false)}
+        onSave={(data) => {
+          console.log("Company onboarding data:", data);
+          toast.success("Company onboarding details captured successfully.");
+          setIsCompanyModalOpen(false);
+        }}
         isLoading={isSaving}
       />
 
