@@ -294,7 +294,7 @@ export default function UsersListing() {
           LISTING CARD
       ============================================ */}
 
-      <Card className="shadow-sm">
+      <Card className="shadow-sm glass-card">
 
         {/* FILTER BAR */}
 

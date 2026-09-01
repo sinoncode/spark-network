@@ -145,7 +145,7 @@ export default function PostsListing() {
       </div>
 
       {/* Filters Card */}
-      <Card className="shadow-sm">
+      <Card className="shadow-sm glass-card">
         <CardHeader className="flex flex-row flex-wrap items-center gap-3 border-b py-3 px-4">
           {/* Status Filter */}
           <Select
@@ -255,11 +255,11 @@ export default function PostsListing() {
           </div>
         )}
 
-        <CardContent className="p-0">
+        <CardContent className="p-0 glass-card">
           <div className="overflow-x-auto">
             <Table className="min-w-[1100px]">
               <TableHeader>
-                <TableRow className="bg-muted/40 hover:bg-muted/40">
+                <TableRow className="glass-card hover:bg-muted/40">
                   {[
                     "Post ID",
                     "Content",

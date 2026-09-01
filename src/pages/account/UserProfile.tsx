@@ -92,8 +92,8 @@ export default function UserProfile() {
             className="min-h-full space-y-6 p-4 md:p-6"
         >
             {/* Profile Header */}
-            <Card className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 dark:bg-[#15191F]">
-              <div className="relative h-36 overflow-hidden sm:h-44">
+            <Card className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 glass-card">
+              <div className="relative h-full overflow-hidden sm:h-96">
     {/* Background Image: Ensure it's the first child, spans the area, covers, and is fully visible */}
     <img 
         src={backgroundImage} 
@@ -106,11 +106,10 @@ export default function UserProfile() {
 
     {/* Content badge (Keep on top) */}
     <div className="absolute right-5 top-5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
-        2morrow Real Estate
-    </div>
+Spark Network    </div>
 </div>
 
-                <CardContent className="relative px-5 pb-6 pt-0 sm:px-8">
+                <CardContent className="absolute px-5 pb-6 pt-0 top-[78%] w-full sm:px-8 glass-card">
                     <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
                             <div className="-mt-14 relative h-28 w-28 shrink-0 rounded-[28px] border-4 border-white bg-slate-100 shadow-xl dark:border-[#15191F] dark:bg-slate-800">
@@ -121,7 +120,7 @@ export default function UserProfile() {
                                         className="h-full w-full rounded-[22px] object-cover"
                                     />
                                 ) : (
-                                    <div className="flex h-full w-full items-center justify-center rounded-[22px] bg-gradient-to-br from-[#2780C3] to-[#164C75] text-2xl font-bold text-white">
+                                    <div className="flex h-full w-full items-center justify-center rounded-[22px] gradient-sunset text-2xl font-bold text-white">
                                         {getInitials(userName)}
                                     </div>
                                 )}
@@ -137,7 +136,7 @@ export default function UserProfile() {
                                         {userName}
                                     </h1>
 
-                                    <Badge className="rounded-full border-0 bg-[#2780C3]/10 px-3 py-1 text-xs font-semibold text-[#2780C3] hover:bg-[#2780C3]/15 dark:bg-[#2780C3]/20 dark:text-[#79BDF0]">
+                                    <Badge className="rounded-full border-0 bg-primary/10 px-3 py-1 text-xs font-semibold text-black hover:bg-primary/15 dark:bg-primary/20 dark:text-white">
                                         {role}
                                     </Badge>
                                 </div>
@@ -154,7 +153,7 @@ export default function UserProfile() {
                                     .getElementById("edit-profile-section")
                                     ?.scrollIntoView({ behavior: "smooth", block: "start" })
                             }
-                            className="h-11 rounded-xl bg-[#2780C3] px-5 font-semibold text-white shadow-lg shadow-[#2780C3]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D6EA9] hover:shadow-xl hover:shadow-[#2780C3]/25"
+                            className="h-11 rounded-xl bg-primary px-5 font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5  hover:shadow-xl hover:shadow-primary/2pr5"
                         >
                             <Camera className="h-4 w-4" />
                             Edit Profile
@@ -167,10 +166,10 @@ export default function UserProfile() {
                 {/* Left Column */}
                 <div className="space-y-6">
                     {/* Account Details */}
-                    <Card className="rounded-[24px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 dark:bg-[#15191F]">
+                    <Card className="rounded-[24px] border border-slate-200/80 glass-card shadow-sm dark:border-white/10 ">
                         <CardContent className="p-6">
                             <div className="mb-6 flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2780C3]/10 text-[#2780C3] dark:bg-[#2780C3]/20 dark:text-[#79BDF0]">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">
                                     <UserRound className="h-5 w-5" />
                                 </div>
 
@@ -198,12 +197,6 @@ export default function UserProfile() {
                                 />
 
                                 <ProfileInfoRow
-                                    icon={<Phone className="h-4 w-4" />}
-                                    label="Phone number"
-                                    value={userPhone}
-                                />
-
-                                <ProfileInfoRow
                                     icon={<Building2 className="h-4 w-4" />}
                                     label="Account role"
                                     value={role}
@@ -213,7 +206,7 @@ export default function UserProfile() {
                     </Card>
 
                     {/* Platform Access */}
-                    <Card className="rounded-[24px] border border-slate-200/80 bg-white shadow-sm dark:border-white/10 dark:bg-[#15191F]">
+                    <Card className="rounded-[24px] border border-slate-200/80 glass-card shadow-sm dark:border-white/10">
                         <CardContent className="p-6">
                             <div className="mb-5 flex items-center gap-3">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400">
@@ -322,7 +315,7 @@ export default function UserProfile() {
                                     {user.permissions.map((permission) => (
                                         <Badge
                                             key={permission}
-                                            className="rounded-lg border border-[#2780C3]/15 bg-[#2780C3]/8 px-3 py-1.5 text-xs font-medium text-[#2780C3] hover:bg-[#2780C3]/12 dark:border-[#2780C3]/25 dark:bg-[#2780C3]/15 dark:text-[#8BC9F4]"
+                                            className="rounded-lg border border-primary/15 bg-primary/8 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/12 dark:border-primary/25 dark:bg-primary/15 dark:text-[#8BC9F4]"
                                         >
                                             {permission.replaceAll("_", " ")}
                                         </Badge>
@@ -383,8 +376,8 @@ function WorkspaceCard({
     description: string
 }) {
     return (
-        <div className="group rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#2780C3]/30 hover:bg-[#2780C3]/5 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#2780C3]/35 dark:hover:bg-[#2780C3]/10">
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#2780C3] shadow-sm transition-transform duration-300 group-hover:scale-110 dark:bg-white/10 dark:text-[#8BC9F4]">
+        <div className="group rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/5 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-primary/35 dark:hover:bg-primary/10">
+            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary shadow-sm transition-transform duration-300 group-hover:scale-110 dark:bg-white/10 dark:text-[#8BC9F4]">
                 {icon}
             </div>
 

@@ -13,6 +13,7 @@ import { useRBACStore } from "@/store/rbacStore";
 import { RoleList } from "@/modules/permission/components/rbac/RoleList";
 import { PermissionTable } from "@/modules/permission/components/rbac/PermissionTable";
 import { RoleModal } from "@/modules/permission/components/rbac/RoleModal";
+import { CompanyOnboardingModal } from "@/modules/permission/components/rbac/CompanyModal";
 import { DeleteRoleDialog } from "@/modules/permission/components/rbac/DeleteRoleDialog";
 
 import { ShieldCheck, Save, Loader2, RefreshCw, TriangleAlert } from "lucide-react";
@@ -25,6 +26,7 @@ const TeamsPermissions = () => {
   // ============================================
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [roleToDelete, setRoleToDelete] = useState<Role | null>(null);
   const [pendingPermissions, setPendingPermissions] = useState<string[] | null>(null);
@@ -110,6 +112,10 @@ const TeamsPermissions = () => {
       return;
     }
     setIsModalOpen(true);
+  };
+
+  const handleAddCompany = () => {
+    setIsCompanyModalOpen(true);
   };
 
   const handleSaveRole = async (data: { name: string }) => {
@@ -295,9 +301,17 @@ const TeamsPermissions = () => {
               <Button
                 onClick={handleAddRole}
                 disabled={!canCreateRoles || isSaving}
-                className="flex-1 sm:flex-none bg-[#FC8D0E] hover:bg-black text-white"
+                className="flex-1 sm:flex-none bg-primary text-black hover:bg-primary/20 hover:text-white"
               >
                 + Add New Role
+              </Button>
+
+              <Button
+                onClick={handleAddCompany}
+                disabled={isSaving}
+                className="flex-1 sm:flex-none border-solid text-white border-primary bg-primary/20 shadow-sm hover:bg-primary hover:text-black "
+              >
+                + Add Company
               </Button>
             </div>
           </div>
@@ -561,6 +575,17 @@ const TeamsPermissions = () => {
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveRole}
+        isLoading={isSaving}
+      />
+
+       <CompanyOnboardingModal
+        open={isCompanyModalOpen}
+        onClose={() => setIsCompanyModalOpen(false)}
+        onSave={(data) => {
+          console.log("Company onboarding data:", data);
+          toast.success("Company onboarding details captured successfully.");
+          setIsCompanyModalOpen(false);
+        }}
         isLoading={isSaving}
       />
 

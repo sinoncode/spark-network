@@ -119,6 +119,7 @@ import Rewards from "@/modules/rewards/Rewards"
 // Category
 import Category from "@/modules/category/add/CategoryCreate"
 import CategoryLists from "@/modules/category/listing/CategoryLists"
+import CategoryEdit from "@/modules/category/edit/CategoryUpdate"
 
 //Post
 import Post from "@/modules/post/Post"
@@ -214,6 +215,7 @@ export const router = createBrowserRouter(
         // Category
         { path: "category/create", element: <Category /> },
         { path: "category/list", element: <CategoryLists /> },
+        { path: "category/edit/:id", element: <CategoryEdit /> },
 
         // Dossiers
         { path: "dossiers/list", element: <DossiersList /> },
