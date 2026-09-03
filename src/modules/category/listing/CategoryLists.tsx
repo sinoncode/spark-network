@@ -125,6 +125,16 @@ function getInitials(value: string) {
     .toUpperCase();
 }
 
+function isImageValue(value?: string) {
+  if (!value) return false;
+
+  return (
+    value.startsWith("data:image/") ||
+    value.startsWith("/") ||
+    /^https?:\/\//i.test(value)
+  );
+}
+
 function matchesSearch(
   category: Category,
   query: string
@@ -470,7 +480,15 @@ const handleViewEdit = (categoryId: string) => {
                 undefined,
             }}
           >
-            {category.icon || (
+            {isImageValue(category.icon) ? (
+              <img
+                src={category.icon}
+                alt={`${category.label} icon`}
+                className="h-8 w-8 object-contain"
+              />
+            ) : category.icon ? (
+              category.icon
+            ) : (
               <span className="text-sm font-bold">
                 {getInitials(category.label)}
               </span>

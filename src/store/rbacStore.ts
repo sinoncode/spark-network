@@ -4,6 +4,8 @@ import { toast } from "react-hot-toast";
 
 import {
   getRolesAndPermissions,
+  getRoles,
+  getPermissions,
   createRole as apiCreateRole,
   updateRole as apiUpdateRole,
   deleteRole as apiDeleteRole,
@@ -41,8 +43,8 @@ interface RBACState {
   setHasHydrated: (value: boolean) => void;
 
   // Fetch actions
-  fetchRoles: () => Promise<void>;
-  fetchPermissions: () => Promise<void>;
+  fetchRoles: () => Promise<Role[]>;
+  fetchPermissions: () => Promise<Permission[]>;
   fetchAllData: () => Promise<void>;
 
   // Role selection
@@ -290,14 +292,29 @@ export const useRBACStore = create<RBACState>()(
           set({ isSaving: true });
 
           const response = await apiUpdateRole(roleId, data);
-          const updatedRole = response?.data?.data || response?.data;
+          const currentRole = get().roles.find(
+            (role) => String(role.id) === String(roleId)
+          ) || get().selectedRole;
+          const responseRole = response?.data?.data;
+          const updatedRole: Role | null =
+            responseRole &&
+            typeof responseRole === "object" &&
+            (responseRole.name || responseRole.role || responseRole.id || responseRole.role_id)
+              ? responseRole
+              : currentRole
+                ? {
+                    ...currentRole,
+                    name: data.name,
+                    permissions: data.permissions,
+                  }
+                : null;
 
           if (updatedRole) {
             const { roles } = get();
             // ✅ FIX: Ensure roles is an array before mapping
             const currentRoles = Array.isArray(roles) ? roles : [];
             const updatedRoles = currentRoles.map((role) =>
-              role.id === roleId ? updatedRole : role
+              String(role.id) === String(roleId) ? updatedRole : role
             );
 
             set({

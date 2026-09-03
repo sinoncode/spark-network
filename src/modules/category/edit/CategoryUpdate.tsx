@@ -594,7 +594,7 @@ export default function CategoryUpdate() {
                     <img
                       src={categoryIcon || category.icon}
                       alt="Category icon preview"
-                      className="w-full h-full object-cover"
+                      className="w-40 h-40 object-contain"
                     />
                   ) : (
                     <div className="flex flex-col items-center gap-3 text-gray-400 dark:text-gray-500 group-hover:text-[#FC8D0E]">
@@ -960,7 +960,7 @@ export default function CategoryUpdate() {
                                   <img
                                     src={experience.icon}
                                     alt="Experience icon preview"
-                                    className="h-full w-full object-cover"
+                                    className="h-8 w-8 object-contain"
                                   />
                                 ) : (
                                   <span className="text-2xl">

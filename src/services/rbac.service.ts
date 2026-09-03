@@ -333,14 +333,35 @@ export const updateRole = async (
     permissions: string[];
   }
 ) => {
-  const response = await api.put(
-    `/admin/roles/${roleId}`,
-    data
+  const normalizedRoleId = String(roleId).trim();
+
+  if (!normalizedRoleId) {
+    throw new Error("A role ID is required to update permissions");
+  }
+
+  const permissions = Array.from(
+    new Set(
+      (Array.isArray(data.permissions) ? data.permissions : [])
+        .map((permission) => String(permission).trim())
+        .filter(Boolean)
+    )
+  );
+
+  const response = await api.patch(
+    `/admin/roles-permissions/${encodeURIComponent(normalizedRoleId)}`,
+    {
+      role: normalizedRoleId,
+      permissions,
+    }
   );
 
   if (
     response?.data?.data &&
-    typeof response.data.data === "object"
+    typeof response.data.data === "object" &&
+    (response.data.data.name ||
+      response.data.data.role ||
+      response.data.data.id ||
+      response.data.data.role_id)
   ) {
     response.data.data =
       normalizeRole(

@@ -94,11 +94,11 @@ const data = {
       url: "leaderboard/list",
       icon: LeaderboardOutlineIcon,
     },
-    {
-      title: "Rewards",
-      url: "rewards",
-      icon: RewardsOutlineIcon,
-    },
+    // {
+    //   title: "Rewards",
+    //   url: "rewards",
+    //   icon: RewardsOutlineIcon,
+    // },
     {
       title: "Post",
       url: "post/list",

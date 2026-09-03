@@ -111,7 +111,7 @@ import ContactListing from "@/modules/contacts/pages/ContactList"
 import ContactCreate from "@/modules/contacts/pages/ContactCreate"
 
 //Leaderboard
-import LeaderboardList from "@/modules/leaderboard/LeaderboardLists"
+import LeaderboardList from "@/modules/leaderboard/listing/LeaderboardLists"
 
 // rewards
 import Rewards from "@/modules/rewards/Rewards"
