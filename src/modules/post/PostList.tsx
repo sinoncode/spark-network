@@ -255,11 +255,11 @@ export default function PostsListing() {
           </div>
         )}
 
-        <CardContent className="p-0 glass-card">
+        <CardContent className="p-0 bg-transparent">
           <div className="overflow-x-auto">
             <Table className="min-w-[1100px]">
               <TableHeader>
-                <TableRow className="glass-card hover:bg-muted/40">
+                <TableRow className="bg-transparent">
                   {[
                     "Post ID",
                     "Content",

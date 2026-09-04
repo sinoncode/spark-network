@@ -578,14 +578,14 @@ export function AppSidebar({ onHoverChange, ...props }: AppSidebarProps) {
       onMouseLeave={() => onHoverChange?.(false)}
     >
       <Sidebar collapsible="icon" {...props} className="h-screen z-50 bg-[linear-gradient(180deg,#FC8D0E_0%,#F87A0A_30%,#EF5510_65%,#E33210_100%)]">
-        <SidebarHeader className="border-b h-16 ">
+        <SidebarHeader className="border-b h-20 ">
           <SidebarMenuButton size="lg" asChild className="px-2 py-3">
             <a href="/" className="flex justify-center hover:bg-transparent active:bg-transparent">
               <div className="mx-0">
-                <img src={LogoIcon} alt="2morrow icon" />
+                <img src={LogoIcon} className="h-10 w-12" alt="2morrow icon" />
               </div>
               <div className="leading-tight -ms-3">
-                <img src={LogoText} alt="2morrow icon" />
+                <img src={LogoText} className="h-12 w-full" alt="2morrow icon" />
               </div>
             </a>
           </SidebarMenuButton>
@@ -593,7 +593,7 @@ export function AppSidebar({ onHoverChange, ...props }: AppSidebarProps) {
 
         <SidebarContent className="overflow-hidden">
           <ScrollArea className="h-full">
-            <div className="flex min-h-full flex-col">
+            <div className="flex mt-4 min-h-full flex-col">
               <NavMain items={data.navMain as any} />
               {/* <NavProjects projects={data.projects} /> */}
             </div>
