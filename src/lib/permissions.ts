@@ -3,7 +3,9 @@
  * Provides centralized permission checking logic
  */
 
-import type { User } from "@/types/rbac";
+interface PermissionUser {
+  permissions?: string[];
+}
 
 // ============================================
 // PERMISSION CONSTANTS
@@ -44,7 +46,9 @@ export class PermissionChecker {
   private permissions: string[];
 
   constructor(permissions: string[] = []) {
-    this.permissions = Array.isArray(permissions) ? permissions : [];
+    this.permissions = Array.isArray(permissions)
+      ? permissions.map((permission) => permission.trim()).filter(Boolean)
+      : [];
   }
 
   /**
@@ -54,7 +58,7 @@ export class PermissionChecker {
     if (!permission || typeof permission !== "string") {
       return false;
     }
-    return this.permissions.includes(permission);
+    return this.permissions.includes("*") || this.permissions.includes(permission);
   }
 
   /**
@@ -131,7 +135,9 @@ export class PermissionChecker {
 /**
  * Create a permission checker from user object
  */
-export const createPermissionChecker = (user: User | null | undefined) => {
+export const createPermissionChecker = (
+  user: PermissionUser | null | undefined
+) => {
   const permissions = user?.permissions || [];
   return new PermissionChecker(permissions);
 };

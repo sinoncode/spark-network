@@ -75,14 +75,6 @@ export const RoleList = ({
               {safeRoles.length !== 1 ? "s" : ""}
             </CardDescription>
           </div>
- {/* <Button
-                onClick={refreshData}
-                variant="outline"
-                disabled={isLoading}
-                className="flex-1 sm:flex-none"
-              >
-                <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
-              </Button>
           <Button
             size="sm"
             onClick={onAddRole}
@@ -99,7 +91,7 @@ export const RoleList = ({
             <span className="hidden sm:inline">
               Add Role
             </span>
-          </Button> */}
+          </Button>
         </div>
       </CardHeader>
 

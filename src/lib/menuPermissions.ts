@@ -8,6 +8,6 @@ export const hasMenuAccess = (
   }
 
   return menuPermissions.some((permission) =>
-    userPermissions.includes(permission)
+    userPermissions.includes("*") || userPermissions.includes(permission)
   );
 };

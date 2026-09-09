@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 
 import { useAuthStore } from "@/store/auth.store";
 import { useRBACStore } from "@/store/rbacStore";
@@ -15,6 +15,7 @@ import { PermissionTable } from "@/modules/permission/components/rbac/Permission
 import { RoleModal } from "@/modules/permission/components/rbac/RoleModal";
 import { CompanyOnboardingModal } from "@/modules/permission/components/rbac/CompanyModal";
 import { DeleteRoleDialog } from "@/modules/permission/components/rbac/DeleteRoleDialog";
+import { ModuleManagement } from "@/modules/permission/components/rbac/ModuleManagement";
 
 import { ShieldCheck, Save, Loader2, RefreshCw, TriangleAlert } from "lucide-react";
 
@@ -39,14 +40,18 @@ const TeamsPermissions = () => {
   const {
     roles,
     permissions,
+    modules,
     selectedRole,
     isLoadingRoles,
     isLoadingPermissions,
+    isLoadingModules,
     isSaving,
     fetchAllData,
     selectRole,
     createRole,
-    updateRole,
+    createModule,
+    createModulePermission,
+    updateRolePermissions,
     deleteRole,
     refreshData,
   } = useRBACStore();
@@ -56,9 +61,43 @@ const TeamsPermissions = () => {
   // ============================================
 
   const user = useAuthStore((state: any) => state.user);
-  const userPermissions = user?.permissions || [];
+  const permissionSources = [
+    ...(Array.isArray(user?.permissions) ? user.permissions : []),
+    ...(Array.isArray(user?.role?.permissions) ? user.role.permissions : []),
+    ...(Array.isArray(user?.roles)
+      ? user.roles.flatMap((role: any) => role?.permissions || [])
+      : []),
+  ];
+  const userPermissions = permissionSources
+    .map((permission: any) =>
+      typeof permission === "string"
+        ? permission
+        : permission?.name || permission?.action || ""
+    )
+    .filter(Boolean);
+  const roleNames = [
+    typeof user?.role === "string"
+      ? user.role
+      : user?.role?.name || "",
+    user?.roleName,
+    user?.role_name,
+    ...(Array.isArray(user?.roles)
+      ? user.roles.map((role: any) => role?.name)
+      : []),
+  ]
+    .filter(Boolean)
+    .map((role) => String(role).toLowerCase());
 
-  const isSuperAdmin = true; // Bypassing restriction so frontend is usable
+  const isSuperAdmin = Boolean(
+    (user as any)?.isSuperAdmin ||
+    (user as any)?.is_super_admin ||
+    (user as any)?.isAdmin ||
+    (user as any)?.is_admin ||
+    roleNames.some((role) =>
+      ["admin", "administrator", "super_admin", "superadmin"].includes(role)
+    ) ||
+    userPermissions.includes("*")
+  );
 
   const can = (permission: string) => {
     if (isSuperAdmin) return true;
@@ -126,7 +165,7 @@ const TeamsPermissions = () => {
 
     const newRole = await createRole({
       name: data.name.trim(),
-      permissions: [],
+      displayName: data.name.trim(),
     });
 
     if (newRole) {
@@ -173,20 +212,21 @@ const TeamsPermissions = () => {
     )
       return;
 
-    const updated = await updateRole(
+    const permissionIds = (pendingPermissions ?? selectedRole.permissions ?? [])
+      .map((permissionName) =>
+        permissions.find((permission) => permission.name === permissionName)?.id || permissionName
+      );
+
+    const updated = await updateRolePermissions(
       selectedRole.id,
-      {
-        name: selectedRole.name,
-        permissions:
-          pendingPermissions ??
-          selectedRole.permissions ??
-          [],
-      }
+      permissionIds
     );
 
     if (updated) {
       setPendingPermissions([
-        ...(updated.permissions || []),
+        ...(updated.permissions?.length
+          ? updated.permissions
+          : pendingPermissions ?? []),
       ]);
 
       setIsDirty(false);
@@ -246,7 +286,8 @@ const TeamsPermissions = () => {
 
     await createRole({
       name: `${role.name} Copy`,
-      permissions: role.permissions || [],
+      displayName: `${role.displayName || role.name} Copy`,
+      description: role.description || undefined,
     });
   };
 
@@ -254,7 +295,7 @@ const TeamsPermissions = () => {
   // RENDER
   // ============================================
 
-  const isLoading = isLoadingRoles || isLoadingPermissions;
+  const isLoading = isLoadingRoles || isLoadingPermissions || isLoadingModules;
   const effectiveRole = selectedRole
     ? {
       ...selectedRole,
@@ -353,6 +394,14 @@ const TeamsPermissions = () => {
           )}
 
           <Separator />
+
+          <ModuleManagement
+            modules={modules}
+            canCreate={isSuperAdmin || can("permissions.create") || can("modules.create")}
+            isSaving={isSaving}
+            onCreateModule={createModule}
+            onCreatePermission={createModulePermission}
+          />
 
           {/* LOADING STATE */}
           {isLoading ? (

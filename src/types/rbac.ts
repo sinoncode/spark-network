@@ -1,191 +1,228 @@
+// src/types/rbac.ts
+
 /* =========================================
-   PERMISSION TYPES
+   PERMISSION
 ========================================= */
 
 export interface Permission {
-  id?: string;
+  id: string;
   name: string;
+  action?: string;
+  displayName?: string;
+  description?: string | null;
+
   guard_name?: string;
+
+  createdAt?: string;
+  updatedAt?: string;
+
+  // Optional legacy fields
   created_at?: string;
   updated_at?: string;
 }
 
+
 /* =========================================
-   ROLE TYPES
+   RBAC MODULE
+========================================= */
+
+export interface RBACModule {
+  id: string;
+  name: string;
+  displayName: string;
+  description?: string | null;
+  isActive: boolean;
+
+  createdAt?: string;
+  updatedAt?: string;
+
+  permissions: Permission[];
+
+  _count?: {
+    companyModules?: number;
+  };
+}
+
+
+/* =========================================
+   ROLE PERMISSION
+========================================= */
+
+/**
+ * Backend may return rolePermissions
+ * either as permission objects or
+ * relation objects depending on API.
+ */
+
+export interface RolePermission {
+  id?: string;
+
+  permissionId?: string;
+
+  permission?: Permission;
+}
+
+
+/* =========================================
+   ROLE
 ========================================= */
 
 export interface Role {
   id: string;
+
+  /**
+   * Internal role key
+   * Example:
+   * compliance_officer
+   */
   name: string;
+
+  /**
+   * Human readable name
+   * Example:
+   * Compliance Officer
+   */
+  displayName: string;
+
+  description?: string | null;
+
+  isActive: boolean;
+
+  createdAt?: string;
+  updatedAt?: string;
+
+  /**
+   * Permissions assigned to this role.
+   */
+  rolePermissions: RolePermission[];
+
+  /** Permission keys used by the UI and authorization checks. */
   permissions: string[];
-  created_at?: string;
-  updated_at?: string;
+
+  /**
+   * Convenient permission ID list for UI.
+   *
+   * This is frontend-only derived data.
+   */
+  permissionIds: string[];
 }
 
+
 /* =========================================
-   ROLE API PAYLOADS
+   ROLE CREATE
 ========================================= */
 
 export interface CreateRolePayload {
   name: string;
-  permissions: string[];
+  displayName: string;
+  description?: string;
 }
+
+
+/* =========================================
+   ROLE UPDATE
+========================================= */
 
 export interface UpdateRolePayload {
+  displayName?: string;
+  description?: string;
+  isActive?: boolean;
+}
+
+
+/* =========================================
+   ASSIGN ROLE PERMISSIONS
+========================================= */
+
+export interface UpdateRolePermissionsPayload {
+  permissionIds: string[];
+}
+
+
+/* =========================================
+   MODULE PAYLOADS
+========================================= */
+
+export interface CreateModulePayload {
   name: string;
-  permissions: string[];
+  displayName: string;
+  description?: string;
 }
 
+export interface UpdateModulePayload {
+  displayName?: string;
+  isActive?: boolean;
+}
+
+
 /* =========================================
-   API RESPONSE TYPES
+   MODULE PERMISSION
 ========================================= */
 
-export interface PermissionsResponse {
-  success?: boolean;
-  message?: string;
-  data: Permission[];
+export interface CreateModulePermissionPayload {
+  action: string;
+  displayName: string;
+  description?: string;
 }
 
-export interface RolesResponse {
-  success?: boolean;
-  message?: string;
-  data: Role[];
-}
-
-export interface SingleRoleResponse {
-  success?: boolean;
-  message?: string;
-  data: Role;
-}
 
 /* =========================================
-   USER TYPES
-========================================= */
-
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  phone?: string;
-  role?: string[];
-  permissions: string[];
-}
-
-/* =========================================
-   AUTH RESPONSE TYPES
-========================================= */
-
-export interface LoginResponse {
-  success: boolean;
-  message: string;
-  data: {
-    access_token: string;
-    token_type: string;
-    user: User;
-  };
-}
-
-/* =========================================
-   PERMISSION GROUPING TYPES
+   GROUPING
 ========================================= */
 
 export interface GroupedPermissions {
   [module: string]: Permission[];
 }
 
-/* =========================================
-   TABLE TYPES
-========================================= */
 
-export interface RoleTableColumn {
-  key: string;
-  label: string;
-}
-
-/* =========================================
-   MODAL TYPES
-========================================= */
-
-export interface RoleModalProps {
-  open: boolean;
-  onClose: () => void;
-  onSuccess?: () => void;
-}
-
-/* =========================================
-   HELPER TYPES
-========================================= */
-
-export type PermissionAction =
-  | "view"
-  | "create"
-  | "update"
-  | "delete";
-
-
-  export type PermissionModule =
-  | "users"
-  | "shipmentControl"
-  | "changeRequest"
-  | "checkPayments";
-
-export type PermissionString = `${string}.${PermissionAction}`;
-
-/* =========================================
-   STATIC FALLBACKS (OPTIONAL)
-========================================= */
-
-export const DEFAULT_PERMISSION_ACTIONS: PermissionAction[] = [
-  "view",
-  "create",
-  "update",
-  "delete",
-];
 /* =========================================
    PERMISSION HELPERS
 ========================================= */
 
 export const hasPermission = (
-  permissions: string[],
-  permission: string
+  permissionIds: string[],
+  permissionId: string
 ): boolean => {
-  return permissions.includes(permission);
+  return permissionIds.includes(
+    permissionId
+  );
 };
 
 export const hasAnyPermission = (
-  permissions: string[],
-  requiredPermissions: string[]
+  permissionIds: string[],
+  requiredPermissionIds: string[]
 ): boolean => {
-  return requiredPermissions.some((permission) =>
-    permissions.includes(permission)
+  return requiredPermissionIds.some(
+    (permissionId) =>
+      permissionIds.includes(permissionId)
   );
 };
 
 export const hasAllPermissions = (
-  permissions: string[],
-  requiredPermissions: string[]
+  permissionIds: string[],
+  requiredPermissionIds: string[]
 ): boolean => {
-  return requiredPermissions.every((permission) =>
-    permissions.includes(permission)
+  return requiredPermissionIds.every(
+    (permissionId) =>
+      permissionIds.includes(permissionId)
   );
 };
+
 
 /* =========================================
    GROUP PERMISSIONS BY MODULE
 ========================================= */
 
 export const groupPermissionsByModule = (
-  permissions: Permission[]
-): GroupedPermissions => {
-  return permissions.reduce((acc, permission) => {
-    const module = permission.name.split(".")[0];
+  modules: RBACModule[]
+): Record<string, Permission[]> => {
+  return modules.reduce(
+    (acc, module) => {
+      acc[module.name] =
+        module.permissions || [];
 
-    if (!acc[module]) {
-      acc[module] = [];
-    }
-
-    acc[module].push(permission);
-
-    return acc;
-  }, {} as GroupedPermissions);
+      return acc;
+    },
+    {} as Record<string, Permission[]>
+  );
 };

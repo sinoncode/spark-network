@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 import { useAuthStore } from "@/store/auth.store";
+import { createPermissionChecker } from "@/lib/permissions";
 
 interface Props {
   permissions: string[];
@@ -18,14 +19,11 @@ const ProtectedPermissionRoute = ({
     (state) => state.user
   );
 
-  const userPermissions =
-    user?.permissions || [];
+  const checker = createPermissionChecker(user);
 
   const hasAccess =
     permissions.length === 0 ||
-    permissions.some((permission) =>
-      userPermissions.includes(permission)
-    );
+    checker.canAny(permissions);
 
   if (!hasAccess) {
     return (
@@ -35,11 +33,6 @@ const ProtectedPermissionRoute = ({
       />
     );
   }
-
-  console.log("USER", user);
-console.log("PERMISSIONS", userPermissions);
-console.log("REQUIRED", permissions);
-console.log("HAS ACCESS", hasAccess);
 
   return <>{children}</>;
 };

@@ -5,7 +5,7 @@ import type {
 } from "@/types/rbac";
 
 export const getRoles = async () => {
-  const response = await api.get("/admin/roles");
+  const response = await api.get("/admin/rbac/roles");
 
   return response.data;
 };
@@ -14,7 +14,7 @@ export const getRoleById = async (
   id: string
 ) => {
   const response = await api.get(
-    `/admin/roles/${id}`
+    `/admin/rbac/roles/${id}`
   );
 
   return response.data;
@@ -24,7 +24,7 @@ export const createRole = async (
   data: CreateRolePayload
 ) => {
   const response = await api.post(
-    "/admin/roles",
+    "/admin/rbac/roles",
     data
   );
 
@@ -36,7 +36,7 @@ export const updateRole = async (
   data: CreateRolePayload
 ) => {
   const response = await api.put(
-    `/admin/roles/${id}`,
+    `/admin/rbac/roles/${id}`,
     data
   );
 
@@ -47,7 +47,7 @@ export const deleteRole = async (
   id: string
 ) => {
   const response = await api.delete(
-    `/admin/roles/${id}`
+    `/admin/rbac/roles/${id}`
   );
 
   return response.data;
