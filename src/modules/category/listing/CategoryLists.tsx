@@ -316,6 +316,8 @@ function ExperienceItem({
   categoryId: string;
   onDelete: (categoryId: string, experienceId: string) => void;
 }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
   return (
     <div
       className="
@@ -351,7 +353,18 @@ function ExperienceItem({
             undefined,
         }}
       >
-        {experience.icon || "•"}
+        {isImageValue(experience.icon) && !imageFailed ? (
+          <img
+            src={experience.icon}
+            alt={`${experience.label} icon`}
+            className="h-6 w-6 object-contain"
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          <span className="text-sm font-bold">
+            {getInitials(experience.label)}
+          </span>
+        )}
       </div>
 
       {/* Content */}
