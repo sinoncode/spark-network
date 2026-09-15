@@ -379,7 +379,7 @@ export default function CategoryUpdate() {
 
       toast.success("Category and experiences saved successfully.");
 
-      navigate("/category", {
+      navigate("/category/list", {
         replace: true,
       });
     } catch (err) {
