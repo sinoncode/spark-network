@@ -240,6 +240,7 @@ export function LoginForm({ onForgotPassword }: Props) {
               </Label>
             </div>
             <Button
+              type="button"
               variant="link"
               onClick={onForgotPassword} 
               className="p-0 text-white transition-colors duration-300 hover:text-[#FC8D0E]"
