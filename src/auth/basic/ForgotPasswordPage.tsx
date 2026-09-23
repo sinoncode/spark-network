@@ -37,7 +37,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.08)]" style={{
       <Input
         type="email"
         placeholder="Insert your Email"
-        className="h-12 color-gray-700 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+        className="h-12 color-gray-100 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
       />
 
       <Button
