@@ -34,8 +34,8 @@ const AuthInput = React.forwardRef<HTMLInputElement, AuthInputProps>(
           ref={ref}
           className={cn(
             "h-full flex-1 bg-transparent",
-            "px-3 text-sm text-gray-900",
-            "placeholder:text-gray-400",
+            "px-3 text-sm text-gray-100",
+            "placeholder:text-gray-200",
             "outline-none",
             className
           )}
