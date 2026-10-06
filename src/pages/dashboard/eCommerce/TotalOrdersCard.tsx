@@ -64,7 +64,7 @@ export default function TotalUsersCard() {
         </div>
 
         {/* Growth */}
-        {isLoading ? (
+        {/* {isLoading ? (
           <Skeleton className="h-5 w-32 mb-5" />
         ) : (
           <p className="text-sm flex gap-2 mb-5">
@@ -75,7 +75,7 @@ export default function TotalUsersCard() {
 
             from last month
           </p>
-        )}
+        )} */}
 
         {/* Chart */}
         {isLoading ? (

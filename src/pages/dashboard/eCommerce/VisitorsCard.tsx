@@ -28,20 +28,20 @@ export default function VisitorsCard() {
     <Card className="overflow-hidden">
       <CardContent className="p-6">
         <div className="mb-3">
-          <p className="text-md text-muted-foreground">Visitors</p>
+          <p className="text-md text-muted-foreground">Total Posts</p>
           {isLoading ? <Skeleton className="h-9 w-28 mt-1" /> : (
             <h2 className="text-3xl font-semibold">{value ?? "—"}</h2>
           )}
         </div>
 
-        {isLoading ? <Skeleton className="h-5 w-32 mb-5" /> : (
+        {/* {isLoading ? <Skeleton className="h-5 w-32 mb-5" /> : (
           <p className="text-sm flex gap-2 mb-5">
             <span className="text-green-600 font-semibold flex items-center gap-1">
               <TrendingUp className="w-3.5 h-3.5" />+9.6%
             </span>
             from last month
           </p>
-        )}
+        )} */}
 
         {isLoading ? <Skeleton className="h-14 w-full" /> : (
           <ChartContainer config={chartConfig} className="h-14 w-full">
