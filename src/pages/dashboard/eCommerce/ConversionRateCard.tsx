@@ -30,7 +30,7 @@ export default function ConversionRateCard() {
         <div className="mb-3">
           <p className="text-md text-muted-foreground">Pending Moderations</p>
           {isLoading ? <Skeleton className="h-9 w-20 mt-1" /> : (
-            <h2 className="text-3xl font-semibold">{value !== null ? `${value}%` : "—"}</h2>
+            <h2 className="text-3xl font-semibold">{value !== null ? `${value}` : "—"}</h2>
           )}
         </div>
 
