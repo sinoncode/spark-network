@@ -30,7 +30,7 @@ export default function TotalRevenueCard() {
         <div className="mb-3">
           <p className="text-md text-muted-foreground">Dau</p>
           {isLoading ? <Skeleton className="h-9 w-28 mt-1" /> : (
-            <h2 className="text-3xl font-semibold">${value ?? "—"}</h2>
+            <h2 className="text-3xl font-semibold">{value ?? "—"}</h2>
           )}
         </div>
 
