@@ -120,7 +120,9 @@ export const PermissionTable = ({
     <Card className="border shadow-sm">
       <CardHeader className="border-b glass-card">
         <CardTitle className="text-lg">
-          {role.name} - Permissions
+          {role.name.replaceAll("_", " ")
+            .toLowerCase()
+            .replace(/\b\w/g, (char) => char.toUpperCase())} - Permissions
         </CardTitle>
 
         <CardDescription>
@@ -132,90 +134,89 @@ export const PermissionTable = ({
       </CardHeader>
 
       <CardContent className="pt-6 glass-card">
-       <div className="space-y-4">
-  {moduleEntries.map(([module, permissions]) => {
-    const selectedCount =
-      permissions.filter(hasPermission).length;
+        <div className="space-y-4">
+          {moduleEntries.map(([module, permissions]) => {
+            const selectedCount =
+              permissions.filter(hasPermission).length;
 
-    const allSelected =
-      selectedCount === permissions.length;
+            const allSelected =
+              selectedCount === permissions.length;
 
-    return (
-      <Card
-        key={module}
-        className="border shadow-none"
-      >
-        <CardContent className="p-5">
+            return (
+              <Card
+                key={module}
+                className="border shadow-none"
+              >
+                <CardContent className="p-5">
 
-          {/* Module Header */}
-          <div className="flex items-center justify-between mb-4">
+                  {/* Module Header */}
+                  <div className="flex items-center justify-between mb-4">
 
-            <div>
-              <h3 className="font-semibold text-xl">
-                {formatModuleLabel(module)}
-              </h3>
+                    <div>
+                      <h3 className="font-semibold text-xl">
+                        {formatModuleLabel(module)}
+                      </h3>
 
-              <p className="text-sm text-muted-foreground">
-                {selectedCount} of {permissions.length}
-                {" "}permissions selected
-              </p>
-            </div>
+                      <p className="text-sm text-muted-foreground">
+                        {selectedCount} of {permissions.length}
+                        {" "}permissions selected
+                      </p>
+                    </div>
 
-            <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
 
-              <Checkbox
-                checked={allSelected}
-                disabled={!canEdit}
-                onCheckedChange={() =>
-                  handleSelectAll(permissions)
-                } className="border border-primary"
-              />
+                      <Checkbox
+                        checked={allSelected}
+                        disabled={!canEdit}
+                        onCheckedChange={() =>
+                          handleSelectAll(permissions)
+                        } className="border border-primary"
+                      />
 
-              <span className="text-sm">
-                Select All
-              </span>
-            </div>
-          </div>
+                      <span className="text-sm">
+                        Select All
+                      </span>
+                    </div>
+                  </div>
 
-          {/* Permissions */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {permissions.map((permission) => (
-              <label
-                key={permission}
-                className={`
+                  {/* Permissions */}
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    {permissions.map((permission) => (
+                      <label
+                        key={permission}
+                        className={`
                   flex items-center w-fit gap-2
                   rounded-md border px-5 py-2
                   cursor-pointer transition-colors
-                  ${
-                    hasPermission(permission)
-                      ? "bg-primary/5 border-primary/20"
-                      : ""
-                  }
+                  ${hasPermission(permission)
+                            ? "bg-primary/5 border-primary/20"
+                            : ""
+                          }
                 `}
-              >
-                <Checkbox
-                  checked={hasPermission(permission)}
-                  disabled={!canEdit}
-                  onCheckedChange={(checked) =>
-                    onPermissionChange(
-                      permission,
-                      checked === true
-                    )
-                  } className="border border-primary"
-                />
+                      >
+                        <Checkbox
+                          checked={hasPermission(permission)}
+                          disabled={!canEdit}
+                          onCheckedChange={(checked) =>
+                            onPermissionChange(
+                              permission,
+                              checked === true
+                            )
+                          } className="border border-primary"
+                        />
 
-                <span className="text-sm">
-                  {formatLabel(permission)}
-                </span>
-              </label>
-            ))}
-          </div>
+                        <span className="text-sm">
+                          {formatLabel(permission)}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
 
-        </CardContent>
-      </Card>
-    );
-  })}
-</div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
 
         {/* SUMMARY */}
         <div className="mt-6 pt-6 border-t">

@@ -73,7 +73,7 @@ export function NavMain({ items }: { items: MenuItem[] }) {
           defaultOpen={isParentActive}
           className="group/collapsible"
         >
-          <SidebarMenuItem>
+          <SidebarMenuItem className="h-auto min-h-12">
             <CollapsibleTrigger asChild>
               <SidebarMenuButton
                 tooltip={item.title}

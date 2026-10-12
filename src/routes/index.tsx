@@ -125,6 +125,7 @@ import CategoryEdit from "@/modules/category/edit/CategoryUpdate"
 import Post from "@/modules/post/Post"
 import PostList from "@/modules/post/PostList"
 import PostEdit from "@/modules/post/PostEdit"
+import Modules from "@/modules/permission/Modules"
 
 
 export const router = createBrowserRouter(
@@ -190,7 +191,9 @@ export const router = createBrowserRouter(
         { path: "requests/create", element: <CreateRequests /> },
 
         // Permission
-        { path: "permission", element: <Permissions /> },
+        { path: "access-control/roles-permissions", element: <Permissions /> },
+        { path: "access-control/modules", element: <Modules /> },
+        // { path: "access-control/company", element: <Company /> },
 
         // Leads 
 

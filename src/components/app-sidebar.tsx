@@ -21,6 +21,15 @@ import {
   Book,
   BrickWallShield,
   MessageCircleQuestionMark,
+  Settings2,
+  ShieldCheck,
+  Blocks,
+  Droplet,
+  LayoutGrid,
+  Tv,
+  Landmark,
+  LockKeyhole,
+  CircleUserRound,
   Gavel,
   Store,
 } from "lucide-react"
@@ -84,11 +93,28 @@ const data = {
       isActive: true,
 
     },
+  {
+  title: "Access Control",
+  url: "access-control",
+  icon: Settings2,
+  items: [
     {
-      title: "Permission",
-      url: "permission",
-      icon: AccountSettingsVariantIcon,
+      title: "Roles & Permissions",
+      url: "access-control/roles-permissions",
+      icon: ShieldCheck,
     },
+    {
+      title: "Modules",
+      url: "access-control/modules",
+      icon: Blocks,
+    },
+    {
+      title: "Company",
+      url: "access-control/company",
+      icon: Building2,
+    },
+  ],
+},
     {
       title: "Leaderboard",
       url: "leaderboard/list",

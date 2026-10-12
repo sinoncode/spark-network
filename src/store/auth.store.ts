@@ -54,10 +54,47 @@ const decodeJwt = (token: string): JwtPayload => {
   );
 };
 
+const isTokenExpired = (payload: JwtPayload): boolean => {
+  if (!payload.exp) return false;
+  return Date.now() >= payload.exp * 1000;
+};
+
+/**
+ * Attempt to restore the user session from an existing access_token
+ * in localStorage. Returns null if there is no token or if it is expired.
+ */
+const rehydrateUserFromToken = (): User | null => {
+  try {
+    const token = localStorage.getItem("access_token");
+    if (!token) return null;
+
+    const jwtUser = decodeJwt(token);
+
+    if (isTokenExpired(jwtUser)) {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      return null;
+    }
+
+    return {
+      id: jwtUser.sub,
+      name: jwtUser.username,
+      email: jwtUser.email,
+      username: jwtUser.username,
+      role: jwtUser.role,
+      permissions: [],
+    };
+  } catch {
+    return null;
+  }
+};
+
 export const useAuthStore = create<AuthStore>((set) => ({
   loading: false,
   error: null,
-  user: null,
+  // Restore user from JWT on every page load so that a refresh
+  // doesn't wipe out the authenticated session.
+  user: rehydrateUserFromToken(),
 
   login: async (data) => {
     set({

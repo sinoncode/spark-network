@@ -54,7 +54,7 @@ export const RoleList = ({
 
   // ✅ FIX: Ensure roles is always an array before filtering
   const safeRoles = Array.isArray(roles) ? roles : [];
-  
+
   const filteredRoles = safeRoles.filter((role) =>
     role.name
       .toLowerCase()
@@ -84,7 +84,7 @@ export const RoleList = ({
                 ? "You need roles.create permission to add a new role."
                 : undefined
             }
-            className="bg-[#1f6ea9] hover:bg-black rounded-2xl text-white gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="bg-primary border border-primary hover:bg-black hover:border-primary rounded-2xl text-white gap-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Plus className="h-4 w-4" />
 
@@ -155,7 +155,10 @@ export const RoleList = ({
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <h3 className="font-semibold text-sm truncate">
-                          {role.name}
+                          {role.name
+                            .replaceAll("_", " ")
+                            .toLowerCase()
+                            .replace(/\b\w/g, (char) => char.toUpperCase())}
                         </h3>
 
                         <p className="text-xs text-muted-foreground mt-1">
@@ -217,10 +220,10 @@ export const RoleList = ({
 
                       {selectedRole?.id ===
                         role.id && (
-                        <span className="text-[11px] font-medium text-primary">
-                          Active
-                        </span>
-                      )}
+                          <span className="text-[11px] font-medium text-primary">
+                            Active
+                          </span>
+                        )}
                     </div>
                   </div>
                 );
