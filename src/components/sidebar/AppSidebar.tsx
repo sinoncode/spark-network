@@ -142,7 +142,7 @@ const data = {
         },
         {
             title: "Settings",
-            url: "docs",
+            url: "settings",
             icon: Settings,
         },
         // {

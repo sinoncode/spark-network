@@ -126,6 +126,7 @@ import Post from "@/modules/post/Post"
 import PostList from "@/modules/post/PostList"
 import PostEdit from "@/modules/post/PostEdit"
 import Modules from "@/modules/permission/Modules"
+import SettingsPage from "@/modules/settings/page"
 
 
 export const router = createBrowserRouter(
@@ -173,6 +174,7 @@ export const router = createBrowserRouter(
         // { path: "dashboard/analytics", element: <AnalyticsDashboard /> },
         // { path: "dashboard", element: <CrmDashboard /> },
         { path: "dashboard", element: <EcommerceDashboard /> },
+        { path: "settings", element: <SettingsPage /> },
         // { path: "dashboard/landing-page", element: <LandingPage /> },
 
         { path: "dashboard/charts", element: <ChartsPage /> },
