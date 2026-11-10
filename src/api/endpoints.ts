@@ -9,4 +9,6 @@ export const ENDPOINTS = {
   PROPERTIES: "/admin/properties",
 
   DASHBOARD: "/admin/dashboard",
+
+  SPARK_SETTINGS: "/admin/spark-settings",
 }
