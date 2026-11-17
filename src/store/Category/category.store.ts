@@ -48,8 +48,9 @@ interface CategoryState {
     payload: UpdateExperiencePayload
   ) => Promise<ExperienceResponse | null>;
 
-  deactivateCategory: (
-    categoryId: string
+  setCategoryActive: (
+    categoryId: string,
+    isActive: boolean
   ) => Promise<CategoryResponse | null>;
 
   deactivateExperience: (
@@ -286,18 +287,36 @@ export const useCategoryStore = create<CategoryState>()(
       },
 
       // ============================================================
-      // DEACTIVATE CATEGORY
+      // UPDATE CATEGORY STATUS
       // ============================================================
 
-      deactivateCategory: async (categoryId) => {
+      setCategoryActive: async (categoryId, isActive) => {
         set({ isSaving: true, error: null });
         try {
-          const response = await categoryService.deactivateCategory(categoryId);
+          const response = await categoryService.setCategoryActive(
+            categoryId,
+            isActive
+          );
+          if (!response.success) {
+            set({
+              isSaving: false,
+              error:
+                response.message ||
+                `Failed to ${isActive ? "activate" : "deactivate"} category.`,
+            });
+            return null;
+          }
+
           await get().fetchCategories();
-          set({ isSaving: false, error: response.success ? null : response.message || "Failed to deactivate category." });
-          return response.success ? response : null;
-        } catch (error: any) {
-          set({ isSaving: false, error: error?.response?.data?.message || error?.message || "Failed to deactivate category." });
+          set({ isSaving: false, error: null });
+          return response;
+        } catch (error: unknown) {
+          set({
+            isSaving: false,
+            error:
+              (error instanceof Error ? error.message : null) ||
+              `Failed to ${isActive ? "activate" : "deactivate"} category.`,
+          });
           return null;
         }
       },

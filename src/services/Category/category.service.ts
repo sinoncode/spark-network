@@ -92,12 +92,13 @@ export const categoryService = {
     return response.data;
   },
 
-  deactivateCategory: async (
-    categoryId: string
+  setCategoryActive: async (
+    categoryId: string,
+    isActive: boolean
   ): Promise<CategoryResponse> => {
     const response = await apiClient.patch<CategoryResponse>(
       `/categories/${categoryId}`,
-      { isActive: false }
+      { isActive }
     );
 
     return response.data;

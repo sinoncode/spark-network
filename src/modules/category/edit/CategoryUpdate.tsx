@@ -8,7 +8,6 @@ import {
   Sparkles,
   Save,
   GripVertical,
-  X,
 } from "lucide-react";
 
 import { useCategoryStore } from "@/store/Category/category.store";
@@ -86,7 +85,7 @@ export default function CategoryUpdate() {
     createExperience: createExperienceApi,
     updateCategory: updateCategoryApi,
     updateExperience: updateExperienceApi,
-    deactivateCategory: deactivateCategoryApi,
+    setCategoryActive: setCategoryActiveApi,
     deactivateExperience: deactivateExperienceApi,
     categories,
     fetchCategories,
@@ -100,6 +99,8 @@ export default function CategoryUpdate() {
   const [experiences, setExperiences] = useState<ExperienceForm[]>([]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUpdatingCategoryStatus, setIsUpdatingCategoryStatus] =
+    useState(false);
 
   const [categoryIcon, setCategoryIcon] = useState<string>("");
 
@@ -395,15 +396,29 @@ export default function CategoryUpdate() {
     }
   };
 
-  const handleDeactivateCategory = async () => {
-    if (!categoryId || !category.isActive) return;
+  const handleToggleCategoryStatus = async () => {
+    if (!categoryId || isUpdatingCategoryStatus) return;
 
-    const response = await deactivateCategoryApi(categoryId);
-    if (response?.success) {
-      setCategory((previous) => ({ ...previous, isActive: false }));
-      toast.success("Category deactivated successfully.");
-    } else {
-      toast.error("Failed to deactivate category.");
+    const nextIsActive = !category.isActive;
+    setIsUpdatingCategoryStatus(true);
+    try {
+      const response = await setCategoryActiveApi(categoryId, nextIsActive);
+      if (!response?.success) {
+        toast.error(
+          `Failed to ${nextIsActive ? "reactivate" : "deactivate"} category.`
+        );
+        return;
+      }
+
+      setCategory((previous) => ({
+        ...previous,
+        isActive: nextIsActive,
+      }));
+      toast.success(
+        `Category ${nextIsActive ? "reactivated" : "deactivated"} successfully.`
+      );
+    } finally {
+      setIsUpdatingCategoryStatus(false);
     }
   };
 
@@ -511,11 +526,24 @@ export default function CategoryUpdate() {
 
             <button
               type="button"
-              onClick={handleDeactivateCategory}
-              disabled={isSubmitting || isLoading || !category.isActive}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-red-200 dark:border-red-500/20 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-medium text-sm hover:bg-red-100 dark:hover:bg-red-500/20 transition-all disabled:opacity-50"
+              onClick={handleToggleCategoryStatus}
+              disabled={
+                isSubmitting ||
+                isLoading ||
+                isUpdatingCategoryStatus ||
+                !categoryId
+              }
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border font-medium text-sm transition-all disabled:opacity-50 ${
+                category.isActive
+                  ? "border-red-200 dark:border-red-500/20 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-500/20"
+                  : "border-green-200 dark:border-green-500/20 bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-500/20"
+              }`}
             >
-              Deactivate Category
+              {isUpdatingCategoryStatus
+                ? "Updating..."
+                : category.isActive
+                  ? "Deactivate Category"
+                  : "Reactivate Category"}
             </button>
 
             {/* <button
