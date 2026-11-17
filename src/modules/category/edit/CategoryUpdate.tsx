@@ -86,7 +86,8 @@ export default function CategoryUpdate() {
     updateCategory: updateCategoryApi,
     updateExperience: updateExperienceApi,
     setCategoryActive: setCategoryActiveApi,
-    deactivateExperience: deactivateExperienceApi,
+    setExperienceActive: setExperienceActiveApi,
+    deleteExperience: deleteExperienceApi,
     categories,
     fetchCategories,
     isLoading,
@@ -101,6 +102,10 @@ export default function CategoryUpdate() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUpdatingCategoryStatus, setIsUpdatingCategoryStatus] =
     useState(false);
+  const [experienceAction, setExperienceAction] = useState<{
+    id: string;
+    type: "status" | "delete";
+  } | null>(null);
 
   const [categoryIcon, setCategoryIcon] = useState<string>("");
 
@@ -422,21 +427,58 @@ export default function CategoryUpdate() {
     }
   };
 
-  const handleDeactivateExperience = async (experienceId: string) => {
-    if (!categoryId) return;
+  const handleToggleExperienceStatus = async (experience: ExperienceForm) => {
+    if (!categoryId || !experience.id || experienceAction) return;
 
-    const response = await deactivateExperienceApi(categoryId, experienceId);
-    if (response?.success) {
+    const nextIsActive = !experience.isActive;
+    setExperienceAction({ id: experience.id, type: "status" });
+    try {
+      const response = await setExperienceActiveApi(
+        categoryId,
+        experience.id,
+        nextIsActive
+      );
+      if (!response?.success) {
+        toast.error(
+          `Failed to ${nextIsActive ? "reactivate" : "deactivate"} experience.`
+        );
+        return;
+      }
+
       setExperiences((previous) =>
-        previous.map((experience) =>
-          experience.id === experienceId
-            ? { ...experience, isActive: false }
-            : experience
+        previous.map((item) =>
+          item.id === experience.id
+            ? { ...item, isActive: nextIsActive }
+            : item
         )
       );
-      toast.success("Experience deactivated successfully.");
-    } else {
-      toast.error("Failed to deactivate experience.");
+      toast.success(
+        `Experience ${nextIsActive ? "reactivated" : "deactivated"} successfully.`
+      );
+    } finally {
+      setExperienceAction(null);
+    }
+  };
+
+  const handleDeleteExperience = async (experience: ExperienceForm) => {
+    if (!experience.id) {
+      removeExperience(experience.tempId);
+      return;
+    }
+    if (!categoryId || experienceAction) return;
+
+    setExperienceAction({ id: experience.id, type: "delete" });
+    try {
+      const response = await deleteExperienceApi(categoryId, experience.id);
+      if (!response?.success) {
+        toast.error(response?.message || "Failed to delete experience.");
+        return;
+      }
+
+      removeExperience(experience.tempId);
+      toast.success("Experience deleted successfully.");
+    } finally {
+      setExperienceAction(null);
     }
   };
 
@@ -940,30 +982,57 @@ export default function CategoryUpdate() {
 
                           </div>
 
-                          <button
-                            type="button"
-                            onClick={() =>
-                              removeExperience(
-                                experience.tempId
-                              )
-                            }
-                            className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all"
-                            title="Remove Experience"
-                          >
-                            <Trash2 size={16} />
-                          </button>
-
-                          {experience.id && experience.isActive && (
+                          <div className="flex items-center gap-2">
+                            {experience.id && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleToggleExperienceStatus(experience)
+                                }
+                                disabled={
+                                  isSubmitting ||
+                                  experienceAction !== null
+                                }
+                                className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50 ${
+                                  experience.isActive
+                                    ? "text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10"
+                                    : "text-green-700 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-500/10"
+                                }`}
+                              >
+                                {experienceAction?.id === experience.id &&
+                                experienceAction.type === "status"
+                                  ? "Updating..."
+                                  : experience.isActive
+                                    ? "Deactivate"
+                                    : "Reactivate"}
+                              </button>
+                            )}
                             <button
                               type="button"
                               onClick={() =>
-                                handleDeactivateExperience(experience.id as string)
+                                handleDeleteExperience(experience)
                               }
-                              className="rounded-lg px-2 py-1 text-xs font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10"
+                              disabled={
+                                isSubmitting || experienceAction !== null
+                              }
+                              className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all disabled:opacity-50"
+                              title={
+                                experienceAction?.id === experience.id &&
+                                experienceAction.type === "delete"
+                                  ? "Deleting Experience"
+                                  : experience.id
+                                  ? "Delete Experience"
+                                  : "Remove Experience"
+                              }
+                              aria-label={
+                                experience.id
+                                  ? "Delete experience"
+                                  : "Remove experience"
+                              }
                             >
-                              Deactivate
+                              <Trash2 size={16} />
                             </button>
-                          )}
+                          </div>
 
                         </div>
 

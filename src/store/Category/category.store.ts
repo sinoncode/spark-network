@@ -53,9 +53,10 @@ interface CategoryState {
     isActive: boolean
   ) => Promise<CategoryResponse | null>;
 
-  deactivateExperience: (
+  setExperienceActive: (
     categoryId: string,
-    experienceId: string
+    experienceId: string,
+    isActive: boolean
   ) => Promise<ExperienceResponse | null>;
 
   deleteCategory: (
@@ -322,18 +323,37 @@ export const useCategoryStore = create<CategoryState>()(
       },
 
       // ============================================================
-      // DEACTIVATE EXPERIENCE
+      // UPDATE EXPERIENCE STATUS
       // ============================================================
 
-      deactivateExperience: async (categoryId, experienceId) => {
+      setExperienceActive: async (categoryId, experienceId, isActive) => {
         set({ isSaving: true, error: null });
         try {
-          const response = await categoryService.deactivateExperience(categoryId, experienceId);
+          const response = await categoryService.setExperienceActive(
+            categoryId,
+            experienceId,
+            isActive
+          );
+          if (!response.success) {
+            set({
+              isSaving: false,
+              error:
+                response.message ||
+                `Failed to ${isActive ? "activate" : "deactivate"} experience.`,
+            });
+            return null;
+          }
+
           await get().fetchCategories();
-          set({ isSaving: false, error: response.success ? null : response.message || "Failed to deactivate experience." });
-          return response.success ? response : null;
-        } catch (error: any) {
-          set({ isSaving: false, error: error?.response?.data?.message || error?.message || "Failed to deactivate experience." });
+          set({ isSaving: false, error: null });
+          return response;
+        } catch (error: unknown) {
+          set({
+            isSaving: false,
+            error:
+              (error instanceof Error ? error.message : null) ||
+              `Failed to ${isActive ? "activate" : "deactivate"} experience.`,
+          });
           return null;
         }
       },

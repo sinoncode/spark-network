@@ -104,13 +104,14 @@ export const categoryService = {
     return response.data;
   },
 
-  deactivateExperience: async (
+  setExperienceActive: async (
     categoryId: string,
-    experienceId: string
+    experienceId: string,
+    isActive: boolean
   ): Promise<ExperienceResponse> => {
     const response = await apiClient.patch<ExperienceResponse>(
       `/categories/${categoryId}/experiences/${experienceId}`,
-      { isActive: false }
+      { isActive }
     );
 
     return response.data;
