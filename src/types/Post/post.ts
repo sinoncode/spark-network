@@ -44,6 +44,23 @@ export interface PostComment {
   _count: { replies: number }
 }
 
+export interface PostReport {
+  id: string
+  postId: string
+  reporterId: string
+  reason: string
+  description?: string | null
+  status?: string
+  createdAt: string
+  reporter?: {
+    id: string
+    username?: string | null
+    displayName?: string | null
+    email?: string | null
+    role?: string | null
+  } | null
+}
+
 export interface CommentsResponse {
   data: PostComment[]
   meta: {
@@ -85,7 +102,7 @@ export interface Post {
   shareCount: number
   repostCount: number
   user: PostUser
-  reports: unknown[]
+  reports: PostReport[]
   _count: {
     comments: number
     helpfulMarks: number

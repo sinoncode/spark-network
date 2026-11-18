@@ -11,6 +11,7 @@ import { PostStats } from "./components/PostStats"
 import { AIModerationCard } from "./components/AIModerationCard"
 import { CommentsSection } from "./components/CommentsSection"
 import { PostDetailSkeleton } from "./components/PostDetailSkeleton"
+import { PostReports } from "./components/PostReports"
 
 export default function PostPage() {
 	const { id } = useParams<{ id: string }>()
@@ -82,13 +83,28 @@ export default function PostPage() {
 						<Pencil className="h-4 w-4" />
 						Edit Post
 					</Button>
+
+
+
+					
 				</div>
+{post.status === "FLAGGED" && (
+					<div className="mb-6">
+						<PostReports
+							key={post.id}
+							reports={Array.isArray(post.reports) ? post.reports : []}
+						/>
+					</div>
+				)}
+				
 
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 					<div className="lg:col-span-8 space-y-5">
 						<MediaCarousel media={post.media} />
 						<PostHeader post={post} />
 						<PostStats post={post} />
+
+				
 						<AIModerationCard post={post} />
 						<CommentsSection
 							comments={comments}
